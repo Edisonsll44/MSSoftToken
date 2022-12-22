@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?wsdl" filename="ServicioReglasNegocio.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd1" filename="ServicioReglasNegocio.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd0" filename="ServicioReglasNegocio0.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd6" filename="ServicioReglasNegocio1.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd3" filename="ServicioReglasNegocio2.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd7" filename="ServicioReglasNegocio3.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd2" filename="ServicioReglasNegocio4.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd4" filename="ServicioReglasNegocio5.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?disco" filename="ServicioReglasNegocio.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd5" filename="ServicioReglasNegocio6.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>

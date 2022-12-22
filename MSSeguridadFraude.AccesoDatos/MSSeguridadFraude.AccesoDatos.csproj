@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C3F567ED-F704-4777-AD07-6C9987CB7723}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MSSeguridadFraude.AccesoDatos</RootNamespace>
+    <AssemblyName>MSSeguridadFraude.AccesoDatos</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MSFactoresAutenticacion\Referencias\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Referencias\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.6.9.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Referencias\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tcs.Provider">
+      <HintPath>..\Referencias\Tcs.Provider.dll</HintPath>
+    </Reference>
+    <Reference Include="Tcs.Provider.Data">
+      <HintPath>..\Referencias\Tcs.Provider.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Tcs.Provider.Data.Base">
+      <HintPath>..\Referencias\Tcs.Provider.Data.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Tcs.Provider.Settings">
+      <HintPath>..\Referencias\Tcs.Provider.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Tcs.Provider.Settings.Base">
+      <HintPath>..\Referencias\Tcs.Provider.Settings.Base.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdComun\AdBase.cs" />
+    <Compile Include="AdComun\AdLlamarConfiguracionCentralizada.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="AdGestor\AdGestorAnalisisFraude.cs" />
+    <Compile Include="AdLogs\AdJournalTransaccional.cs" />
+    <Compile Include="AdLogs\AdLogsEventViewer.cs" />
+    <Compile Include="AdLogs\AdLogsExcepcion.cs" />
+    <Compile Include="AdLogs\AdLogsTrazabilidad.cs" />
+    <Compile Include="AdLogs\AdParametrosLogs.cs" />
+    <Compile Include="AdMensajes\AdMensajes.cs" />
+    <Compile Include="AdGestor\AdGestorReglasNegocio.cs" />
+    <Compile Include="AdOperacionServicio\AdProcesamientoFraude.cs" />
+    <Compile Include="AdOperacionServicio\AdReglasNegocio.cs" />
+    <Compile Include="AdReglas\AdReglasNegocio.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\CodigoTrabajoWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\ConfiguracionCentralizada\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\MSIdentificadorUnico\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\WsAnalisisFraude\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\WSListenerSigloBGRMS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\MSReglasNegocio\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="C:\Users\gavaca\Desktop\Analsiis\FAWebService.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WsAnalisisFraude\</RelPath>
+      <UpdateFromURL>C:\Users\gavaca\Desktop\Analsiis\FAWebService.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>MSSeguridadFraude_AccesoDatos_WsAnalisisFraude_FAWebService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://10.0.183.149/ServicioBGRInterfacesSigloMS/ListenerSigloBGRMS.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WSListenerSigloBGRMS\</RelPath>
+      <UpdateFromURL>http://10.0.183.149/ServicioBGRInterfacesSigloMS/ListenerSigloBGRMS.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>MSSeguridadFraude_AccesoDatos_WSListenerSigloBGRMS_ListenerSigloBGRMS</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://172.20.41.47/Tcs.ServicioConfiguracionBGR.WS/Configuracion.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\CodigoTrabajoWS\</RelPath>
+      <UpdateFromURL>http://172.20.41.47/Tcs.ServicioConfiguracionBGR.WS/Configuracion.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>MSSeguridadFraude_AccesoDatos_CodigoTrabajoWS_Configuracion</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://172.20.41.47/Tcs.ServicioConfiguracionBGR.WS/ConfiguracionCentralizada.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ConfiguracionCentralizada\</RelPath>
+      <UpdateFromURL>http://172.20.41.47/Tcs.ServicioConfiguracionBGR.WS/ConfiguracionCentralizada.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>MSSeguridadFraude_AccesoDatos_ConfiguracionCentralizada_ConfiguracionCentralizada</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://10.0.183.151:8084/ServicioIdentificadorUnico/ServicioIdentificadorUnico.svc">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\MSIdentificadorUnico\</RelPath>
+      <UpdateFromURL>https://10.0.183.151:8084/ServicioIdentificadorUnico/ServicioIdentificadorUnico.svc</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>MSSeguridadFraude_AccesoDatos_WSIdentificadorUnico_ServicioIdentificadorUnico</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\MSReglasNegocio\</RelPath>
+      <UpdateFromURL>https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>MSSeguridadFraude_AccesoDatos_WsReglasNegocio_ServicioReglasNegocio</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\CodigoTrabajoWS\Configuracion.wsdl" />
+    <None Include="Web References\CodigoTrabajoWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\CodigoTrabajoWS\Respuesta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ConfiguracionCentralizada\ConfiguracionCentralizada.disco" />
+    <None Include="Web References\ConfiguracionCentralizada\ConfiguracionCentralizada.wsdl" />
+    <None Include="Web References\ConfiguracionCentralizada\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\ConfiguracionCentralizada\Respuesta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MSIdentificadorUnico\RespuestaIdentificador1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MSReglasNegocio\RespuestaRegla.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\MSIdentificadorUnico\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\MSIdentificadorUnico\ServicioIdentificadorUnico.wsdl" />
+    <None Include="Web References\MSIdentificadorUnico\ServicioIdentificadorUnico.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MSIdentificadorUnico\ServicioIdentificadorUnico0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MSIdentificadorUnico\ServicioIdentificadorUnico1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MSIdentificadorUnico\ServicioIdentificadorUnico2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MSIdentificadorUnico\ServicioIdentificadorUnico3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MSIdentificadorUnico\ServicioIdentificadorUnico4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MSIdentificadorUnico\ServicioIdentificadorUnico5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MSIdentificadorUnico\ServicioIdentificadorUnico6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\WsAnalisisFraude\analyzeResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WsAnalisisFraude\FAWebService.wsdl" />
+    <None Include="Web References\WsAnalisisFraude\FraudAnalysisWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\WsAnalisisFraude\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WSListenerSigloBGRMS\EDatoSalida.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSListenerSigloBGRMS\ListenerSigloBGRMS.wsdl" />
+    <None Include="Web References\WSListenerSigloBGRMS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\MSReglasNegocio\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\MSReglasNegocio\ServicioReglasNegocio.wsdl" />
+    <None Include="Web References\MSReglasNegocio\ServicioReglasNegocio.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MSReglasNegocio\ServicioReglasNegocio0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MSReglasNegocio\ServicioReglasNegocio1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MSReglasNegocio\ServicioReglasNegocio2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MSReglasNegocio\ServicioReglasNegocio3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MSReglasNegocio\ServicioReglasNegocio4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MSReglasNegocio\ServicioReglasNegocio5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MSReglasNegocio\ServicioReglasNegocio6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\CodigoTrabajoWS\Configuracion.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\WSListenerSigloBGRMS\ListenerSigloBGRMS.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MSSeguridadFraude.Comun\MSSeguridadFraude.Comun.csproj">
+      <Project>{09213E3B-A27C-4455-9E36-4935EC787F9F}</Project>
+      <Name>MSSeguridadFraude.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSSeguridadFraude.Entidades\MSSeguridadFraude.Entidades.csproj">
+      <Project>{49395b0a-af41-4f56-8534-2da087b9977e}</Project>
+      <Name>MSSeguridadFraude.Entidades</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\MSReglasNegocio\ServicioReglasNegocio.disco" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Web References\MSIdentificadorUnico\ServicioIdentificadorUnico.disco" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

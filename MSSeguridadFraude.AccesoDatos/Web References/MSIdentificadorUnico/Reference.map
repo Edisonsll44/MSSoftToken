@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://10.0.183.151:8084/ServicioIdentificadorUnico/ServicioIdentificadorUnico.svc?xsd=xsd2" filename="ServicioIdentificadorUnico.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://10.0.183.151:8084/ServicioIdentificadorUnico/ServicioIdentificadorUnico.svc?xsd=xsd5" filename="ServicioIdentificadorUnico0.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://10.0.183.151:8084/ServicioIdentificadorUnico/ServicioIdentificadorUnico.svc?xsd=xsd1" filename="ServicioIdentificadorUnico1.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="https://10.0.183.151:8084/ServicioIdentificadorUnico/ServicioIdentificadorUnico.svc?disco" filename="ServicioIdentificadorUnico.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://10.0.183.151:8084/ServicioIdentificadorUnico/ServicioIdentificadorUnico.svc?xsd=xsd3" filename="ServicioIdentificadorUnico2.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://10.0.183.151:8084/ServicioIdentificadorUnico/ServicioIdentificadorUnico.svc?xsd=xsd4" filename="ServicioIdentificadorUnico3.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="https://10.0.183.151:8084/ServicioIdentificadorUnico/ServicioIdentificadorUnico.svc?wsdl" filename="ServicioIdentificadorUnico.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://10.0.183.151:8084/ServicioIdentificadorUnico/ServicioIdentificadorUnico.svc?xsd=xsd6" filename="ServicioIdentificadorUnico4.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://10.0.183.151:8084/ServicioIdentificadorUnico/ServicioIdentificadorUnico.svc?xsd=xsd7" filename="ServicioIdentificadorUnico5.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://10.0.183.151:8084/ServicioIdentificadorUnico/ServicioIdentificadorUnico.svc?xsd=xsd0" filename="ServicioIdentificadorUnico6.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>

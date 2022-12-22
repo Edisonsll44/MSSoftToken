@@ -1,0 +1,6 @@
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Entidades\bin\Release\MSSeguridadFraude.Entidades.dll
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Entidades\bin\Release\MSSeguridadFraude.Entidades.pdb
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Entidades\obj\Release\MSSeguridadFraude.Entidades.csproj.AssemblyReference.cache
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Entidades\obj\Release\MSSeguridadFraude.Entidades.csproj.CoreCompileInputs.cache
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Entidades\obj\Release\MSSeguridadFraude.Entidades.dll
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Entidades\obj\Release\MSSeguridadFraude.Entidades.pdb

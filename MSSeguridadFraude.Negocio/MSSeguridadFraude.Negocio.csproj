@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{09BABB05-050E-4244-A82A-A5461582F4C9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MSSeguridadFraude.Negocio</RootNamespace>
+    <AssemblyName>MSSeguridadFraude.Negocio</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NeComun\NeEncriptacion.cs" />
+    <Compile Include="NeLlamarConfiguracionCentralizada\NeLlamarConfiguracionCentralizada.cs" />
+    <Compile Include="NeLogs\NeLogsExcepcion.cs" />
+    <Compile Include="NeLogs\NeLogsTrazabilidad.cs" />
+    <Compile Include="NeLogs\NeJournalTransaccional.cs" />
+    <Compile Include="NeMensajes\NeMensajes.cs" />
+    <Compile Include="NeOperacion\NeOperacionAF.cs" />
+    <Compile Include="NeServicio\NeServicio.cs" />
+    <Compile Include="NeComun\NeValidaciones.cs" />
+    <Compile Include="NeValidacion\NeValidacionReglas.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MSSeguridadFraude.AccesoDatos\MSSeguridadFraude.AccesoDatos.csproj">
+      <Project>{C3F567ED-F704-4777-AD07-6C9987CB7723}</Project>
+      <Name>MSSeguridadFraude.AccesoDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSSeguridadFraude.Comun\MSSeguridadFraude.Comun.csproj">
+      <Project>{09213e3b-a27c-4455-9e36-4935ec787f9f}</Project>
+      <Name>MSSeguridadFraude.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSSeguridadFraude.Entidades\MSSeguridadFraude.Entidades.csproj">
+      <Project>{49395b0a-af41-4f56-8534-2da087b9977e}</Project>
+      <Name>MSSeguridadFraude.Entidades</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

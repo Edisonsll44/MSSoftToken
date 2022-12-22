@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MSSeguridadFraude.Entidades.Multicanal" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MSSeguridadFraude.Entidades.Multicanal" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Canal">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Canal" nillable="true" type="xs:string" />
+      <xs:element name="CodigoCanal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Estado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Identificador" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Canal" nillable="true" type="tns:Canal" />
+  <xs:complexType name="MedioInvocacion">
+    <xs:sequence>
+      <xs:element name="CodigoMedioInvocacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Estado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Identificador" type="xs:long" />
+      <xs:element minOccurs="0" name="NombreMedioInvocacion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MedioInvocacion" nillable="true" type="tns:MedioInvocacion" />
+  <xs:complexType name="TransaccionFinanciera">
+    <xs:sequence>
+      <xs:element name="CodigoTransaccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Estado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Identificador" type="xs:long" />
+      <xs:element minOccurs="0" name="Transaccion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TransaccionFinanciera" nillable="true" type="tns:TransaccionFinanciera" />
+</xs:schema>

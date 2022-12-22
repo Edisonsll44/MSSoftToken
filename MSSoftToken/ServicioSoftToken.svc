@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="MSSoftToken.Service1" CodeBehind="ServicioSoftToken.svc.cs" %>

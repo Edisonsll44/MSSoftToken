@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://vu/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="FAWebService" targetNamespace="http://vu/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="C:\Users\gavaca\Desktop\Analsiis\FraudAnalysisWS.xsd" namespace="http://vu/" />
+    </xsd:schema>
+  </types>
+  <message name="analyze">
+    <part name="parameters" element="tns:analyze" />
+  </message>
+  <message name="analyzeResponse">
+    <part name="parameters" element="tns:analyzeResponse" />
+  </message>
+  <message name="analyzeEvent">
+    <part name="parameters" element="tns:analyzeEvent" />
+  </message>
+  <message name="analyzeEventResponse">
+    <part name="parameters" element="tns:analyzeEventResponse" />
+  </message>
+  <portType name="FraudAnalysisWS">
+    <operation name="analyze">
+      <input wsam:Action="http://vu/FraudAnalysisWS/analyzeRequest" message="tns:analyze" />
+      <output wsam:Action="http://vu/FraudAnalysisWS/analyzeResponse" message="tns:analyzeResponse" />
+    </operation>
+    <operation name="analyzeEvent">
+      <input wsam:Action="http://vu/FraudAnalysisWS/analyzeEventRequest" message="tns:analyzeEvent" />
+      <output wsam:Action="http://vu/FraudAnalysisWS/analyzeEventResponse" message="tns:analyzeEventResponse" />
+    </operation>
+  </portType>
+  <binding name="FraudAnalysisWSPortBinding" type="tns:FraudAnalysisWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="analyze">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="analyzeEvent">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="FAWebService">
+    <port name="FraudAnalysisWSPort" binding="tns:FraudAnalysisWSPortBinding">
+      <soap:address location="http://bgr.cloud.vusecurity.com:80/services/FraudAnalysisWS" />
+    </port>
+  </service>
+</definitions>

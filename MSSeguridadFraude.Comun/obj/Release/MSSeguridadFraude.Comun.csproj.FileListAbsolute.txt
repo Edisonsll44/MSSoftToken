@@ -1,0 +1,10 @@
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Comun\bin\Release\MSSeguridadFraude.Comun.dll
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Comun\bin\Release\MSSeguridadFraude.Comun.pdb
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Comun\bin\Release\MSSeguridadFraude.Entidades.dll
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Comun\bin\Release\TCS.Provider.AES.dll
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Comun\bin\Release\MSSeguridadFraude.Entidades.pdb
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Comun\obj\Release\MSSeguridadFraude.Comun.csproj.AssemblyReference.cache
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Comun\obj\Release\MSSeguridadFraude.Comun.csproj.CoreCompileInputs.cache
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Comun\obj\Release\MSSeguridadFraude.Comun.csproj.CopyComplete
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Comun\obj\Release\MSSeguridadFraude.Comun.dll
+C:\Me\.Net\MSSeguridadFraude\LIB_12067\MSSeguridadFraude.Comun\obj\Release\MSSeguridadFraude.Comun.pdb

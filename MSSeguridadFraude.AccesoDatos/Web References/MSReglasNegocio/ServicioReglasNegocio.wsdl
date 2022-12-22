@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="ServicioReglasNegocio" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="ServicioReglasNegocio_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MicroServicio.Entidades.Entrada" />
+      <xsd:import schemaLocation="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/MicroServicio.Entidades.Auditoria" />
+      <xsd:import schemaLocation="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/MicroServicio.Entidades.Multicanal" />
+      <xsd:import schemaLocation="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/MicroServicio.Entidades.Salida" />
+      <xsd:import schemaLocation="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/MicroServicio.Entidades.Respuesta" />
+      <xsd:import schemaLocation="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/MicroServicio.Entidades.Comun" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServicioReglasNegocio_VerificarRegla_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarRegla" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReglasNegocio_VerificarRegla_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarReglaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReglasNegocio_VerificarReglaRest_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarReglaRest" />
+  </wsdl:message>
+  <wsdl:message name="IServicioReglasNegocio_VerificarReglaRest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarReglaRestResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServicioReglasNegocio">
+    <wsdl:operation name="VerificarRegla">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReglasNegocio/VerificarRegla" message="tns:IServicioReglasNegocio_VerificarRegla_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReglasNegocio/VerificarReglaResponse" message="tns:IServicioReglasNegocio_VerificarRegla_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificarReglaRest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioReglasNegocio/VerificarReglaRest" message="tns:IServicioReglasNegocio_VerificarReglaRest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioReglasNegocio/VerificarReglaRestResponse" message="tns:IServicioReglasNegocio_VerificarReglaRest_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServicioReglasNegocioN" type="tns:IServicioReglasNegocio">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VerificarRegla">
+      <soap:operation soapAction="http://tempuri.org/IServicioReglasNegocio/VerificarRegla" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificarReglaRest">
+      <soap:operation soapAction="http://tempuri.org/IServicioReglasNegocio/VerificarReglaRest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServicioReglasNegocio" type="tns:IServicioReglasNegocio">
+    <wsp:PolicyReference URI="#ServicioReglasNegocio_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VerificarRegla">
+      <soap:operation soapAction="http://tempuri.org/IServicioReglasNegocio/VerificarRegla" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificarReglaRest">
+      <soap:operation soapAction="http://tempuri.org/IServicioReglasNegocio/VerificarReglaRest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicioReglasNegocio">
+    <wsdl:port name="ServicioReglasNegocioN" binding="tns:ServicioReglasNegocioN">
+      <soap:address location="http://rtq18617407.bgr.com/ServicioReglasNegocio/ServicioReglasNegocio.svc" />
+    </wsdl:port>
+    <wsdl:port name="ServicioReglasNegocio" binding="tns:ServicioReglasNegocio">
+      <soap:address location="https://172.20.66.78:8043/ServicioReglasNegocio/ServicioReglasNegocio.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://vu/" targetNamespace="http://vu/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="analyze" type="tns:analyze" />
+  <xs:element name="analyzeEvent" type="tns:analyzeEvent" />
+  <xs:element name="analyzeEventResponse" type="tns:analyzeEventResponse" />
+  <xs:element name="analyzeResponse" type="tns:analyzeResponse" />
+  <xs:element name="analyzeResult" type="tns:analyzeResult" />
+  <xs:complexType name="analyzeEvent">
+    <xs:sequence>
+      <xs:element name="idChannel" type="xs:int" />
+      <xs:element name="idOperationType" type="xs:int" />
+      <xs:element minOccurs="0" name="userId" type="xs:string" />
+      <xs:element name="dateTime" type="xs:dateTime" />
+      <xs:element name="optionalParams">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string" />
+                  <xs:element minOccurs="0" name="value" type="xs:string" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="analyzeEventResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:analyzeResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="analyzeResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="error" type="xs:string" />
+      <xs:element name="result" type="xs:int" />
+      <xs:element name="score" type="xs:int" />
+      <xs:element name="status" type="xs:int" />
+      <xs:element minOccurs="0" name="triggeredRules" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="analyze">
+    <xs:sequence>
+      <xs:element name="idChannel" type="xs:int" />
+      <xs:element name="idOperationType" type="xs:int" />
+      <xs:element minOccurs="0" name="userId" type="xs:string" />
+      <xs:element name="dateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="debitAccount" type="xs:string" />
+      <xs:element minOccurs="0" name="creditAccount" type="xs:string" />
+      <xs:element name="amount" type="xs:double" />
+      <xs:element name="optionalParams">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" name="key" type="xs:string" />
+                  <xs:element minOccurs="0" name="value" type="xs:string" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="analyzeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:analyzeResult" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
