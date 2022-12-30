@@ -55,6 +55,8 @@
     <Compile Include="Mensajes\EConsultaMensaje.cs" />
     <Compile Include="Mensajes\EMensaje.cs" />
     <Compile Include="Mensajes\ERespuestaMensaje.cs" />
+    <Compile Include="OperacionNegocio\EOperacionActivarTOTP.cs" />
+    <Compile Include="OperacionNegocio\EOperacionesTOTP.cs" />
     <Compile Include="OperacionNegocio\ProveedorSeguridad\EDatosVu.cs" />
     <Compile Include="OperacionNegocio\ProveedorSeguridad\AnalisisFraude\EOperacionRegistroAF.cs" />
     <Compile Include="OperacionNegocio\ProveedorSeguridad\AnalisisFraude\EOperacionAF.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="Respuesta\ERespuestaIdentificadorUnico.cs" />
     <Compile Include="Respuesta\RespuestaProveedor\AnalisisFraude\ERespuestaOperacionAF.cs" />
     <Compile Include="Respuesta\RespuestaProveedor\AnalisisFraude\ERespuestaAF.cs" />
+    <Compile Include="Respuesta\RespuestaProveedor\Softoken\ERespuestaST.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entrada\" />
