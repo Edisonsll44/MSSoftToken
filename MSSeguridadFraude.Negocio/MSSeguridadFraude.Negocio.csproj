@@ -48,6 +48,7 @@
     <Compile Include="NeLogs\NeJournalTransaccional.cs" />
     <Compile Include="NeMensajes\NeMensajes.cs" />
     <Compile Include="NeOperacion\NeOperacionAF.cs" />
+    <Compile Include="NeOperacion\NeOperacionST.cs" />
     <Compile Include="NeServicio\NeServicio.cs" />
     <Compile Include="NeComun\NeValidaciones.cs" />
     <Compile Include="NeValidacion\NeValidacionReglas.cs" />

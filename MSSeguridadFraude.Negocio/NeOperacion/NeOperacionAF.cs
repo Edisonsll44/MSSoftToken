@@ -1,6 +1,7 @@
 ﻿using MSSeguridadFraude.AccesoDatos.AdOperacionServicio;
 using MSSeguridadFraude.Comun.Constantes;
 using MSSeguridadFraude.Comun.Enumeraciones;
+using MSSeguridadFraude.Entidades.OperacionNegocio;
 using MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude;
 using MSSeguridadFraude.Entidades.ReglasOperacion;
 using MSSeguridadFraude.Entidades.Respuesta;
@@ -89,5 +90,70 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
 
             return respuestaOperacion;
         }
+
+
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <param name="operacion"></param>
+        /// <returns></returns>
+        public static ERespuesta ActivarTOTP(EOperacionActivarTOTP operacion)
+        {
+            NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
+
+            ERespuesta respuestaOperacion = new ERespuesta();
+
+            ERespuesta respuesta = null;
+
+
+            respuesta = NeComun.NeValidaciones.ValidarCamposObligatorios(operacion, operacion.Auditoria);
+
+            if (respuesta.Codigo.Equals(CConstantes.Excepcion.CODIGO_EXCEPCION_CAMPO_OBLIGATORIO))
+            {
+                return respuestaOperacion;
+            }
+
+            respuesta = NeComun.NeValidaciones.ValidarContenidoEntrada(operacion, operacion.Auditoria);
+
+            if (respuesta.Codigo.Equals(CConstantes.Excepcion.CODIGO_EXCEPCION_INYECCIONSQL))
+            {
+               
+                return respuestaOperacion;
+            }
+
+
+            if (!respuesta.Codigo.Equals(CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString()))
+            {
+               
+                return respuestaOperacion;
+            }
+
+            EReglaOperacion reglaOperacion = new EReglaOperacion()
+            {
+                Auditoria = operacion.Auditoria,
+                Entorno = operacion.Entorno
+            };
+
+            ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
+
+            if (!respuestaRegla.Permitido)
+            {
+                return respuestaOperacion;
+            }
+
+
+
+            if (!respuesta.Codigo.Equals(CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString()))
+            {
+                return respuestaOperacion;
+            }
+            //INICIO CAMBIO PLANTILLA
+           // respuestaOperacion = AdProcesamientoFraude.AnalizarOperacionFraude(operacion);
+            //FIN CAMBIO PLANTILLA
+            NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_FIN, operacion.Auditoria, () => respuestaOperacion);
+
+            return respuestaOperacion;
+        }
+
     }
 }

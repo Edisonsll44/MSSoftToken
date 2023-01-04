@@ -15,8 +15,37 @@ namespace MSSoftToken
 	[ServiceContract]
 	public interface IServicioSoftToken
 	{
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+                   BodyStyle = WebMessageBodyStyle.Bare,
+                   UriTemplate = "ActivarTOTP",       // Nombre adicional del metodo para la transaccion
+                   RequestFormat = WebMessageFormat.Json,
+                   ResponseFormat = WebMessageFormat.Json)]
         ERespuesta ActivarTOTP(EOperacionActivarTOTP operacion);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+                   BodyStyle = WebMessageBodyStyle.Bare,
+                   UriTemplate = "SincronizarTiempoTOTP",       // Nombre adicional del metodo para la transaccion
+                   RequestFormat = WebMessageFormat.Json,
+                   ResponseFormat = WebMessageFormat.Json)]
+        ERespuesta SincronizarTiempoTOTP(EOperacionesTOTP operacion);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+                   BodyStyle = WebMessageBodyStyle.Bare,
+                   UriTemplate = "DesbloquearTOTP",       // Nombre adicional del metodo para la transaccion
+                   RequestFormat = WebMessageFormat.Json,
+                   ResponseFormat = WebMessageFormat.Json)]
         ERespuesta DesbloquearTOTP( EOperacionesTOTP operacion);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+                   BodyStyle = WebMessageBodyStyle.Bare,
+                   UriTemplate = "DesabilitarTOTP",       // Nombre adicional del metodo para la transaccion
+                   RequestFormat = WebMessageFormat.Json,
+                   ResponseFormat = WebMessageFormat.Json)]
         ERespuesta DesabilitarTOTP( EOperacionesTOTP operacion);
 	}
 

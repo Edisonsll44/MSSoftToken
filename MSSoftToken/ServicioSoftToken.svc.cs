@@ -28,5 +28,10 @@ namespace MSSoftToken
 		{
 			throw new NotImplementedException();
 		}
+
+		public ERespuesta SincronizarTiempoTOTP(EOperacionesTOTP operacion)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

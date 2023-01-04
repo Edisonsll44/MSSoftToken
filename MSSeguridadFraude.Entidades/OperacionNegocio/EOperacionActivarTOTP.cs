@@ -1,5 +1,6 @@
 ﻿using MSSeguridadFraude.Entidades.Comun;
 using MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad;
+using MSSeguridadFraude.Entidades.OperacionNegocio.Softoken;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,16 +27,11 @@ namespace MSSeguridadFraude.Entidades.OperacionNegocio
         /// </summary>
         [DataMember]
         public EEntorno Entorno { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [DataMember]
-        public string Cupon { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [DataMember]
-        public string Callback { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        [DataMember]
+        public EActivarTOTP ActivarTOTP{get;set;}
     }
 }
