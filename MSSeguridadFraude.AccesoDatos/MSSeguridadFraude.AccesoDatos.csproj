@@ -75,7 +75,7 @@
     <Compile Include="AdComun\AdLlamarConfiguracionCentralizada.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="AdGestor\AdGestorAnalisisFraude.cs" />
+    <Compile Include="AdGestor\AdGestorBloqueoUsuario.cs" />
     <Compile Include="AdLogs\AdJournalTransaccional.cs" />
     <Compile Include="AdLogs\AdLogsEventViewer.cs" />
     <Compile Include="AdLogs\AdLogsExcepcion.cs" />
@@ -83,7 +83,7 @@
     <Compile Include="AdLogs\AdParametrosLogs.cs" />
     <Compile Include="AdMensajes\AdMensajes.cs" />
     <Compile Include="AdGestor\AdGestorReglasNegocio.cs" />
-    <Compile Include="AdOperacionServicio\AdProcesamientoFraude.cs" />
+    <Compile Include="AdOperacionServicio\AdProcesamientoBloqueoUsuario.cs" />
     <Compile Include="AdOperacionServicio\AdReglasNegocio.cs" />
     <Compile Include="AdReglas\AdReglasNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

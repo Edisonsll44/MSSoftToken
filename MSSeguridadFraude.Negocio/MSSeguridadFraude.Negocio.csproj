@@ -47,7 +47,7 @@
     <Compile Include="NeLogs\NeLogsTrazabilidad.cs" />
     <Compile Include="NeLogs\NeJournalTransaccional.cs" />
     <Compile Include="NeMensajes\NeMensajes.cs" />
-    <Compile Include="NeOperacion\NeOperacionAF.cs" />
+    <Compile Include="NeOperacion\NeOperacionBloqueoUsuario.cs" />
     <Compile Include="NeServicio\NeServicio.cs" />
     <Compile Include="NeComun\NeValidaciones.cs" />
     <Compile Include="NeValidacion\NeValidacionReglas.cs" />

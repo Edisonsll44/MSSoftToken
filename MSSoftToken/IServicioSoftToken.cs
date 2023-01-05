@@ -1,5 +1,6 @@
 ﻿using MSSeguridadFraude.Entidades.OperacionNegocio;
 using MSSeguridadFraude.Entidades.Respuesta;
+using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken;
 using System.ServiceModel;
 
 namespace MSSoftToken
@@ -12,11 +13,11 @@ namespace MSSoftToken
         ERespuesta DesbloquearTOTP( EOperacionesTOTP operacion);
         ERespuesta DesabilitarTOTP( EOperacionesTOTP operacion);
 
-		ERespuesta RegistrarUsuario();
-		ERespuesta BloquearTotp();
-		ERespuesta HabilitarTotp();
-		ERespuesta EliminarTotp();
-		ERespuesta LoginOtp();
+		ERespuestaOperacionSoftToken RegistrarUsuario();
+		ERespuestaOperacionSoftToken BloquearTotp(EOperacionesTOTP operacion);
+		ERespuestaOperacionSoftToken HabilitarTotp();
+		ERespuestaOperacionSoftToken EliminarTotp();
+		ERespuestaOperacionSoftToken LoginOtp();
 	}
 
 

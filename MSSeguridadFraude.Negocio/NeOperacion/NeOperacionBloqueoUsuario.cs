@@ -1,10 +1,9 @@
 ﻿using MSSeguridadFraude.AccesoDatos.AdOperacionServicio;
 using MSSeguridadFraude.Comun.Constantes;
-using MSSeguridadFraude.Comun.Enumeraciones;
-using MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude;
+using MSSeguridadFraude.Entidades.OperacionNegocio;
 using MSSeguridadFraude.Entidades.ReglasOperacion;
 using MSSeguridadFraude.Entidades.Respuesta;
-using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude;
+using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken;
 using MSSeguridadFraude.Negocio.NeLogs;
 using MSSeguridadFraude.Negocio.NeValidacion;
 
@@ -13,9 +12,9 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
     /// <summary>
     /// NeOperacion
     /// </summary>
-    public  class NeOperacionAF
+    public  class NeOperacionBloqueoUsuario
     {
-        protected NeOperacionAF()
+        protected NeOperacionBloqueoUsuario()
         {
 
         }
@@ -26,13 +25,13 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
         /// </summary>
         /// <param name="operacion">EOperacionConsulta</param>
         /// <returns>ERespuestaOperacion</returns>
-        public static ERespuestaOperacionAF ProcesarAnalisisFraude(EOperacionRegistroAF operacion)
+        public static ERespuestaOperacionSoftToken ProcesarBloqueoUsuario(EOperacionesTOTP operacion)
         {
             NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
 
-            ERespuestaOperacionAF respuestaOperacion = new ERespuestaOperacionAF
-            {
-                RespuestaAF = new ERespuestaAF(),
+			ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken
+			{
+                RespuestaSoftToken = new ERespuestaST(),
                 Respuesta = new ERespuesta()
             };
 
@@ -83,7 +82,7 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
                 return respuestaOperacion;
             }
             //INICIO CAMBIO PLANTILLA
-            respuestaOperacion = AdProcesamientoFraude.AnalizarOperacionFraude(operacion);
+            respuestaOperacion = AdProcesamientoBloqueoUsuario.AnalizarOperacionFraude(operacion);
             //FIN CAMBIO PLANTILLA
             NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_FIN, operacion.Auditoria, () => respuestaOperacion);
 

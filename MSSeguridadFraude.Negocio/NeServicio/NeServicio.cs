@@ -2,9 +2,9 @@
 using MSSeguridadFraude.Comun.Enumeraciones;
 using MSSeguridadFraude.Comun.Utilitarios;
 using MSSeguridadFraude.Entidades.Mensajes;
-using MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude;
+using MSSeguridadFraude.Entidades.OperacionNegocio;
 using MSSeguridadFraude.Entidades.Respuesta;
-using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude;
+using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken;
 using MSSeguridadFraude.Negocio.NeLogs;
 using System;
 using System.Net;
@@ -27,12 +27,12 @@ namespace MSSeguridadFraude.Negocio.NeServicio
 		/// <param name="operacion">EOperacionConsulta</param>
 		/// <param name="ip">string</param>
 		/// <returns>ERespuestaPagoContrapartida</returns>
-		public static ERespuestaOperacionAF ProcesarAnalisisFraude(EOperacionRegistroAF operacion, string ip)
+		public static ERespuestaOperacionSoftToken ProcesarBloqueoUsuario(EOperacionesTOTP operacion, string ip)
 		{
-			ERespuestaOperacionAF respuestaOperacion = new ERespuestaOperacionAF
+			ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken
 			{
 				Respuesta = new ERespuesta(),
-				RespuestaAF = new ERespuestaAF()
+				RespuestaSoftToken = new ERespuestaST()
 			};
 			EConsultaMensaje datoMensaje = new EConsultaMensaje
 			{
@@ -59,7 +59,7 @@ namespace MSSeguridadFraude.Negocio.NeServicio
 				else
 				{
 					//TODO CAMBIO LLAMADA METODO 
-					respuestaOperacion = NeOperacion.NeOperacionAF.ProcesarAnalisisFraude(operacion);
+					respuestaOperacion = NeOperacion.NeOperacionBloqueoUsuario.ProcesarBloqueoUsuario(operacion);
 					//FIN CAMBIO
 					datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
 					datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
