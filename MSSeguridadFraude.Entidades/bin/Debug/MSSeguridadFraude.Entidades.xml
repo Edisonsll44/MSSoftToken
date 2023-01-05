@@ -792,7 +792,7 @@
             Datos de Entorno
             </summary>
         </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP.Username">
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP.Operacion">
             <summary>
             Usuario registrado en el proveedor VU => Softoken TOTP
             </summary>
@@ -922,6 +922,16 @@
             </summary>
         </member>
         <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EActivarTOTP.Callback">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EOperacionTOTP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EOperacionTOTP.username">
             <summary>
             
             </summary>

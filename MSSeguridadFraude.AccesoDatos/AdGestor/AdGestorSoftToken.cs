@@ -32,11 +32,141 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
         public static ERespuesta ActivarTOTP(EOperacionActivarTOTP operacion)
         {
             var respuestaAF = new ERespuesta();
-            var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointAnalisisFraude"].ToString();
+            var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointA"].ToString();
             try
             {
                 var request = operacion.ActivarTOTP;
                 IRestResponse responseData = GestorServiciosWeb<EActivarTOTP>.SendPostAsync(request, recurso);
+
+                if (responseData.StatusCode == HttpStatusCode.OK)
+                {
+                    respuestaAF.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
+                    respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
+                    respuestaAF.CodigoEmpresaProveedor = string.Empty;
+                    var respuestaGenerica = JsonConvert.DeserializeObject<ERespuestaAF>(responseData.Content);
+                    //respuestaAF.RespuestaAF = respuestaGenerica;
+                    return respuestaAF;
+                }
+                else
+                {
+                    respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIOS;
+                    respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_PROVEEDOR;
+                    respuestaAF.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA;
+                    if (responseData.StatusCode == HttpStatusCode.RequestTimeout || responseData.StatusCode == HttpStatusCode.GatewayTimeout)
+                    {
+                        respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
+                        respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
+                    }
+
+                    Exception ex = responseData.ErrorException ?? new Exception(respuestaAF.Mensaje);
+                    AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => recurso, () => operacion, () => respuestaAF);
+                }
+            }
+            catch (Exception error)
+            {
+                AdLogsExcepcion.GuardarLogExcepcion(error, operacion.Auditoria, () => recurso, () => operacion, () => respuestaAF);
+                respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuestaAF.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA_VU;
+            }
+            return respuestaAF;
+        }
+
+      
+
+        public static ERespuesta SincronizarTiempoTOTP(EOperacionActivarTOTP operacion)
+        {
+            var respuestaAF = new ERespuesta();
+            var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointA"].ToString();
+            try
+            {
+                var request = operacion.ActivarTOTP;
+                IRestResponse responseData = GestorServiciosWeb<EActivarTOTP>.SendPostAsync(request, recurso);
+
+                if (responseData.StatusCode == HttpStatusCode.OK)
+                {
+                    respuestaAF.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
+                    respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
+                    respuestaAF.CodigoEmpresaProveedor = string.Empty;
+                    var respuestaGenerica = JsonConvert.DeserializeObject<ERespuestaAF>(responseData.Content);
+                    //respuestaAF.RespuestaAF = respuestaGenerica;
+                    return respuestaAF;
+                }
+                else
+                {
+                    respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIOS;
+                    respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_PROVEEDOR;
+                    respuestaAF.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA;
+                    if (responseData.StatusCode == HttpStatusCode.RequestTimeout || responseData.StatusCode == HttpStatusCode.GatewayTimeout)
+                    {
+                        respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
+                        respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
+                    }
+
+                    Exception ex = responseData.ErrorException ?? new Exception(respuestaAF.Mensaje);
+                    AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => recurso, () => operacion, () => respuestaAF);
+                }
+            }
+            catch (Exception error)
+            {
+                AdLogsExcepcion.GuardarLogExcepcion(error, operacion.Auditoria, () => recurso, () => operacion, () => respuestaAF);
+                respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuestaAF.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA_VU;
+            }
+            return respuestaAF;
+        }
+
+        public static ERespuesta DesbloquearTOTP(EOperacionesTOTP operacion)
+        {
+            var respuestaAF = new ERespuesta();
+            var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointDesbloquear"].ToString();
+            try
+            {
+                var request = operacion.Operacion;
+                IRestResponse responseData = GestorServiciosWeb<EOperacionTOTP>.SendPostAsync(request, recurso);
+
+                if (responseData.StatusCode == HttpStatusCode.OK)
+                {
+                    respuestaAF.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
+                    respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
+                    respuestaAF.CodigoEmpresaProveedor = string.Empty;
+                    var respuestaGenerica = JsonConvert.DeserializeObject<ERespuestaAF>(responseData.Content);
+                    //respuestaAF.RespuestaAF = respuestaGenerica;
+                    return respuestaAF;
+                }
+                else
+                {
+                    respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIOS;
+                    respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_PROVEEDOR;
+                    respuestaAF.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA;
+                    if (responseData.StatusCode == HttpStatusCode.RequestTimeout || responseData.StatusCode == HttpStatusCode.GatewayTimeout)
+                    {
+                        respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
+                        respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
+                    }
+
+                    Exception ex = responseData.ErrorException ?? new Exception(respuestaAF.Mensaje);
+                    AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => recurso, () => operacion, () => respuestaAF);
+                }
+            }
+            catch (Exception error)
+            {
+                AdLogsExcepcion.GuardarLogExcepcion(error, operacion.Auditoria, () => recurso, () => operacion, () => respuestaAF);
+                respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuestaAF.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA_VU;
+            }
+            return respuestaAF;
+        }
+        public static ERespuesta DesabilitarTOTP(EOperacionesTOTP operacion)
+        {
+            var respuestaAF = new ERespuesta();
+            var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointDesabilitar"].ToString();
+            try
+            {
+                var request = operacion.Operacion;
+                IRestResponse responseData = GestorServiciosWeb<EOperacionTOTP>.SendPostAsync(request, recurso);
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {

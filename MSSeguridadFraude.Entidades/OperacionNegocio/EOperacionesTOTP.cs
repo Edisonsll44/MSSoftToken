@@ -1,4 +1,5 @@
 ﻿using MSSeguridadFraude.Entidades.Comun;
+using MSSeguridadFraude.Entidades.OperacionNegocio.Softoken;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,6 @@ namespace MSSeguridadFraude.Entidades.OperacionNegocio
         /// Usuario registrado en el proveedor VU => Softoken TOTP
         /// </summary>
         [DataMember]
-        public string Username { get; set; }
+        public EOperacionTOTP Operacion { get; set; }
     }
 }

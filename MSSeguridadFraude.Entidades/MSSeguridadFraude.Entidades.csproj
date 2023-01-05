@@ -61,6 +61,7 @@
     <Compile Include="OperacionNegocio\ProveedorSeguridad\AnalisisFraude\EOperacionRegistroAF.cs" />
     <Compile Include="OperacionNegocio\ProveedorSeguridad\AnalisisFraude\EOperacionAF.cs" />
     <Compile Include="OperacionNegocio\Softoken\EActivarTOTP.cs" />
+    <Compile Include="OperacionNegocio\Softoken\EOperacionTOTP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReglasOperacion\EReglaOperacion.cs" />
     <Compile Include="ReglasOperacion\ERespuestaRegla.cs" />

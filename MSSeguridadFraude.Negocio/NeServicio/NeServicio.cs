@@ -99,5 +99,24 @@ namespace MSSeguridadFraude.Negocio.NeServicio
             return respuestaOperacion;
         }
 
-	}
+
+        public static ERespuesta SincronizarTiempoTOTP(EOperacionActivarTOTP operacion)
+        {
+
+            return null;
+        }
+
+
+        public static ERespuesta DesbloquearTOTP( EOperacionesTOTP operacion)
+        {
+
+            return null;
+        }
+
+        public static ERespuesta DesabilitarTOTP(EOperacionesTOTP operacion)
+        {
+
+            return null;
+        }
+    }
 }
