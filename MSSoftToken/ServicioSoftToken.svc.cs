@@ -1,12 +1,6 @@
 ﻿using MSSeguridadFraude.Entidades.OperacionNegocio;
 using MSSeguridadFraude.Entidades.Respuesta;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
 
 namespace MSSoftToken
 {
@@ -19,12 +13,37 @@ namespace MSSoftToken
 			throw new NotImplementedException();
 		}
 
+		public ERespuesta BloquearTotp()
+		{
+			throw new NotImplementedException();
+		}
+
 		public ERespuesta DesabilitarTOTP(EOperacionesTOTP operacion)
 		{
 			throw new NotImplementedException();
 		}
 
 		public ERespuesta DesbloquearTOTP(EOperacionesTOTP operacion)
+		{
+			throw new NotImplementedException();
+		}
+
+		public ERespuesta EliminarTotp()
+		{
+			throw new NotImplementedException();
+		}
+
+		public ERespuesta HabilitarTotp()
+		{
+			throw new NotImplementedException();
+		}
+
+		public ERespuesta LoginOtp()
+		{
+			throw new NotImplementedException();
+		}
+
+		public ERespuesta RegistrarUsuario()
 		{
 			throw new NotImplementedException();
 		}

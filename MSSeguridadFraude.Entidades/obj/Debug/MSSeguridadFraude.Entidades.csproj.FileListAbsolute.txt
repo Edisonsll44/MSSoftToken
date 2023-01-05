@@ -12,3 +12,10 @@ C:\Me\.Net\MSSoftToken\MSSoftToken\MSSeguridadFraude.Entidades\obj\Debug\MSSegur
 C:\Me\.Net\MSSoftToken\MSSoftToken\MSSeguridadFraude.Entidades\obj\Debug\MSSeguridadFraude.Entidades.csproj.CoreCompileInputs.cache
 C:\Me\.Net\MSSoftToken\MSSoftToken\MSSeguridadFraude.Entidades\obj\Debug\MSSeguridadFraude.Entidades.dll
 C:\Me\.Net\MSSoftToken\MSSoftToken\MSSeguridadFraude.Entidades\obj\Debug\MSSeguridadFraude.Entidades.pdb
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Entidades\bin\Debug\MSSeguridadFraude.Entidades.xml
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Entidades\bin\Debug\MSSeguridadFraude.Entidades.dll
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Entidades\bin\Debug\MSSeguridadFraude.Entidades.pdb
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Entidades\obj\Debug\MSSeguridadFraude.Entidades.csproj.AssemblyReference.cache
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Entidades\obj\Debug\MSSeguridadFraude.Entidades.csproj.CoreCompileInputs.cache
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Entidades\obj\Debug\MSSeguridadFraude.Entidades.dll
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Entidades\obj\Debug\MSSeguridadFraude.Entidades.pdb
