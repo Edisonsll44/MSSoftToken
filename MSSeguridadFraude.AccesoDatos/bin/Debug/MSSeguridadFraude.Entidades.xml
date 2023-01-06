@@ -1116,6 +1116,21 @@
             Entidad de Auditoria 
             </summary>
         </member>
+        <member name="T:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaOperacionSoftToken">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaOperacionSoftToken.Respuesta">
+            <summary>
+            Entidad que contiene el codigo y mensaje de respuesta
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaOperacionSoftToken.RespuestaSoftToken">
+            <summary>
+            Entidad que contiene el codigo y mensaje de respuesta
+            </summary>
+        </member>
         <member name="T:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaST">
             <summary>
             Entidad de respuesta para integracion VU Softoken

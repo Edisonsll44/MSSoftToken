@@ -6,6 +6,7 @@ using MSSeguridadFraude.Entidades.OperacionNegocio;
 using MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude;
 using MSSeguridadFraude.Entidades.Respuesta;
 using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude;
+using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken;
 using MSSeguridadFraude.Negocio.NeLogs;
 using MSSeguridadFraude.Negocio.NeOperacion;
 using System;
@@ -30,11 +31,11 @@ namespace MSSeguridadFraude.Negocio.NeServicio
         /// </summary>
         /// <param name="operacion"></param>
         /// <returns></returns>
-		public static ERespuesta ActivarTOTP(EOperacionActivarTOTP operacion)
+		public static ERespuestaOperacionSoftToken ActivarTOTP(EOperacionActivarTOTP operacion)
 		{
 
 
-            var respuestaOperacion = new ERespuesta();
+            var respuestaOperacion = new ERespuestaOperacionSoftToken();
             string ip = operacion.Auditoria.IdAplicacionCliente;
             operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
             ERespuestaMensaje respuestaMensaje;
@@ -66,15 +67,15 @@ namespace MSSeguridadFraude.Negocio.NeServicio
 					//TODO CAMBIO LLAMADA METODO 
 					respuestaOperacion = NeOperacionST.ActivarTOTP(operacion);
                     //FIN CAMBIO
-                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Codigo;
-                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Mensaje;
-                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.OperacionProcesada;
-                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.TipoMensaje;
-                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.CodigoEmpresaProveedor;
+                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
+                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
+                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
+                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
+                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
 
                     respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-                    respuestaOperacion.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-                    respuestaOperacion.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                    respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                    respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
 
                 }
             }
@@ -89,27 +90,27 @@ namespace MSSeguridadFraude.Negocio.NeServicio
 
                 respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
 
-                respuestaOperacion.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-                respuestaOperacion.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-                respuestaOperacion.FechaRespuesta = DateTime.Now;
-                respuestaOperacion.ErrorConexion = objeto;
-                respuestaOperacion.OperacionProcesada = false;
+                respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                respuestaOperacion.Respuesta.ErrorConexion = objeto;
+                respuestaOperacion.Respuesta.OperacionProcesada = false;
                 //throw;
 			}
             return respuestaOperacion;
         }
 
 
-        public static ERespuesta SincronizarTiempoTOTP(EOperacionActivarTOTP operacion)
+        public static ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionActivarTOTP operacion)
         {
 
             return null;
         }
 
 
-        public static ERespuesta DesbloquearTOTP( EOperacionesTOTP operacion)
+        public static ERespuestaOperacionSoftToken DesbloquearTOTP( EOperacionesTOTP operacion)
         {
-            var respuestaOperacion = new ERespuesta();
+            var respuestaOperacion = new ERespuestaOperacionSoftToken();
             string ip = operacion.Auditoria.IdAplicacionCliente;
             operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
             ERespuestaMensaje respuestaMensaje;
@@ -142,15 +143,15 @@ namespace MSSeguridadFraude.Negocio.NeServicio
                     //TODO CAMBIO LLAMADA METODO 
                     respuestaOperacion = NeOperacionST.DesbloquearTOTP(operacion);
                     //FIN CAMBIO
-                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Codigo;
-                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Mensaje;
-                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.OperacionProcesada;
-                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.TipoMensaje;
-                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.CodigoEmpresaProveedor;
+                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
+                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
+                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
+                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
+                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
 
                     respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-                    respuestaOperacion.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-                    respuestaOperacion.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                    respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                    respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
 
                 }
             }
@@ -165,21 +166,21 @@ namespace MSSeguridadFraude.Negocio.NeServicio
 
                 respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
 
-                respuestaOperacion.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-                respuestaOperacion.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-                respuestaOperacion.FechaRespuesta = DateTime.Now;
-                respuestaOperacion.ErrorConexion = objeto;
-                respuestaOperacion.OperacionProcesada = false;
+                respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                respuestaOperacion.Respuesta.ErrorConexion = objeto;
+                respuestaOperacion.Respuesta.OperacionProcesada = false;
                 //throw;
             }
             return respuestaOperacion;
 
         }
 
-        public static ERespuesta DesabilitarTOTP(EOperacionesTOTP operacion)
+        public static ERespuestaOperacionSoftToken DesabilitarTOTP(EOperacionesTOTP operacion)
         {
 
-            var respuestaOperacion = new ERespuesta();
+            var respuestaOperacion = new ERespuestaOperacionSoftToken();
             string ip = operacion.Auditoria.IdAplicacionCliente;
             operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
             ERespuestaMensaje respuestaMensaje;
@@ -212,15 +213,15 @@ namespace MSSeguridadFraude.Negocio.NeServicio
                     //TODO CAMBIO LLAMADA METODO 
                     respuestaOperacion = NeOperacionST.DesabilitarTOTP(operacion);
                     //FIN CAMBIO
-                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Codigo;
-                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Mensaje;
-                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.OperacionProcesada;
-                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.TipoMensaje;
-                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.CodigoEmpresaProveedor;
+                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
+                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
+                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
+                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
+                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
 
                     respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-                    respuestaOperacion.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-                    respuestaOperacion.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                    respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                    respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
 
                 }
             }
@@ -235,11 +236,11 @@ namespace MSSeguridadFraude.Negocio.NeServicio
 
                 respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
 
-                respuestaOperacion.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-                respuestaOperacion.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-                respuestaOperacion.FechaRespuesta = DateTime.Now;
-                respuestaOperacion.ErrorConexion = objeto;
-                respuestaOperacion.OperacionProcesada = false;
+                respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                respuestaOperacion.Respuesta.ErrorConexion = objeto;
+                respuestaOperacion.Respuesta.OperacionProcesada = false;
                 //throw;
             }
             return respuestaOperacion;

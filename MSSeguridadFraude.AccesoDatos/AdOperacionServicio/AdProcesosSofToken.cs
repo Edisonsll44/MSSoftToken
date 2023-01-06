@@ -1,12 +1,14 @@
 ﻿using MSSeguridadFraude.AccesoDatos.AdComun;
 using MSSeguridadFraude.AccesoDatos.AdGestor;
 using MSSeguridadFraude.AccesoDatos.AdLogs;
+using MSSeguridadFraude.AccesoDatos.CodigoTrabajoWS;
 using MSSeguridadFraude.AccesoDatos.MSIdentificadorUnico;
 using MSSeguridadFraude.Comun.Constantes;
 using MSSeguridadFraude.Entidades.OperacionNegocio;
 using MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude;
 using MSSeguridadFraude.Entidades.Respuesta;
 using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude;
+using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +28,9 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
         }
 
 
-        public static ERespuesta ActivarTOTP(EOperacionActivarTOTP operacion) {
+        public static ERespuestaOperacionSoftToken ActivarTOTP(EOperacionActivarTOTP operacion) {
 
-            var respuesta = new ERespuesta();
+            var respuesta = new ERespuestaOperacionSoftToken();
             try
             {
                 //Invocacion al servicio del proveedor
@@ -37,24 +39,28 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
             }
             catch (WebException ex)
             {
-                respuesta = new ERespuesta
+                respuesta = new ERespuestaOperacionSoftToken
                 {
-                    ExcepcionAplicacion = true,
-                    ErrorConexion = true,
-                    FechaRespuesta = DateTime.Now,
-                    OperacionProcesada = false,
+                    Respuesta = new ERespuesta
+                    {
+                        ExcepcionAplicacion = true,
+                        ErrorConexion = true,
+                        FechaRespuesta = DateTime.Now,
+                        OperacionProcesada = false,
+                    }
+                    
 
                 };
 
                 if (ex.Status == WebExceptionStatus.Timeout)
                 {
-                    respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
-                    respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
                 }
                 else
                 {
-                    respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
-                    respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
                 }
 
                 AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
@@ -63,10 +69,10 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
             {
                 AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
 
-                respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
-                respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
-                respuesta.FechaRespuesta = DateTime.Now;
-                respuesta.ExcepcionAplicacion = true;
+                respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.FechaRespuesta = DateTime.Now;
+                respuesta.Respuesta.ExcepcionAplicacion = true;
 
             }
 
@@ -82,10 +88,10 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
         }
 
 
-        public static ERespuesta DesbloquearTOTP(EOperacionesTOTP operacion)
+        public static ERespuestaOperacionSoftToken DesbloquearTOTP(EOperacionesTOTP operacion)
         {
 
-            var respuesta = new ERespuesta();
+            var respuesta = new ERespuestaOperacionSoftToken();
             try
             {
                 //Invocacion al servicio del proveedor
@@ -94,24 +100,28 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
             }
             catch (WebException ex)
             {
-                respuesta = new ERespuesta
+                respuesta = new ERespuestaOperacionSoftToken
                 {
-                    ExcepcionAplicacion = true,
-                    ErrorConexion = true,
-                    FechaRespuesta = DateTime.Now,
-                    OperacionProcesada = false,
+                    Respuesta = new ERespuesta
+                    {
+                        ExcepcionAplicacion = true,
+                        ErrorConexion = true,
+                        FechaRespuesta = DateTime.Now,
+                        OperacionProcesada = false,
+                    }
+                    
 
                 };
 
                 if (ex.Status == WebExceptionStatus.Timeout)
                 {
-                    respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
-                    respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
                 }
                 else
                 {
-                    respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
-                    respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
                 }
 
                 AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
@@ -120,19 +130,19 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
             {
                 AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
 
-                respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
-                respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
-                respuesta.FechaRespuesta = DateTime.Now;
-                respuesta.ExcepcionAplicacion = true;
+                respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.FechaRespuesta = DateTime.Now;
+                respuesta.Respuesta.ExcepcionAplicacion = true;
 
             }
 
             return respuesta;
         }
 
-        public static ERespuesta DesabilitarTOTP(EOperacionesTOTP operacion)        {
+        public static ERespuestaOperacionSoftToken DesabilitarTOTP(EOperacionesTOTP operacion)        {
 
-            var respuesta = new ERespuesta();
+            var respuesta = new ERespuestaOperacionSoftToken();
             try
             {
                 //Invocacion al servicio del proveedor
@@ -141,24 +151,28 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
             }
             catch (WebException ex)
             {
-                respuesta = new ERespuesta
+                respuesta = new ERespuestaOperacionSoftToken
                 {
-                    ExcepcionAplicacion = true,
-                    ErrorConexion = true,
-                    FechaRespuesta = DateTime.Now,
-                    OperacionProcesada = false,
+                    Respuesta= new ERespuesta
+                    {
+                        ExcepcionAplicacion = true,
+                        ErrorConexion = true,
+                        FechaRespuesta = DateTime.Now,
+                        OperacionProcesada = false,
+                    }
+                    
 
                 };
 
                 if (ex.Status == WebExceptionStatus.Timeout)
                 {
-                    respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
-                    respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
                 }
                 else
                 {
-                    respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
-                    respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
                 }
 
                 AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
@@ -167,10 +181,10 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
             {
                 AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
 
-                respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
-                respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
-                respuesta.FechaRespuesta = DateTime.Now;
-                respuesta.ExcepcionAplicacion = true;
+                respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.FechaRespuesta = DateTime.Now;
+                respuesta.Respuesta.ExcepcionAplicacion = true;
 
             }
 

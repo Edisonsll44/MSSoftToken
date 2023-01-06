@@ -1,5 +1,6 @@
 ﻿using MSSeguridadFraude.Entidades.OperacionNegocio;
 using MSSeguridadFraude.Entidades.Respuesta;
+using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken;
 using MSSeguridadFraude.Negocio.NeServicio;
 using System;
 using System.Collections.Generic;
@@ -21,22 +22,22 @@ namespace MSSoftToken
 
 
 
-		public ERespuesta ActivarTOTP(EOperacionActivarTOTP operacion)
+		public ERespuestaOperacionSoftToken ActivarTOTP(EOperacionActivarTOTP operacion)
 		{
             return NeServicio.ActivarTOTP(operacion);
         }
 
-		public ERespuesta DesabilitarTOTP(EOperacionesTOTP operacion)
+		public ERespuestaOperacionSoftToken DesabilitarTOTP(EOperacionesTOTP operacion)
 		{
 			return NeServicio.DesabilitarTOTP(operacion);
         }
 
-		public ERespuesta DesbloquearTOTP(EOperacionesTOTP operacion)
+		public ERespuestaOperacionSoftToken DesbloquearTOTP(EOperacionesTOTP operacion)
 		{
             return NeServicio.DesbloquearTOTP(operacion);
         }
 
-		public ERespuesta SincronizarTiempoTOTP(EOperacionesTOTP operacion)
+		public ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionesTOTP operacion)
 		{
             return null;
         }

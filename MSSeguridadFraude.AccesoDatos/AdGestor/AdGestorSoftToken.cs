@@ -2,10 +2,12 @@
 using MSSeguridadFraude.AccesoDatos.AdLogs;
 using MSSeguridadFraude.Comun.Constantes;
 using MSSeguridadFraude.Comun.Enumeraciones;
+using MSSeguridadFraude.Comun.Utilitarios;
 using MSSeguridadFraude.Entidades.OperacionNegocio;
 using MSSeguridadFraude.Entidades.OperacionNegocio.Softoken;
 using MSSeguridadFraude.Entidades.Respuesta;
 using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude;
+using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
@@ -29,9 +31,9 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
 
 
 
-        public static ERespuesta ActivarTOTP(EOperacionActivarTOTP operacion)
+        public static ERespuestaOperacionSoftToken ActivarTOTP(EOperacionActivarTOTP operacion)
         {
-            var respuestaAF = new ERespuesta();
+            var respuestaST = new ERespuestaOperacionSoftToken();
             var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointA"].ToString();
             try
             {
@@ -40,43 +42,43 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {
-                    respuestaAF.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
-                    respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
-                    respuestaAF.CodigoEmpresaProveedor = string.Empty;
-                    var respuestaGenerica = JsonConvert.DeserializeObject<ERespuestaAF>(responseData.Content);
-                    //respuestaAF.RespuestaAF = respuestaGenerica;
-                    return respuestaAF;
+                    respuestaST.Respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
+                    respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
+                    respuestaST.Respuesta.CodigoEmpresaProveedor = string.Empty;
+                    var respuestaGenerica = CUtil.MapearRespuesta(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
+                    respuestaST.RespuestaSoftToken = respuestaGenerica; 
+                    return respuestaST;
                 }
                 else
                 {
-                    respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIOS;
-                    respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_PROVEEDOR;
-                    respuestaAF.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA;
+                    respuestaST.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIOS;
+                    respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_PROVEEDOR;
+                    respuestaST.Respuesta.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA;
                     if (responseData.StatusCode == HttpStatusCode.RequestTimeout || responseData.StatusCode == HttpStatusCode.GatewayTimeout)
                     {
-                        respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
-                        respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
+                        respuestaST.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
+                        respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
                     }
 
-                    Exception ex = responseData.ErrorException ?? new Exception(respuestaAF.Mensaje);
-                    AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => recurso, () => operacion, () => respuestaAF);
+                    Exception ex = responseData.ErrorException ?? new Exception(respuestaST.Respuesta.Mensaje);
+                    AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => recurso, () => operacion, () => respuestaST);
                 }
             }
             catch (Exception error)
             {
-                AdLogsExcepcion.GuardarLogExcepcion(error, operacion.Auditoria, () => recurso, () => operacion, () => respuestaAF);
-                respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
-                respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
-                respuestaAF.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA_VU;
+                AdLogsExcepcion.GuardarLogExcepcion(error, operacion.Auditoria, () => recurso, () => operacion, () => respuestaST);
+                respuestaST.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuestaST.Respuesta.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA_VU;
             }
-            return respuestaAF;
+            return respuestaST;
         }
 
       
 
-        public static ERespuesta SincronizarTiempoTOTP(EOperacionActivarTOTP operacion)
+        public static ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionActivarTOTP operacion)
         {
-            var respuestaAF = new ERespuesta();
+            var respuestaST = new ERespuestaOperacionSoftToken();
             var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointA"].ToString();
             try
             {
@@ -85,41 +87,41 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {
-                    respuestaAF.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
-                    respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
-                    respuestaAF.CodigoEmpresaProveedor = string.Empty;
-                    var respuestaGenerica = JsonConvert.DeserializeObject<ERespuestaAF>(responseData.Content);
-                    //respuestaAF.RespuestaAF = respuestaGenerica;
-                    return respuestaAF;
+                    respuestaST.Respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
+                    respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
+                    respuestaST.Respuesta.CodigoEmpresaProveedor = string.Empty;
+                    var respuestaGenerica = CUtil.MapearRespuesta(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
+                    respuestaST.RespuestaSoftToken = respuestaGenerica;
+                    return respuestaST;
                 }
                 else
                 {
-                    respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIOS;
-                    respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_PROVEEDOR;
-                    respuestaAF.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA;
+                    respuestaST.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIOS;
+                    respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_PROVEEDOR;
+                    respuestaST.Respuesta.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA;
                     if (responseData.StatusCode == HttpStatusCode.RequestTimeout || responseData.StatusCode == HttpStatusCode.GatewayTimeout)
                     {
-                        respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
-                        respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
+                        respuestaST.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
+                        respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
                     }
 
-                    Exception ex = responseData.ErrorException ?? new Exception(respuestaAF.Mensaje);
-                    AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => recurso, () => operacion, () => respuestaAF);
+                    Exception ex = responseData.ErrorException ?? new Exception(respuestaST.Respuesta.Mensaje);
+                    AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => recurso, () => operacion, () => respuestaST);
                 }
             }
             catch (Exception error)
             {
-                AdLogsExcepcion.GuardarLogExcepcion(error, operacion.Auditoria, () => recurso, () => operacion, () => respuestaAF);
-                respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
-                respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
-                respuestaAF.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA_VU;
+                AdLogsExcepcion.GuardarLogExcepcion(error, operacion.Auditoria, () => recurso, () => operacion, () => respuestaST);
+                respuestaST.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuestaST.Respuesta.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA_VU;
             }
-            return respuestaAF;
+            return respuestaST;
         }
 
-        public static ERespuesta DesbloquearTOTP(EOperacionesTOTP operacion)
+        public static ERespuestaOperacionSoftToken DesbloquearTOTP(EOperacionesTOTP operacion)
         {
-            var respuestaAF = new ERespuesta();
+            var respuestaST = new ERespuestaOperacionSoftToken();
             var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointDesbloquear"].ToString();
             try
             {
@@ -128,40 +130,41 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {
-                    respuestaAF.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
-                    respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
-                    respuestaAF.CodigoEmpresaProveedor = string.Empty;
-                    var respuestaGenerica = JsonConvert.DeserializeObject<ERespuestaAF>(responseData.Content);
-                    //respuestaAF.RespuestaAF = respuestaGenerica;
-                    return respuestaAF;
+
+                    respuestaST.Respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
+                    respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
+                    respuestaST.Respuesta.CodigoEmpresaProveedor = string.Empty;
+                    var respuestaGenerica = CUtil.MapearRespuesta(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
+                    respuestaST.RespuestaSoftToken = respuestaGenerica;
+                    return respuestaST;
                 }
                 else
                 {
-                    respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIOS;
-                    respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_PROVEEDOR;
-                    respuestaAF.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA;
+                    respuestaST.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIOS;
+                    respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_PROVEEDOR;
+                    respuestaST.Respuesta.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA;
                     if (responseData.StatusCode == HttpStatusCode.RequestTimeout || responseData.StatusCode == HttpStatusCode.GatewayTimeout)
                     {
-                        respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
-                        respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
+                        respuestaST.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
+                        respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
                     }
 
-                    Exception ex = responseData.ErrorException ?? new Exception(respuestaAF.Mensaje);
-                    AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => recurso, () => operacion, () => respuestaAF);
+                    Exception ex = responseData.ErrorException ?? new Exception(respuestaST.Respuesta.Mensaje);
+                    AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => recurso, () => operacion, () => respuestaST);
                 }
             }
             catch (Exception error)
             {
-                AdLogsExcepcion.GuardarLogExcepcion(error, operacion.Auditoria, () => recurso, () => operacion, () => respuestaAF);
-                respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
-                respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
-                respuestaAF.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA_VU;
+                AdLogsExcepcion.GuardarLogExcepcion(error, operacion.Auditoria, () => recurso, () => operacion, () => respuestaST);
+                respuestaST.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuestaST.Respuesta.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA_VU;
             }
-            return respuestaAF;
+            return respuestaST;
         }
-        public static ERespuesta DesabilitarTOTP(EOperacionesTOTP operacion)
+        public static ERespuestaOperacionSoftToken DesabilitarTOTP(EOperacionesTOTP operacion)
         {
-            var respuestaAF = new ERespuesta();
+            var respuestaST = new ERespuestaOperacionSoftToken();
             var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointDesabilitar"].ToString();
             try
             {
@@ -170,36 +173,36 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {
-                    respuestaAF.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
-                    respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
-                    respuestaAF.CodigoEmpresaProveedor = string.Empty;
-                    var respuestaGenerica = JsonConvert.DeserializeObject<ERespuestaAF>(responseData.Content);
-                    //respuestaAF.RespuestaAF = respuestaGenerica;
-                    return respuestaAF;
+                    respuestaST.Respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
+                    respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
+                    respuestaST.Respuesta.CodigoEmpresaProveedor = string.Empty;
+                    var respuestaGenerica = CUtil.MapearRespuesta(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
+                    respuestaST.RespuestaSoftToken = respuestaGenerica;
+                    return respuestaST;
                 }
                 else
                 {
-                    respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIOS;
-                    respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_PROVEEDOR;
-                    respuestaAF.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA;
+                    respuestaST.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIOS;
+                    respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_PROVEEDOR;
+                    respuestaST.Respuesta.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA;
                     if (responseData.StatusCode == HttpStatusCode.RequestTimeout || responseData.StatusCode == HttpStatusCode.GatewayTimeout)
                     {
-                        respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
-                        respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
+                        respuestaST.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
+                        respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_PROVEEDOR;
                     }
 
-                    Exception ex = responseData.ErrorException ?? new Exception(respuestaAF.Mensaje);
-                    AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => recurso, () => operacion, () => respuestaAF);
+                    Exception ex = responseData.ErrorException ?? new Exception(respuestaST.Respuesta.Mensaje);
+                    AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => recurso, () => operacion, () => respuestaST);
                 }
             }
             catch (Exception error)
             {
-                AdLogsExcepcion.GuardarLogExcepcion(error, operacion.Auditoria, () => recurso, () => operacion, () => respuestaAF);
-                respuestaAF.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
-                respuestaAF.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
-                respuestaAF.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA_VU;
+                AdLogsExcepcion.GuardarLogExcepcion(error, operacion.Auditoria, () => recurso, () => operacion, () => respuestaST);
+                respuestaST.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuestaST.Respuesta.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA_VU;
             }
-            return respuestaAF;
+            return respuestaST;
         }
     }
 }

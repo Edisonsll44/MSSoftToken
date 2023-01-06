@@ -3,6 +3,7 @@ using MSSeguridadFraude.Comun.Constantes;
 using MSSeguridadFraude.Entidades.OperacionNegocio;
 using MSSeguridadFraude.Entidades.ReglasOperacion;
 using MSSeguridadFraude.Entidades.Respuesta;
+using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken;
 using MSSeguridadFraude.Negocio.NeLogs;
 using MSSeguridadFraude.Negocio.NeValidacion;
 using System;
@@ -26,11 +27,11 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
         /// </summary>
         /// <param name="operacion"></param>
         /// <returns></returns>
-        public static ERespuesta ActivarTOTP(EOperacionActivarTOTP operacion)
+        public static ERespuestaOperacionSoftToken ActivarTOTP(EOperacionActivarTOTP operacion)
         {
             NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
 
-            ERespuesta respuestaOperacion = new ERespuesta();
+            ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken();
 
             ERespuesta respuesta = null;
 
@@ -85,19 +86,19 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
         }
 
 
-        public static ERespuesta SincronizarTiempoTOTP(EOperacionActivarTOTP operacion)
+        public static ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionActivarTOTP operacion)
         {
 
             return null;
         }
 
 
-        public static ERespuesta DesbloquearTOTP(EOperacionesTOTP operacion)
+        public static ERespuestaOperacionSoftToken DesbloquearTOTP(EOperacionesTOTP operacion)
         {
 
             NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
 
-            ERespuesta respuestaOperacion = new ERespuesta();
+            ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken();
 
             ERespuesta respuesta = null;
 
@@ -151,12 +152,12 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
             return respuestaOperacion;
         }
 
-        public static ERespuesta DesabilitarTOTP(EOperacionesTOTP operacion)
+        public static ERespuestaOperacionSoftToken DesabilitarTOTP(EOperacionesTOTP operacion)
         {
 
             NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
 
-            ERespuesta respuestaOperacion = new ERespuesta();
+            ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken();
 
             ERespuesta respuesta = null;
 
