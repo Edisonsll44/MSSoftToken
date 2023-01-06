@@ -16,6 +16,9 @@ namespace MSSoftToken
 	public interface IServicioSoftToken
 	{
 
+
+        
+
         [OperationContract]
         [WebInvoke(Method = "POST",
                    BodyStyle = WebMessageBodyStyle.Bare,

@@ -85,12 +85,96 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
         public static ERespuesta DesbloquearTOTP(EOperacionesTOTP operacion)
         {
 
-            return null;
+            var respuesta = new ERespuesta();
+            try
+            {
+                //Invocacion al servicio del proveedor
+
+                respuesta = AdGestorSoftToken.DesbloquearTOTP(operacion);
+            }
+            catch (WebException ex)
+            {
+                respuesta = new ERespuesta
+                {
+                    ExcepcionAplicacion = true,
+                    ErrorConexion = true,
+                    FechaRespuesta = DateTime.Now,
+                    OperacionProcesada = false,
+
+                };
+
+                if (ex.Status == WebExceptionStatus.Timeout)
+                {
+                    respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
+                    respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
+                }
+                else
+                {
+                    respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
+                    respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
+                }
+
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+            }
+            catch (Exception ex)
+            {
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+
+                respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuesta.FechaRespuesta = DateTime.Now;
+                respuesta.ExcepcionAplicacion = true;
+
+            }
+
+            return respuesta;
         }
 
         public static ERespuesta DesabilitarTOTP(EOperacionesTOTP operacion)        {
 
-            return null;
+            var respuesta = new ERespuesta();
+            try
+            {
+                //Invocacion al servicio del proveedor
+
+                respuesta = AdGestorSoftToken.DesabilitarTOTP(operacion);
+            }
+            catch (WebException ex)
+            {
+                respuesta = new ERespuesta
+                {
+                    ExcepcionAplicacion = true,
+                    ErrorConexion = true,
+                    FechaRespuesta = DateTime.Now,
+                    OperacionProcesada = false,
+
+                };
+
+                if (ex.Status == WebExceptionStatus.Timeout)
+                {
+                    respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
+                    respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
+                }
+                else
+                {
+                    respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
+                    respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
+                }
+
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+            }
+            catch (Exception ex)
+            {
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+
+                respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuesta.FechaRespuesta = DateTime.Now;
+                respuesta.ExcepcionAplicacion = true;
+
+            }
+
+            return respuesta;
         }
 
 

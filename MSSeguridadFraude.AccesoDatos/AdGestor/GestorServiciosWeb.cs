@@ -36,7 +36,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
         /// <returns></returns>
        public static IRestResponse SendPostAsync(TRequest entrada, string recurso)
         {
-            var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_FRAUDE);
+            var url = "https://auth1.bgr.ec";// AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_FRAUDE);
             var timeout = Convert.ToInt32(SettingsManager.Group("ConfiguracionesServicioWeb")["TimeOutServicioProveedorSecurity"].ToString());
             var client = new RestClient(url)
             {
@@ -56,8 +56,9 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
 
             IRestResponse responseData = null;
             var resetEvent = new ManualResetEvent(false);
-
             request.AddParameter("application/json; charset=utf-8", jsonToSend, ParameterType.RequestBody);
+            //request.AddQueryParameter("cupon", "965609");// AddParameter("application/json; charset=utf-8", jsonToSend, ParameterType.RequestBody);
+            //request.AddQueryParameter("callback","?");
             request.RequestFormat = DataFormat.Json;
             client.ExecuteAsync(request, response => { responseData = response; resetEvent.Set(); });
 
