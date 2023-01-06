@@ -1,33 +1,47 @@
-﻿using System;
+﻿using MSSeguridadFraude.Entidades.OperacionNegocio;
+using MSSeguridadFraude.Entidades.Respuesta;
+using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken;
+using MSSeguridadFraude.Negocio.NeServicio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
 
 namespace MSSoftToken
 {
-	// NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-	// NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
-	public class ServicioSoftToken : IServicioSoftToken
+    /// <summary>
+    /// Servicio  SofToke  que expone metodos de operaciones para obtene Procesos el softoken
+    /// </summary>
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
+    public class ServicioSoftToken : IServicioSoftToken
 	{
-		public string GetData(int value)
-		{
-			return string.Format("You entered: {0}", value);
-		}
 
-		public CompositeType GetDataUsingDataContract(CompositeType composite)
+
+
+		public ERespuestaOperacionSoftToken ActivarTOTP(EOperacionATOTP operacion)
 		{
-			if (composite == null)
-			{
-				throw new ArgumentNullException("composite");
-			}
-			if (composite.BoolValue)
-			{
-				composite.StringValue += "Suffix";
-			}
-			return composite;
-		}
+            return NeServicio.ActivarTOTP(operacion);
+        }
+
+		public ERespuestaOperacionSoftToken DesabilitarTOTP(EOperacionesTOTP operacion)
+		{
+			return NeServicio.DesabilitarTOTP(operacion);
+        }
+
+		public ERespuestaOperacionSoftToken DesbloquearTOTP(EOperacionesTOTP operacion)
+		{
+            return NeServicio.DesbloquearTOTP(operacion);
+        }
+
+		public ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionATOTP operacion)
+		{
+            return NeServicio.SincronizarTiempoTOTP(operacion);
+        }
+
+		
 	}
 }

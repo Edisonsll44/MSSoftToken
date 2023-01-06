@@ -757,6 +757,49 @@
             Mensaje Consultado en la Base de datos ya homologado deacuerdo a parametros
             </summary>
         </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP">
+            <summary>
+            Datos de entrada para realizar el consumo del metodo (a) Activar TOTP
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.Auditoria">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.Entorno">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.ActivarTOTP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.Sincronizacion">
+            
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP">
+            <summary>
+            Datos para procesar operaciones (Bloqueo,Desbloqueo,Habilitación, Deshabilitación,Eliminación) con el proveedor VU
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP.Auditoria">
+            <summary>
+            Datos de auditoria
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP.Entorno">
+            <summary>
+            Datos de Entorno
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP.Operacion">
+            <summary>
+            Usuario registrado en el proveedor VU => Softoken TOTP
+            </summary>
+        </member>
         <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosNotificacionesVu">
             <summary>
             Clase padre que encapsula las propiedades comunes
@@ -869,6 +912,46 @@
         <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.optionalParams">
             <summary>
             Lsitado de Datos opcionales
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EActivarTOTP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EActivarTOTP.Cupon">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EActivarTOTP.Callback">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EOperacionTOTP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EOperacionTOTP.username">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ESincronizacionTOTP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ESincronizacionTOTP.timesyncauto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ESincronizacionTOTP.timesyncmanual">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:MSSeguridadFraude.Entidades.ReglasOperacion.EReglaOperacion">
@@ -1049,6 +1132,36 @@
         <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.ofacCoincidence">
             <summary>
             Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaOperacionSoftToken">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaOperacionSoftToken.Respuesta">
+            <summary>
+            Entidad que contiene el codigo y mensaje de respuesta
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaOperacionSoftToken.RespuestaSoftToken">
+            <summary>
+            Entidad que contiene el codigo y mensaje de respuesta
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaST">
+            <summary>
+            Entidad de respuesta para integracion VU Softoken
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaST.Codigo">
+            <summary>
+            Codigo de mensaje devuelto por el proveedor
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaST.Mensaje">
+            <summary>
+            Mensaje  obtenido en la respuesta del proveedor 
             </summary>
         </member>
     </members>
