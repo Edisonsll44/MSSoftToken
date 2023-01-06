@@ -57,6 +57,41 @@ namespace MSSoftToken
 				   RequestFormat = WebMessageFormat.Json,
 				   ResponseFormat = WebMessageFormat.Json)]
 		ERespuestaOperacionSoftToken LoginOtp();
+
+
+        
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+                   BodyStyle = WebMessageBodyStyle.Bare,
+                   UriTemplate = "ActivarTOTP",       // Nombre adicional del metodo para la transaccion
+                   RequestFormat = WebMessageFormat.Json,
+                   ResponseFormat = WebMessageFormat.Json)]
+        ERespuestaOperacionSoftToken ActivarTOTP(EOperacionATOTP operacion);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+                   BodyStyle = WebMessageBodyStyle.Bare,
+                   UriTemplate = "SincronizarTiempoTOTP",       // Nombre adicional del metodo para la transaccion
+                   RequestFormat = WebMessageFormat.Json,
+                   ResponseFormat = WebMessageFormat.Json)]
+        ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionATOTP operacion);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+                   BodyStyle = WebMessageBodyStyle.Bare,
+                   UriTemplate = "DesbloquearTOTP",       // Nombre adicional del metodo para la transaccion
+                   RequestFormat = WebMessageFormat.Json,
+                   ResponseFormat = WebMessageFormat.Json)]
+        ERespuestaOperacionSoftToken DesbloquearTOTP( EOperacionesTOTP operacion);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+                   BodyStyle = WebMessageBodyStyle.Bare,
+                   UriTemplate = "DesabilitarTOTP",       // Nombre adicional del metodo para la transaccion
+                   RequestFormat = WebMessageFormat.Json,
+                   ResponseFormat = WebMessageFormat.Json)]
+        ERespuestaOperacionSoftToken DesabilitarTOTP( EOperacionesTOTP operacion);
 	}
 
 

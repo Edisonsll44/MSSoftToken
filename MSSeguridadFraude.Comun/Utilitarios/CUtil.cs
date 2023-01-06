@@ -153,37 +153,5 @@ namespace MSSeguridadFraude.Comun.Utilitarios
 
             return mascara;
         }
-
-		/// <summary>
-		/// Metodo que separa la respuesta enviada por el proveedor, a un objeto
-		/// </summary>
-		/// <param name="respuesta"></param>
-		/// <param name="caracter"></param>
-		/// <returns></returns>
-		public static ERespuestaST MapearRespuesta(string respuesta, char caracter)
-		{
-			var arregloCadena = respuesta.Split(caracter);
-			var concatenacion = ConcatenarArreglo(arregloCadena);
-			return new ERespuestaST()
-			{
-				Codigo = arregloCadena[0],
-				Mensaje = concatenacion,
-                FechaRespuesta = DateTime.Now
-			};
-		}
-		/// <summary>
-		/// Concatena multiples indices de un arrego
-		/// </summary>
-		/// <param name="arreglo"></param>
-		/// <returns></returns>
-		static string ConcatenarArreglo(string[] arreglo)
-		{
-			string cadena = string.Empty;
-			for (int i = 1; i <= arreglo.Length - 1; i++)
-			{
-				cadena += arreglo[i];
-			}
-			return cadena;
-		}
-	}
+    }
 }

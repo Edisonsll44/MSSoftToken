@@ -1,4 +1,9 @@
 ﻿using MSSeguridadFraude.Entidades.Comun;
+<<<<<<<< HEAD:MSSeguridadFraude.Entidades/OperacionNegocio/ProveedorSeguridad/EOperacionActivarTOTP.cs
+========
+using MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad;
+using MSSeguridadFraude.Entidades.OperacionNegocio.Softoken;
+>>>>>>>> master:MSSeguridadFraude.Entidades/OperacionNegocio/EOperacionATOTP.cs
 using System;
 using System.Runtime.Serialization;
 
@@ -9,7 +14,7 @@ namespace MSSeguridadFraude.Entidades.OperacionNegocio
     /// </summary>
     [DataContract]
     [Serializable]
-    public class EOperacionActivarTOTP
+    public class EOperacionATOTP
     {
         /// <summary>
         /// 
@@ -21,16 +26,15 @@ namespace MSSeguridadFraude.Entidades.OperacionNegocio
         /// </summary>
         [DataMember]
         public EEntorno Entorno { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [DataMember]
-        public string Cupon { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [DataMember]
-        public string Callback { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        [DataMember]
+        public EActivarTOTP ActivarTOTP{get;set;}
+
+        ///
+        [DataMember]
+        public  ESincronizacionTOTP Sincronizacion { get; set; }
     }
 }

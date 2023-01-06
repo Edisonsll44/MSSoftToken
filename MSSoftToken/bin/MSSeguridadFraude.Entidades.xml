@@ -757,30 +757,28 @@
             Mensaje Consultado en la Base de datos ya homologado deacuerdo a parametros
             </summary>
         </member>
-        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionActivarTOTP">
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP">
             <summary>
             Datos de entrada para realizar el consumo del metodo (a) Activar TOTP
             </summary>
         </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionActivarTOTP.Auditoria">
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.Auditoria">
             <summary>
             
             </summary>
         </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionActivarTOTP.Entorno">
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.Entorno">
             <summary>
             
             </summary>
         </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionActivarTOTP.Cupon">
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.ActivarTOTP">
             <summary>
             
             </summary>
         </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionActivarTOTP.Callback">
-            <summary>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.Sincronizacion">
             
-            </summary>
         </member>
         <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP">
             <summary>
@@ -797,9 +795,163 @@
             Datos de Entorno
             </summary>
         </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP.Username">
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP.Operacion">
             <summary>
             Usuario registrado en el proveedor VU => Softoken TOTP
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosNotificacionesVu">
+            <summary>
+            Clase padre que encapsula las propiedades comunes
+            en las apis con sms y mail
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosNotificacionesVu.username">
+            <summary>
+            username
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosNotificacionesVu.countryBusinessChannel">
+            <summary>
+            Id de pais-negocio-canal correspondiente
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosEntornoAuditoria">
+            <summary>
+            Clase padre que encapsula
+            los dtos de Entorno y Auditoria
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosEntornoAuditoria.Entorno">
+            <summary>
+            Datos del entorno de
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosEntornoAuditoria.Auditoria">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosOpcionalesAF">
+            <summary>
+            Clase para amnejod e datos opcionales
+            </summary>
+        </member>
+        <member name="M:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosOpcionalesAF.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosOpcionalesAF.name">
+            <summary>
+            Clave del Parametro a enviar
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosOpcionalesAF.value">
+            <summary>
+            Valor del Parametro a enviar
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionRegistroAF">
+            <summary>
+            Entidad general de entrada del MSSeguridadFraude
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionRegistroAF.OperacionAnalisisAF">
+            <summary>
+            OJO Variables o Entidades de entrada del Servicio
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF">
+            <summary>
+            Entidad de entrada para enviarla a proveedor de seguridad
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.userId">
+            <summary>
+            Usuario del Portal que ejecuta la operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.apiKey">
+            <summary>
+            Clave del API, tomada de Centralizada para consumo del servicio
+            de fraude, esta propiedad se duplica porque no esta estandarizada
+            como la propiedad que se usa para fingerPrint
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.idChannel">
+            <summary>
+            Clave del API, tomada de Centralizada para consumo del servicio
+            </summary>      
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.idOperation">
+            <summary>
+            Clave del API, tomada de Centralizada para consumo del servicio
+            </summary>      
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.eventDate">
+            <summary>
+            Fecha Operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.amount">
+            <summary>
+            Monto
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.debitAccount">
+            <summary>
+            Cuenta de origen de la operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.creditAccount">
+            <summary>
+            Cuenta destino de la operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.optionalParams">
+            <summary>
+            Lsitado de Datos opcionales
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EActivarTOTP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EActivarTOTP.Cupon">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EActivarTOTP.Callback">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EOperacionTOTP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EOperacionTOTP.username">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ESincronizacionTOTP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ESincronizacionTOTP.timesyncauto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ESincronizacionTOTP.timesyncmanual">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:MSSeguridadFraude.Entidades.ReglasOperacion.EReglaOperacion">
@@ -922,6 +1074,71 @@
             Identificador Unico
             </summary>
         </member>
+        <member name="T:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaOperacionAF">
+            <summary>
+            Entidad de respuesta general del MSSeguridadFraude
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaOperacionAF.Respuesta">
+            <summary>
+            Entidad que contiene el codigo y mensaje de respuesta
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaOperacionAF.RespuestaAF">
+            <summary>
+            Estado de la operacion
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF">
+            <summary>
+            Entidad de entrada para enviarla a proveedor de seguridad
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.result">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.score">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.triggeredRules">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.error">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.status">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.IdEvento">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.eventId">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.ofacCoincidence">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaOperacionSoftToken">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaOperacionSoftToken.Respuesta">
             <summary>
             Entidad que contiene el codigo y mensaje de respuesta
@@ -945,11 +1162,6 @@
         <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaST.Mensaje">
             <summary>
             Mensaje  obtenido en la respuesta del proveedor 
-            </summary>
-        </member>
-        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaST.FechaRespuesta">
-            <summary>
-            Fecha y hora de la respuesta Obtenida
             </summary>
         </member>
     </members>

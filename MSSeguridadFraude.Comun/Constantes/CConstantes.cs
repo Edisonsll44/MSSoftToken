@@ -618,5 +618,11 @@
 		{
 			public const char DOSPUNTOS = ':';
 		}
+
+		public static class Formatos
+		{
+			public const string JsonFormatHeader = "application/json; charset=utf-8";
+
+        }
 	}
 }
