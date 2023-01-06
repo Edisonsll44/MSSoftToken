@@ -2,6 +2,7 @@
 using MSSeguridadFraude.AccesoDatos.AdLogs;
 using MSSeguridadFraude.Comun.Constantes;
 using MSSeguridadFraude.Comun.Enumeraciones;
+using MSSeguridadFraude.Comun.Utilitarios;
 using MSSeguridadFraude.Entidades.OperacionNegocio;
 using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken;
 using Newtonsoft.Json;
@@ -66,7 +67,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
 					respuestaST.Respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
 					respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
 					respuestaST.Respuesta.CodigoEmpresaProveedor = string.Empty;
-                    var respuestaGenerica = JsonConvert.DeserializeObject<ERespuestaST>(responseData.Content);
+                    var respuestaGenerica = CUtil.MapearRespuesta(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
 					respuestaST.RespuestaSoftToken = respuestaGenerica;
                     return respuestaST;
                 }
