@@ -33,7 +33,16 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
 
         public static ERespuestaOperacionSoftToken ActivarTOTP(EOperacionActivarTOTP operacion)
         {
-            var respuestaST = new ERespuestaOperacionSoftToken();
+            var respuestaST = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
+
+
             var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointA"].ToString();
             try
             {
@@ -45,6 +54,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                     respuestaST.Respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
                     respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
                     respuestaST.Respuesta.CodigoEmpresaProveedor = string.Empty;
+                    respuestaST.Respuesta.OperacionProcesada = true;
                     var respuestaGenerica = CUtil.MapearRespuesta(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
                     respuestaST.RespuestaSoftToken = respuestaGenerica; 
                     return respuestaST;
@@ -78,7 +88,14 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
 
         public static ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionActivarTOTP operacion)
         {
-            var respuestaST = new ERespuestaOperacionSoftToken();
+            var respuestaST = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
             var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointA"].ToString();
             try
             {
@@ -90,6 +107,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                     respuestaST.Respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
                     respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
                     respuestaST.Respuesta.CodigoEmpresaProveedor = string.Empty;
+                    respuestaST.Respuesta.OperacionProcesada = true;
                     var respuestaGenerica = CUtil.MapearRespuesta(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
                     respuestaST.RespuestaSoftToken = respuestaGenerica;
                     return respuestaST;
@@ -121,7 +139,14 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
 
         public static ERespuestaOperacionSoftToken DesbloquearTOTP(EOperacionesTOTP operacion)
         {
-            var respuestaST = new ERespuestaOperacionSoftToken();
+            var respuestaST = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
             var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointDesbloquear"].ToString();
             try
             {
@@ -134,6 +159,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                     respuestaST.Respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
                     respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
                     respuestaST.Respuesta.CodigoEmpresaProveedor = string.Empty;
+                    respuestaST.Respuesta.OperacionProcesada = true;
                     var respuestaGenerica = CUtil.MapearRespuesta(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
                     respuestaST.RespuestaSoftToken = respuestaGenerica;
                     return respuestaST;
@@ -164,7 +190,14 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
         }
         public static ERespuestaOperacionSoftToken DesabilitarTOTP(EOperacionesTOTP operacion)
         {
-            var respuestaST = new ERespuestaOperacionSoftToken();
+            var respuestaST = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
             var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointDesabilitar"].ToString();
             try
             {
@@ -176,6 +209,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                     respuestaST.Respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL;
                     respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
                     respuestaST.Respuesta.CodigoEmpresaProveedor = string.Empty;
+                    respuestaST.Respuesta.OperacionProcesada = true;
                     var respuestaGenerica = CUtil.MapearRespuesta(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
                     respuestaST.RespuestaSoftToken = respuestaGenerica;
                     return respuestaST;

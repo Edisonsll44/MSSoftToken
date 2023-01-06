@@ -26,10 +26,6 @@ namespace MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken
         [DataMember]
         public string Mensaje { get; set; }
 
-        /// <summary>
-        /// Fecha y hora de la respuesta Obtenida
-        /// </summary>
-        [DataMember]
-        public DateTime FechaRespuesta { get; set; }
+      
     }
 }

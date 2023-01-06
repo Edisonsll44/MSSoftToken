@@ -4,6 +4,7 @@ using MSSeguridadFraude.AccesoDatos.AdLogs;
 using MSSeguridadFraude.AccesoDatos.CodigoTrabajoWS;
 using MSSeguridadFraude.AccesoDatos.MSIdentificadorUnico;
 using MSSeguridadFraude.Comun.Constantes;
+using MSSeguridadFraude.Comun.Enumeraciones;
 using MSSeguridadFraude.Entidades.OperacionNegocio;
 using MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude;
 using MSSeguridadFraude.Entidades.Respuesta;
@@ -30,7 +31,15 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
 
         public static ERespuestaOperacionSoftToken ActivarTOTP(EOperacionActivarTOTP operacion) {
 
-            var respuesta = new ERespuestaOperacionSoftToken();
+            
+            var  respuesta = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
             try
             {
                 //Invocacion al servicio del proveedor
@@ -83,7 +92,14 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
 
         public static ERespuesta SincronizarTiempoTOTP(EOperacionActivarTOTP operacion)
         {
-
+            var respuesta = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
             return null;
         }
 
@@ -91,7 +107,14 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
         public static ERespuestaOperacionSoftToken DesbloquearTOTP(EOperacionesTOTP operacion)
         {
 
-            var respuesta = new ERespuestaOperacionSoftToken();
+            var respuesta = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
             try
             {
                 //Invocacion al servicio del proveedor
@@ -142,7 +165,14 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
 
         public static ERespuestaOperacionSoftToken DesabilitarTOTP(EOperacionesTOTP operacion)        {
 
-            var respuesta = new ERespuestaOperacionSoftToken();
+            var respuesta = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
             try
             {
                 //Invocacion al servicio del proveedor

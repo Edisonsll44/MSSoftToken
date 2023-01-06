@@ -167,7 +167,7 @@ namespace MSSeguridadFraude.Comun.Utilitarios
             {
                 Codigo = arregloCadena[0],
                 Mensaje = concatenacion,
-                FechaRespuesta = DateTime.Now
+               
             };
         }
         /// <summary>

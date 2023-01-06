@@ -1,5 +1,6 @@
 ﻿using MSSeguridadFraude.AccesoDatos.AdOperacionServicio;
 using MSSeguridadFraude.Comun.Constantes;
+using MSSeguridadFraude.Comun.Enumeraciones;
 using MSSeguridadFraude.Entidades.OperacionNegocio;
 using MSSeguridadFraude.Entidades.ReglasOperacion;
 using MSSeguridadFraude.Entidades.Respuesta;
@@ -31,7 +32,14 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
         {
             NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
 
-            ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken();
+            ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
 
             ERespuesta respuesta = null;
 
@@ -88,7 +96,14 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
 
         public static ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionActivarTOTP operacion)
         {
-
+            ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
             return null;
         }
 
@@ -98,7 +113,14 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
 
             NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
 
-            ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken();
+            ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
 
             ERespuesta respuesta = null;
 
@@ -157,7 +179,14 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
 
             NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
 
-            ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken();
+            ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
 
             ERespuesta respuesta = null;
 

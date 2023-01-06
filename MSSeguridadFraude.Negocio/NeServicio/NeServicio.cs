@@ -35,7 +35,14 @@ namespace MSSeguridadFraude.Negocio.NeServicio
 		{
 
 
-            var respuestaOperacion = new ERespuestaOperacionSoftToken();
+            var respuestaOperacion = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
             string ip = operacion.Auditoria.IdAplicacionCliente;
             operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
             ERespuestaMensaje respuestaMensaje;
@@ -103,14 +110,29 @@ namespace MSSeguridadFraude.Negocio.NeServicio
 
         public static ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionActivarTOTP operacion)
         {
-
+            var respuestaOperacion = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
             return null;
         }
 
 
         public static ERespuestaOperacionSoftToken DesbloquearTOTP( EOperacionesTOTP operacion)
         {
-            var respuestaOperacion = new ERespuestaOperacionSoftToken();
+            
+            var respuestaOperacion = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
             string ip = operacion.Auditoria.IdAplicacionCliente;
             operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
             ERespuestaMensaje respuestaMensaje;
@@ -180,7 +202,14 @@ namespace MSSeguridadFraude.Negocio.NeServicio
         public static ERespuestaOperacionSoftToken DesabilitarTOTP(EOperacionesTOTP operacion)
         {
 
-            var respuestaOperacion = new ERespuestaOperacionSoftToken();
+            var respuestaOperacion = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
             string ip = operacion.Auditoria.IdAplicacionCliente;
             operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
             ERespuestaMensaje respuestaMensaje;
