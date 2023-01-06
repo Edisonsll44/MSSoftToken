@@ -5,3 +5,9 @@
 *.pdb
 *.txt
 *.cache
+MSSeguridadFraude.AccesoDatos/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+MSSeguridadFraude.AccesoDatos/obj/Debug/MSSeguridadFraude.AccesoDatos.csproj.AssemblyReference.cache
+MSSeguridadFraude.Entidades/obj/Debug/MSSeguridadFraude.Entidades.csproj.AssemblyReference.cache
+MSSeguridadFraude.Negocio/obj/Debug/MSSeguridadFraude.Negocio.csproj.AssemblyReference.cache
+MSSoftToken/obj/Debug/MSSoftToken.csproj.AssemblyReference.cache
+.vs/MSSoftToken/v17/.suo
