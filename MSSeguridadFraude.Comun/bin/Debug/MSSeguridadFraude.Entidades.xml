@@ -1,0 +1,1168 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MSSeguridadFraude.Entidades</name>
+    </assembly>
+    <members>
+        <member name="T:MSSeguridadFraude.Entidades.Comun.EAuditoria">
+            <summary>
+            Entidad de Auditoria de transaccion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.Usuario">
+            <summary>
+            Usuario que ejecuto la Operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.Fecha">
+            <summary>
+            fecha en la que se realizo la Operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.IpCliente">
+            <summary>
+            Ip de dodne se efectuo la operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.HashMobil">
+            <summary>
+            Hash Mobil si se envia por el proveedor
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.Celular">
+            <summary>
+            Celualr de la Operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.Identificacion">
+            <summary>
+            Identificacion del cliente
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.CodigoCanal">
+            <summary>
+            Codigo del Canal de invocación
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.CodigoTransaccion">
+            <summary>
+            Codigo de la Transaccion a realizar
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.CodigoMedioInvocacion">
+            <summary>
+            Codigo del Medio de Invocacion 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.IdentificadorUnicoOperacional">
+            <summary>
+            Identificador unico de transacciones generado por el Core
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.IdentificadorGUID">
+            <summary>
+            Identificador unico de la aplicacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.IdentificadorServicioGUID">
+            <summary>
+            Identificador unico del servicio
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.IdAplicacionCliente">
+            <summary>
+            Identificador de transacción del cliente
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.CodigoAgencia">
+            <summary>
+            Codido de la agencia
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.CodigoCentro">
+            <summary>
+            Codigo del centro 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EAuditoria.TipoTransaccion">
+            <summary>
+            Tipo de transacción que se esta realizando: F: Financiera; C: No Financiera
+            </summary>
+        </member>
+        <member name="M:MSSeguridadFraude.Entidades.Comun.EAuditoria.Clone">
+            <summary>
+            Metodo Permite clonar la entidad
+            </summary>
+            <returns>object</returns>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Comun.EEntorno">
+            <summary>
+            Entidad que representa los datos del entorno de siglo 21
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EEntorno.Version">
+            <summary>
+            Version
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EEntorno.Usuario">
+            <summary>
+            Usuario de entorno
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EEntorno.Dominio">
+            <summary>
+            Dominio del usuario de entorno
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EEntorno.Nodo">
+            <summary>
+            Nodo del usuario de entorno
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EEntorno.Programa">
+            <summary>
+            Programa Cobol llamado
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EEntorno.LongitudEntrada">
+            <summary>
+            Longitud de los datos de entrada
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EEntorno.LongitudSalida">
+            <summary>
+            Longitud de los datos de salida
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EEntorno.CodigoEmpresa">
+            <summary>
+            Código de empresa
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EEntorno.CodigoCentro">
+            <summary>
+            Código de Centro
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EEntorno.CodigoEntorno">
+            <summary>
+            Código de entorno
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EEntorno.CodigoIdioma">
+            <summary>
+            Código de idioma
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EEntorno.CodigoVersion">
+            <summary>
+            Código de Versión
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EEntorno.IndicadorAutoriza">
+            <summary>
+            Indicador de autorización
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EEntorno.IdUnicoTransaccion">
+            <summary>
+            Identificador unico de transaccion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EEntorno.TipoTransaccion">
+            <summary>
+            Tipo de transaccion (C Consulta, F Financiera)
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Comun.EParametroLogs">
+            <summary>
+            Entidad para consulta de la activación de logs
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EParametroLogs.IdParametro">
+            <summary>
+            Identificador en la tabla del parametro
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EParametroLogs.CodigoCanal">
+            <summary>
+            Codigo de canal
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EParametroLogs.CodigoMedioInvocacion">
+            <summary>
+            Codigo de medio de invocacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EParametroLogs.CodigoTransaccion">
+            <summary>
+            Codigo de transaccion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EParametroLogs.CodigoCabeceraTipoLog">
+            <summary>
+            Codigo de cabecera del tipo de log (Trazabilidad, journal eventos, etc.)
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.EParametroLogs.Activo">
+            <summary>
+            Bandera que indica si el canal esta activo o no.
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Comun.ERegla">
+            <summary>
+            Clase de Reglas
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.ERegla.NombreRegla">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.ERegla.Activo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.ERegla.CodigoError">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Comun.ERegla.MensajeError">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional">
+            <summary>
+            Entidad que permite enviar los datos para guardar en el journal transaccional 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.CodigoCanal">
+            <summary>
+            Codigo de canal
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.CodigoTransaccion">
+            <summary>
+            Codigo de transaccion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.CodigoMedioInvocacion">
+            <summary>
+            Codigo de medio de invocacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.IdTransaccionUnicoSiglo">
+            <summary>
+            Udentificador unico de transaccion en el core
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.NumeroDocumentoSiglo">
+            <summary>
+            Numero de documento de siglo
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.TipoIdentificacion">
+            <summary>
+            Tipo de identificacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.IdentificacionCliente">
+            <summary>
+            Identificacion del cliente
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.TipoProductoOrigen">
+            <summary>
+            Tipo de producto de origen
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.NumeroProductoOrigen">
+            <summary>
+            Numero de producto de origen (Cuenta, tarjeta, prestamo, inversion)
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.AliasProductoOrigen">
+            <summary>
+            Alias de producto de origen
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.TipoProductoDestino">
+            <summary>
+            Tipo de producto de destino
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.NumeroProductoDestino">
+            <summary>
+            Numero de producto de destino (Cuenta, tarjeta, prestamo, inversion)
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.AliasProductoDestino">
+            <summary>
+            Alias de producto de destino
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.TipoIdentificacionBeneficiario">
+            <summary>
+            Tipo de identificacion del beneficiario
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.IdentificacionBeneficiario">
+            <summary>
+            Numero de identificacion del beneficiario
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.IdEmpresa">
+            <summary>
+            Codigo de la empresa de servicio
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.IdProveedor">
+            <summary>
+            Codigo de proveedor
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.NumeroDocumentoProveedor">
+            <summary>
+            Numero de documento del proveedor
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.NumeroContrato">
+            <summary>
+            Numero de contrato
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.NumeroCuota">
+            <summary>
+            Numero de cuota
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.ReferenciaDescripcion">
+            <summary>
+            Referencia o descripcion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.CodigoConcepto">
+            <summary>
+            Codigo de concepto
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.Concepto">
+            <summary>
+            Concepto de la transaccion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.MontoEfectivo">
+            <summary>
+            Monto en efectivo
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.Comision">
+            <summary>
+            Monto de la comision
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.MontoCheques">
+            <summary>
+            Monto en cheques
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.NumeroLibreta">
+            <summary>
+            Numero de libreta
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.CodBancoOrigen">
+            <summary>
+            Codigo de banco de origen
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.BancoOrigen">
+            <summary>
+            Banco de origen
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.CodBancoDestino">
+            <summary>
+            Codigo de banco de destino
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.BancoDestino">
+            <summary>
+            Banco de destino
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.IdTransaccionalCliente">
+            <summary>
+            Identificador de transaccion del cliente
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.IpOrigen">
+            <summary>
+            Ip de origen
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.IpServidor">
+            <summary>
+            Ip del servidor de procesamiento
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.Usuario">
+            <summary>
+            Usuario que ejecuta la transaccion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.FechaHoraInicioCore">
+            <summary>
+            Fecha de inicio de la transaccion en el core
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.FechaHoraFinCore">
+            <summary>
+            Fecha de finalizacion de la transaccion en el core
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.FechaHoraInicioProveedor">
+            <summary>
+            Fecha de inicio de la transaccion en el proveedor
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.FechaHoraFinProveedor">
+            <summary>
+            Fecha de finalizacion de la transaccion en el core
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.FechaOperacion">
+            <summary>
+            Fecha de operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.Guid">
+            <summary>
+            GUI de la transaccion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.HashImei">
+            <summary>
+            Imei del dispositivo de origen
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.TramaIngreso">
+            <summary>
+            Trama de ingreso
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.TramaSalida">
+            <summary>
+            Trama de respuesta
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.EstadoOperacion">
+            <summary>
+            Estado de la operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.EstadoFlujoTransaccion">
+            <summary>
+            Estado del flujo de la transaccion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.CodigoMensajeSiglo">
+            <summary>
+            Codigo de mensaje del core
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.MensajeSiglo">
+            <summary>
+            Mensaje del core
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.CodigoMensajeProveedor">
+            <summary>
+            Codigo de mensaje del proveedor
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.MensajeProveedor">
+            <summary>
+            Mensaje del proveedor
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.IdUnicoTransaccionReverso">
+            <summary>
+            Identificador unico de la transaccion de reverso
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.CodigoTransaccionReverso">
+            <summary>
+            Codigo de la transaccion de reverso
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.CodigoAgencia">
+            <summary>
+            Codido de la agencia
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.CodigoCentro">
+            <summary>
+            Codigo del centro 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.Accion">
+            <summary>
+            Accion de ingreso o actualización en el journal transaccional (false = ingreso; true = actualiza) 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EJournalTransaccional.ValidaFechas">
+            <summary>
+            Valida si se actualiza fechas de core y proveedor
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Logs.EParametros">
+            <summary>
+            Parametros
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EParametros.NombreParametro">
+            <summary>
+            NombreParametro
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EParametros.TipoParametro">
+            <summary>
+            TipoParametro
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.EParametros.ValorParametro">
+            <summary>
+            ValorParametro
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Logs.ELogsExcepcion">
+            <summary>
+            entidada para manejo de excepciones de aplicacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogsExcepcion.Auditoria">
+            <summary>
+            Datos de Auditoria
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogsExcepcion.Metodo">
+            <summary>
+            Metodo en donde se produjo la excepcion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogsExcepcion.GUID">
+            <summary>
+            Identificador GUID
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogsExcepcion.PiladeError">
+            <summary>
+            Pila de Seguimiento de error
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogsExcepcion.Mensaje">
+            <summary>
+            Mensaje de la Excepcion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogsExcepcion.Excepcion">
+            <summary>
+            Excepcion de la aplicacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogsExcepcion.DatosIngreso">
+            <summary>
+            Dato de ingreso
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogsExcepcion.FechaHora">
+            <summary>
+            Fecha Hora de la Excepcion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogsExcepcion.DatosSalida">
+            <summary>
+            Trama de salida
+            </summary>
+        </member>
+        <member name="M:MSSeguridadFraude.Entidades.Logs.ELogsExcepcion.Clone">
+            <summary>
+            Metodo que permite clonar la entidad
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad">
+            <summary>
+            Entidad que permite el manejo del log de trazabilidad
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.Identificador">
+            <summary>
+            Identificador del registro en la tabla del log de trazabilidad
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.IdUnicoTransaccionSiglo">
+            <summary>
+            Id unico de transaccion en siglo 21
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.GuidServicio">
+            <summary>
+            Identificador de la transccion en el servicio
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.GuidAplicacionCliente">
+            <summary>
+            Identificador de la aplicacion cliente
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.Identificacion">
+            <summary>
+            Identificacion del cliente
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.CodigoCanal">
+            <summary>
+            codigo de canal en siglo 21
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.CodigoTransaccion">
+            <summary>
+            Codigo  de transaccion en siglo 21
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.CodigoMedioInvocacion">
+            <summary>
+            Codigo del medio de invocacion en siglo 21
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.TipoEvento">
+            <summary>
+            Tipo de evento de log (INICIO, FIN)
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.Metodo">
+            <summary>
+            Metodo actual de la operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.ServicioTarea">
+            <summary>
+            Nombre del servicio o tarea que se esta ejecutando
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.FechaHoraInicio">
+            <summary>
+            Fecha y hora de inicio de la transaccion (DateTime.Now)
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.DatoIngreso">
+            <summary>
+            Datos de ingreso serializados
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.DatoRespuesta">
+            <summary>
+            Respuesta serializada 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.FechaHoraFin">
+            <summary>
+            Fecha y hora en que se finaliza la operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.IpCliente">
+            <summary>
+            Ip del cliente
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.IpServidor">
+            <summary>
+            Ip del servidor donde se ejecuta el servicio
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.FechaActual">
+            <summary>
+            Fecha y hora actual
+            </summary>
+        </member>
+        <member name="M:MSSeguridadFraude.Entidades.Logs.ELogTrazabilidad.Clone">
+            <summary>
+            Metodo que permite clonar la entidad
+            </summary>
+            <returns>object</returns>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Mensajes.EConsultaMensaje">
+            <summary>
+            Entidad con los parametros de negocio para la consulta de mensajes
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Mensajes.EConsultaMensaje.Auditoria">
+            <summary>
+            Entidad de Auditoria
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Mensajes.EConsultaMensaje.Respuesta">
+            <summary>
+            Respuesta
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Mensajes.EMensaje">
+            <summary>
+            Clase para manejo de Mensajes desde parametros
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Mensajes.EMensaje.CodigoMensajeAplicacion">
+            <summary>
+            Codigo de mensaje en la tabla de mensajes de las aplicaciones
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Mensajes.EMensaje.MensajeAplicacion">
+            <summary>
+            Mensaje de respuesta hacia los legacys
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Mensajes.EMensaje.CodigoMensajeEmpresa">
+            <summary>
+            Codigo de mensaje en la tabla de mensaje de empresas
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Mensajes.EMensaje.CodigoMensajeProveedor">
+            <summary>
+            Codigo de mensaje en la tabla de mensajes de proveedores
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Mensajes.EMensaje.CodigoMensajeSiglo">
+            <summary>
+            Codigo de mensaje de la tabla mensaje de siglo 21
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Mensajes.ERespuestaMensaje">
+            <summary>
+            Entidad para manejo de mensajes de respeusta Parametrizables y Homologados
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Mensajes.ERespuestaMensaje.Respuesta">
+            <summary>
+            retorna repsuesta de la consulta en la Base
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Mensajes.ERespuestaMensaje.RespuestaMensaje">
+            <summary>
+            Mensaje Consultado en la Base de datos ya homologado deacuerdo a parametros
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP">
+            <summary>
+            Datos de entrada para realizar el consumo del metodo (a) Activar TOTP
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.Auditoria">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.Entorno">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.ActivarTOTP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.Sincronizacion">
+            
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP">
+            <summary>
+            Datos para procesar operaciones (Bloqueo,Desbloqueo,Habilitación, Deshabilitación,Eliminación) con el proveedor VU
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP.Auditoria">
+            <summary>
+            Datos de auditoria
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP.Entorno">
+            <summary>
+            Datos de Entorno
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP.Operacion">
+            <summary>
+            Usuario registrado en el proveedor VU => Softoken TOTP
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosNotificacionesVu">
+            <summary>
+            Clase padre que encapsula las propiedades comunes
+            en las apis con sms y mail
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosNotificacionesVu.username">
+            <summary>
+            username
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosNotificacionesVu.countryBusinessChannel">
+            <summary>
+            Id de pais-negocio-canal correspondiente
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosEntornoAuditoria">
+            <summary>
+            Clase padre que encapsula
+            los dtos de Entorno y Auditoria
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosEntornoAuditoria.Entorno">
+            <summary>
+            Datos del entorno de
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosEntornoAuditoria.Auditoria">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosOpcionalesAF">
+            <summary>
+            Clase para amnejod e datos opcionales
+            </summary>
+        </member>
+        <member name="M:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosOpcionalesAF.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosOpcionalesAF.name">
+            <summary>
+            Clave del Parametro a enviar
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosOpcionalesAF.value">
+            <summary>
+            Valor del Parametro a enviar
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionRegistroAF">
+            <summary>
+            Entidad general de entrada del MSSeguridadFraude
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionRegistroAF.OperacionAnalisisAF">
+            <summary>
+            OJO Variables o Entidades de entrada del Servicio
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF">
+            <summary>
+            Entidad de entrada para enviarla a proveedor de seguridad
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.userId">
+            <summary>
+            Usuario del Portal que ejecuta la operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.apiKey">
+            <summary>
+            Clave del API, tomada de Centralizada para consumo del servicio
+            de fraude, esta propiedad se duplica porque no esta estandarizada
+            como la propiedad que se usa para fingerPrint
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.idChannel">
+            <summary>
+            Clave del API, tomada de Centralizada para consumo del servicio
+            </summary>      
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.idOperation">
+            <summary>
+            Clave del API, tomada de Centralizada para consumo del servicio
+            </summary>      
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.eventDate">
+            <summary>
+            Fecha Operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.amount">
+            <summary>
+            Monto
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.debitAccount">
+            <summary>
+            Cuenta de origen de la operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.creditAccount">
+            <summary>
+            Cuenta destino de la operacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude.EOperacionAF.optionalParams">
+            <summary>
+            Lsitado de Datos opcionales
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EActivarTOTP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EActivarTOTP.Cupon">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EActivarTOTP.Callback">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EOperacionTOTP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EOperacionTOTP.username">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ESincronizacionTOTP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ESincronizacionTOTP.timesyncauto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ESincronizacionTOTP.timesyncmanual">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.ReglasOperacion.EReglaOperacion">
+            <summary>
+            Entidad que permite consultar una regla de negocio
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.ReglasOperacion.EReglaOperacion.Entorno">
+            <summary>
+            Datos del entorno de siglo XXI
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.ReglasOperacion.EReglaOperacion.Auditoria">
+            <summary>
+            Datos de auditoria
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.ReglasOperacion.EReglaOperacion.Monto">
+            <summary>
+            Monto a validar
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.ReglasOperacion.ERespuestaRegla">
+            <summary>
+            Permite consultar las reglas de negocio
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.ReglasOperacion.ERespuestaRegla.Respuesta">
+            <summary>
+            Contiene el codigo de respuesta y el mensaje correspondiente
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.ReglasOperacion.ERespuestaRegla.Permitido">
+            <summary>
+            Indica si la operacion se encuentra permitida
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.ReglasOperacion.ERespuestaRegla.Encriptado">
+            <summary>
+            Indica si la cuenta es escriptada o no
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.ReglasOperacion.ERespuestaRegla.Clave">
+            <summary>
+            Clave para guardar la informacion en cache
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.ReglasOperacion.ERespuestaRegla.ReglasValidadas">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Respuesta.ERespuesta">
+            <summary>
+            Clase de Respuesta de Operaciones Financieras
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.ERespuesta.Codigo">
+            <summary>
+            Codigo de la Respuesta
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.ERespuesta.Mensaje">
+            <summary>
+            Mensaje de la Respuesta
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.ERespuesta.FechaRespuesta">
+            <summary>
+            Fecha y hora de la respuesta Obtenida
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.ERespuesta.ErrorConexion">
+            <summary>
+            Si la respuesta se obtiene por error de conexion a algun servicio
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.ERespuesta.ExcepcionAplicacion">
+            <summary>
+            Si la respuesta se la obtiene por excepcion de Aplicacion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.ERespuesta.OperacionProcesada">
+            <summary>
+            Si la respuesta fue procesada por el servidor o proveedor sin inconvenientes
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.ERespuesta.CodigoEmpresaProveedor">
+            <summary>
+            Si la respuesta fue procesada por el servidor o proveedor sin inconvenientes
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.ERespuesta.TipoMensaje">
+            <summary>
+            Tipo Mensaje tomar de "CCampos.TipoMensaje"
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.ERespuesta.IdentificadorUnicoTransaccion">
+            <summary>
+            Identificador Unico Transaccion
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.ERespuesta.NumeroDocumentoOperacion">
+            <summary>
+            Numero Documento Operacion
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Respuesta.ERespuestaIdentificadorUnico">
+            <summary>
+            Entidad que contiene la respuesta del identificador unico
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.ERespuestaIdentificadorUnico.Respuesta">
+            <summary>
+            Respuesta del servicio
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.ERespuestaIdentificadorUnico.IdentificadorUnico">
+            <summary>
+            Identificador Unico
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaOperacionAF">
+            <summary>
+            Entidad de respuesta general del MSSeguridadFraude
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaOperacionAF.Respuesta">
+            <summary>
+            Entidad que contiene el codigo y mensaje de respuesta
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaOperacionAF.RespuestaAF">
+            <summary>
+            Estado de la operacion
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF">
+            <summary>
+            Entidad de entrada para enviarla a proveedor de seguridad
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.result">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.score">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.triggeredRules">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.error">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.status">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.IdEvento">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.eventId">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude.ERespuestaAF.ofacCoincidence">
+            <summary>
+            Entidad de Auditoria 
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaOperacionSoftToken">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaOperacionSoftToken.Respuesta">
+            <summary>
+            Entidad que contiene el codigo y mensaje de respuesta
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaOperacionSoftToken.RespuestaSoftToken">
+            <summary>
+            Entidad que contiene el codigo y mensaje de respuesta
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaST">
+            <summary>
+            Entidad de respuesta para integracion VU Softoken
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaST.Codigo">
+            <summary>
+            Codigo de mensaje devuelto por el proveedor
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaST.Mensaje">
+            <summary>
+            Mensaje  obtenido en la respuesta del proveedor 
+            </summary>
+        </member>
+    </members>
+</doc>

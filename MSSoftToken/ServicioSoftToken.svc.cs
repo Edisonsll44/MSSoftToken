@@ -22,7 +22,7 @@ namespace MSSoftToken
 
 
 
-		public ERespuestaOperacionSoftToken ActivarTOTP(EOperacionActivarTOTP operacion)
+		public ERespuestaOperacionSoftToken ActivarTOTP(EOperacionATOTP operacion)
 		{
             return NeServicio.ActivarTOTP(operacion);
         }
@@ -37,9 +37,9 @@ namespace MSSoftToken
             return NeServicio.DesbloquearTOTP(operacion);
         }
 
-		public ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionesTOTP operacion)
+		public ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionATOTP operacion)
 		{
-            return null;
+            return NeServicio.SincronizarTiempoTOTP(operacion);
         }
 
 		

@@ -16,6 +16,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Tcs.Provider.Settings.Base;
+using System.Reflection;
+using static System.Net.Mime.MediaTypeNames;
+
 
 namespace MSSeguridadFraude.AccesoDatos.AdGestor
 {
@@ -34,7 +37,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
         /// <param name="entrada"></param>
         /// <param name="metodo"></param>
         /// <returns></returns>
-       public static IRestResponse SendPostAsync(TRequest entrada, string recurso)
+        public static IRestResponse SendPostAsync(TRequest entrada, string recurso, bool a = false)
         {
             var url = "https://auth1.bgr.ec";// AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_FRAUDE);
             var timeout = Convert.ToInt32(SettingsManager.Group("ConfiguracionesServicioWeb")["TimeOutServicioProveedorSecurity"].ToString());
@@ -52,13 +55,31 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                 RequestFormat = DataFormat.Json
             };
 
-            string jsonToSend = JsonConvert.SerializeObject(entrada, jsonSerializerSettings);
+            
 
             IRestResponse responseData = null;
             var resetEvent = new ManualResetEvent(false);
-            request.AddParameter("application/json; charset=utf-8", jsonToSend, ParameterType.RequestBody);
-            //request.AddQueryParameter("cupon", "965609");// AddParameter("application/json; charset=utf-8", jsonToSend, ParameterType.RequestBody);
-            //request.AddQueryParameter("callback","?");
+            if (a)
+            {
+                request.AddHeader("Content-Type", "plication/x-www-form-urlencoded");
+                
+                Type tModelType = entrada.GetType();
+                PropertyInfo[] arrayPropertyInfos = tModelType.GetProperties();
+                foreach (PropertyInfo property in arrayPropertyInfos)
+                {
+                    var valor = property.GetValue(entrada).ToString().Trim();
+                    if (!string.IsNullOrEmpty(valor))
+                    {
+                        request.AddQueryParameter(property.Name, property.GetValue(entrada).ToString());
+                    }
+                }
+            }
+            else
+            {
+                string jsonToSend = JsonConvert.SerializeObject(entrada, jsonSerializerSettings);
+                request.AddParameter(CConstantes.Formatos.JsonFormatHeader, jsonToSend, ParameterType.RequestBody);
+            }
+
             request.RequestFormat = DataFormat.Json;
             client.ExecuteAsync(request, response => { responseData = response; resetEvent.Set(); });
 

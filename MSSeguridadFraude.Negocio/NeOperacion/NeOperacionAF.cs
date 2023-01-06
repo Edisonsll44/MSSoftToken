@@ -97,7 +97,7 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
         /// </summary>
         /// <param name="operacion"></param>
         /// <returns></returns>
-        public static ERespuesta ActivarTOTP(EOperacionActivarTOTP operacion)
+        public static ERespuesta ActivarTOTP(EOperacionATOTP operacion)
         {
             NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
 

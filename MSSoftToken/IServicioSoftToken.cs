@@ -25,7 +25,7 @@ namespace MSSoftToken
                    UriTemplate = "ActivarTOTP",       // Nombre adicional del metodo para la transaccion
                    RequestFormat = WebMessageFormat.Json,
                    ResponseFormat = WebMessageFormat.Json)]
-        ERespuestaOperacionSoftToken ActivarTOTP(EOperacionActivarTOTP operacion);
+        ERespuestaOperacionSoftToken ActivarTOTP(EOperacionATOTP operacion);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -33,7 +33,7 @@ namespace MSSoftToken
                    UriTemplate = "SincronizarTiempoTOTP",       // Nombre adicional del metodo para la transaccion
                    RequestFormat = WebMessageFormat.Json,
                    ResponseFormat = WebMessageFormat.Json)]
-        ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionesTOTP operacion);
+        ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionATOTP operacion);
 
         [OperationContract]
         [WebInvoke(Method = "POST",

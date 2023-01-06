@@ -6,17 +6,10 @@ using MSSeguridadFraude.Comun.Utilitarios;
 using MSSeguridadFraude.Entidades.OperacionNegocio;
 using MSSeguridadFraude.Entidades.OperacionNegocio.Softoken;
 using MSSeguridadFraude.Entidades.Respuesta;
-using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude;
 using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken;
-using Newtonsoft.Json;
 using RestSharp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Tcs.Provider.Settings.Base;
 
 namespace MSSeguridadFraude.AccesoDatos.AdGestor
@@ -31,7 +24,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
 
 
 
-        public static ERespuestaOperacionSoftToken ActivarTOTP(EOperacionActivarTOTP operacion)
+        public static ERespuestaOperacionSoftToken ActivarTOTP(EOperacionATOTP operacion)
         {
             var respuestaST = new ERespuestaOperacionSoftToken()
             {
@@ -47,7 +40,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             try
             {
                 var request = operacion.ActivarTOTP;
-                IRestResponse responseData = GestorServiciosWeb<EActivarTOTP>.SendPostAsync(request, recurso);
+                IRestResponse responseData = GestorServiciosWeb<EActivarTOTP>.SendPostAsync(request, recurso,true);
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {
@@ -86,7 +79,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
 
       
 
-        public static ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionActivarTOTP operacion)
+        public static ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionATOTP operacion)
         {
             var respuestaST = new ERespuestaOperacionSoftToken()
             {
@@ -99,8 +92,8 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointA"].ToString();
             try
             {
-                var request = operacion.ActivarTOTP;
-                IRestResponse responseData = GestorServiciosWeb<EActivarTOTP>.SendPostAsync(request, recurso);
+                var request = operacion.Sincronizacion;
+                IRestResponse responseData = GestorServiciosWeb<ESincronizacionTOTP>.SendPostAsync(request, recurso,true);
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {
