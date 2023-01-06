@@ -75,6 +75,7 @@
     <Compile Include="AdComun\AdLlamarConfiguracionCentralizada.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="AdGestor\AdGestorBloqueoUsuario.cs" />
     <Compile Include="AdGestor\AdGestorAnalisisFraude.cs" />
     <Compile Include="AdGestor\AdGestorSoftToken.cs" />
     <Compile Include="AdGestor\GestorServiciosWeb.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="AdGestor\AdGestorReglasNegocio.cs" />
     <Compile Include="AdOperacionServicio\AdProcesamientoFraude.cs" />
     <Compile Include="AdOperacionServicio\AdProcesosSofToken.cs" />
+    <Compile Include="AdOperacionServicio\AdProcesamientoBloqueoUsuario.cs" />
     <Compile Include="AdOperacionServicio\AdReglasNegocio.cs" />
     <Compile Include="AdReglas\AdReglasNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

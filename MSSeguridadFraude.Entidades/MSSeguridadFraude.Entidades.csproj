@@ -63,6 +63,8 @@
     <Compile Include="OperacionNegocio\Softoken\EActivarTOTP.cs" />
     <Compile Include="OperacionNegocio\Softoken\EOperacionTOTP.cs" />
     <Compile Include="OperacionNegocio\Softoken\ESincronizacionTOTP.cs" />
+    <Compile Include="OperacionNegocio\ProveedorSeguridad\EOperacionActivarTOTP.cs" />
+    <Compile Include="OperacionNegocio\ProveedorSeguridad\EOperacionesTOTP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReglasOperacion\EReglaOperacion.cs" />
     <Compile Include="ReglasOperacion\ERespuestaRegla.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Respuesta\ERespuestaIdentificadorUnico.cs" />
     <Compile Include="Respuesta\RespuestaProveedor\AnalisisFraude\ERespuestaOperacionAF.cs" />
     <Compile Include="Respuesta\RespuestaProveedor\AnalisisFraude\ERespuestaAF.cs" />
+    <Compile Include="Respuesta\RespuestaProveedor\Softoken\ERespuestaOperacionSoftToken.cs" />
     <Compile Include="Respuesta\RespuestaProveedor\Softoken\ERespuestaOperacionSoftToken.cs" />
     <Compile Include="Respuesta\RespuestaProveedor\Softoken\ERespuestaST.cs" />
   </ItemGroup>

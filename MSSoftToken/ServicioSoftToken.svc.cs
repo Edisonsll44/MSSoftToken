@@ -10,6 +10,7 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Web;
 
 namespace MSSoftToken
 {
@@ -32,6 +33,12 @@ namespace MSSoftToken
 			return NeServicio.DesabilitarTOTP(operacion);
         }
 
+		public ERespuestaOperacionSoftToken BloquearTotp(EOperacionesTOTP operacion)
+		{
+			return NeServicio.ProcesarBloqueoUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
+		}
+
+		public ERespuesta DesabilitarTOTP(EOperacionesTOTP operacion)
 		public ERespuestaOperacionSoftToken DesbloquearTOTP(EOperacionesTOTP operacion)
 		{
             return NeServicio.DesbloquearTOTP(operacion);
@@ -39,6 +46,28 @@ namespace MSSoftToken
 
 		public ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionATOTP operacion)
 		{
+			throw new NotImplementedException();
+		}
+
+		public ERespuestaOperacionSoftToken EliminarTotp()
+		{
+			throw new NotImplementedException();
+		}
+
+		public ERespuestaOperacionSoftToken HabilitarTotp()
+		{
+			throw new NotImplementedException();
+		}
+
+		public ERespuestaOperacionSoftToken LoginOtp()
+		{
+			throw new NotImplementedException();
+		}
+
+		public ERespuestaOperacionSoftToken RegistrarUsuario()
+		{
+			throw new NotImplementedException();
+		}
             return NeServicio.SincronizarTiempoTOTP(operacion);
         }
 
