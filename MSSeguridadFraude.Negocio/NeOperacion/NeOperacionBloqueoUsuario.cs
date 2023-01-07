@@ -1,8 +1,5 @@
 ﻿using MSSeguridadFraude.AccesoDatos.AdOperacionServicio;
 using MSSeguridadFraude.Comun.Constantes;
-using MSSeguridadFraude.Comun.Enumeraciones;
-using MSSeguridadFraude.Entidades.OperacionNegocio;
-using MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude;
 using MSSeguridadFraude.Entidades.OperacionNegocio;
 using MSSeguridadFraude.Entidades.ReglasOperacion;
 using MSSeguridadFraude.Entidades.Respuesta;

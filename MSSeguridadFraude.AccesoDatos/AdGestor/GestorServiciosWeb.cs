@@ -1,23 +1,10 @@
-﻿using MSSeguridadFraude.AccesoDatos.AdComun;
-using MSSeguridadFraude.AccesoDatos.AdLogs;
-using MSSeguridadFraude.Comun.Constantes;
-using MSSeguridadFraude.Comun.Enumeraciones;
-using MSSeguridadFraude.Entidades.OperacionNegocio;
-using MSSeguridadFraude.Entidades.Respuesta;
-using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude;
+﻿using MSSeguridadFraude.Comun.Constantes;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Security.Policy;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Tcs.Provider.Settings.Base;
 using System.Reflection;
-using static System.Net.Mime.MediaTypeNames;
 
 
 namespace MSSeguridadFraude.AccesoDatos.AdGestor

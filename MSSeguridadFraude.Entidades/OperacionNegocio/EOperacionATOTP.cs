@@ -1,9 +1,5 @@
 ﻿using MSSeguridadFraude.Entidades.Comun;
-<<<<<<<< HEAD:MSSeguridadFraude.Entidades/OperacionNegocio/ProveedorSeguridad/EOperacionActivarTOTP.cs
-========
-using MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad;
 using MSSeguridadFraude.Entidades.OperacionNegocio.Softoken;
->>>>>>>> master:MSSeguridadFraude.Entidades/OperacionNegocio/EOperacionATOTP.cs
 using System;
 using System.Runtime.Serialization;
 

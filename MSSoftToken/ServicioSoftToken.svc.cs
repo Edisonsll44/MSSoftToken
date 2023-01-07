@@ -14,39 +14,36 @@ using System.Web;
 
 namespace MSSoftToken
 {
-    /// <summary>
-    /// Servicio  SofToke  que expone metodos de operaciones para obtene Procesos el softoken
-    /// </summary>
-    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
-    public class ServicioSoftToken : IServicioSoftToken
+	/// <summary>
+	/// Servicio  SofToke  que expone metodos de operaciones para obtene Procesos el softoken
+	/// </summary>
+	[AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
+	public class ServicioSoftToken : IServicioSoftToken
 	{
-
-
 
 		public ERespuestaOperacionSoftToken ActivarTOTP(EOperacionATOTP operacion)
 		{
-            return NeServicio.ActivarTOTP(operacion);
-        }
+			return NeServicio.ActivarTOTP(operacion);
+		}
 
 		public ERespuestaOperacionSoftToken DesabilitarTOTP(EOperacionesTOTP operacion)
 		{
 			return NeServicio.DesabilitarTOTP(operacion);
-        }
+		}
 
 		public ERespuestaOperacionSoftToken BloquearTotp(EOperacionesTOTP operacion)
 		{
 			return NeServicio.ProcesarBloqueoUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
 		}
 
-		public ERespuesta DesabilitarTOTP(EOperacionesTOTP operacion)
 		public ERespuestaOperacionSoftToken DesbloquearTOTP(EOperacionesTOTP operacion)
 		{
-            return NeServicio.DesbloquearTOTP(operacion);
-        }
+			return NeServicio.DesbloquearTOTP(operacion);
+		}
 
 		public ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionATOTP operacion)
 		{
-			throw new NotImplementedException();
+			return NeServicio.SincronizarTiempoTOTP(operacion);
 		}
 
 		public ERespuestaOperacionSoftToken EliminarTotp()
@@ -68,9 +65,5 @@ namespace MSSoftToken
 		{
 			throw new NotImplementedException();
 		}
-            return NeServicio.SincronizarTiempoTOTP(operacion);
-        }
-
-		
 	}
 }
