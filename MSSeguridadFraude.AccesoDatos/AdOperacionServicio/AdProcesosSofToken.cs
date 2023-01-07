@@ -1,21 +1,11 @@
-﻿using MSSeguridadFraude.AccesoDatos.AdComun;
-using MSSeguridadFraude.AccesoDatos.AdGestor;
+﻿using MSSeguridadFraude.AccesoDatos.AdGestor;
 using MSSeguridadFraude.AccesoDatos.AdLogs;
-using MSSeguridadFraude.AccesoDatos.CodigoTrabajoWS;
-using MSSeguridadFraude.AccesoDatos.MSIdentificadorUnico;
 using MSSeguridadFraude.Comun.Constantes;
 using MSSeguridadFraude.Comun.Enumeraciones;
 using MSSeguridadFraude.Entidades.OperacionNegocio;
-using MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude;
-using MSSeguridadFraude.Entidades.Respuesta;
-using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude;
 using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using ERespuesta = MSSeguridadFraude.Entidades.Respuesta.ERespuesta;
 
 namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio

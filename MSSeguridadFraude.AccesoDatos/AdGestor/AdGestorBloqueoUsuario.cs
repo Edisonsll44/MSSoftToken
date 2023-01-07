@@ -49,7 +49,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                 RequestFormat = DataFormat.Json
             };
 
-            string jsonToSend = JsonConvert.SerializeObject(entrada.Username);
+            string jsonToSend = JsonConvert.SerializeObject(entrada);
 
             IRestResponse responseData = null;
             var resetEvent = new ManualResetEvent(false);
@@ -83,12 +83,12 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                     }
 
                     Exception ex = responseData.ErrorException ?? new Exception(respuestaST.Respuesta.Mensaje);
-                    AdLogsExcepcion.GuardarLogExcepcion(ex, entrada.Auditoria, () => recurso, () => entrada.Username, () => respuestaST);
+                    AdLogsExcepcion.GuardarLogExcepcion(ex, entrada.Auditoria, () => recurso, () => entrada, () => respuestaST);
                 }
             }
             catch (Exception error)
             {
-                AdLogsExcepcion.GuardarLogExcepcion(error, entrada.Auditoria, () => recurso, () => entrada.Username, () => respuestaST);
+                AdLogsExcepcion.GuardarLogExcepcion(error, entrada.Auditoria, () => recurso, () => entrada, () => respuestaST);
 				respuestaST.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
 				respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
 				respuestaST.Respuesta.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA_VU;

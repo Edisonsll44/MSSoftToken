@@ -6,3 +6,12 @@
 *.txt
 *.cache
 *.cache
+/.vs/MSSoftToken/v17/.suo
+*.xml
+/MSSeguridadFraude.Negocio/bin/Debug/MSSeguridadFraude.Negocio.pdb
+/MSSeguridadFraude.Negocio/bin/Debug/MSSeguridadFraude.Negocio.dll
+/MSSoftToken/bin/MSSoftToken.pdb
+/MSSoftToken/bin/MSSoftToken.dll
+/MSSoftToken/obj/Debug/MSSoftToken.dll
+/MSSoftToken/obj/Debug/MSSoftToken.csproj.AssemblyReference.cache
+/MSSoftToken/obj/Debug/MSSoftToken.pdb

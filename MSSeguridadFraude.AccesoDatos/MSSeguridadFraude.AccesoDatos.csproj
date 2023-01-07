@@ -76,7 +76,6 @@
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="AdGestor\AdGestorBloqueoUsuario.cs" />
-    <Compile Include="AdGestor\AdGestorAnalisisFraude.cs" />
     <Compile Include="AdGestor\AdGestorSoftToken.cs" />
     <Compile Include="AdGestor\GestorServiciosWeb.cs" />
     <Compile Include="AdLogs\AdJournalTransaccional.cs" />
@@ -86,7 +85,6 @@
     <Compile Include="AdLogs\AdParametrosLogs.cs" />
     <Compile Include="AdMensajes\AdMensajes.cs" />
     <Compile Include="AdGestor\AdGestorReglasNegocio.cs" />
-    <Compile Include="AdOperacionServicio\AdProcesamientoFraude.cs" />
     <Compile Include="AdOperacionServicio\AdProcesosSofToken.cs" />
     <Compile Include="AdOperacionServicio\AdProcesamientoBloqueoUsuario.cs" />
     <Compile Include="AdOperacionServicio\AdReglasNegocio.cs" />

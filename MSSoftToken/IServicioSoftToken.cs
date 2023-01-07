@@ -11,10 +11,6 @@ namespace MSSoftToken
 	[ServiceContract]
 	public interface IServicioSoftToken
 	{
-        ERespuesta ActivarTOTP(EOperacionActivarTOTP operacion);
-        ERespuesta DesbloquearTOTP( EOperacionesTOTP operacion);
-        ERespuesta DesabilitarTOTP( EOperacionesTOTP operacion);
-
 		[OperationContract]
 		[WebInvoke(Method = "POST",
 				   BodyStyle = WebMessageBodyStyle.Bare,
