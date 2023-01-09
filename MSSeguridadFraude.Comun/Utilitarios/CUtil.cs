@@ -1,12 +1,15 @@
-﻿using MSSeguridadFraude.Entidades.Respuesta;
+﻿using MSSeguridadFraude.Comun.Constantes;
+using MSSeguridadFraude.Entidades.Respuesta;
 using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Collections.Generic;
 
 namespace MSSeguridadFraude.Comun.Utilitarios
 {
@@ -159,10 +162,26 @@ namespace MSSeguridadFraude.Comun.Utilitarios
 		/// <param name="respuesta"></param>
 		/// <param name="caracter"></param>
 		/// <returns></returns>
-		public static ERespuestaST MapearRespuesta(string respuesta, char caracter)
+		public static ERespuestaST MapearRespuesta(string respuesta, char caracter,bool registro=false)
         {
             var arregloCadena = respuesta.Split(caracter);
             var concatenacion = ConcatenarArreglo(arregloCadena);
+            if (registro )
+            {
+                if (arregloCadena[1]!=null)
+                {
+                    if (arregloCadena[1].ToString().Trim().Length==6) {
+                        return new ERespuestaST()
+                        {
+                            Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL,
+                            Mensaje = arregloCadena[0].Trim(),
+                            Coupon = arregloCadena[1].Trim(),
+
+                        };
+                    }
+                }
+                
+            }
             return new ERespuestaST()
             {
                 Codigo = arregloCadena[0],
@@ -170,6 +189,85 @@ namespace MSSeguridadFraude.Comun.Utilitarios
                
             };
         }
+        /// <summary>
+		/// Metodo que separa la respuesta enviada por el proveedor, a un objeto
+		/// </summary>
+		/// <param name="respuesta"></param>
+		/// <param name="caracter"></param>
+		/// <returns></returns>
+		public static ERespuestaST MapearRespuestaRegistro(string respuesta, char caracter, bool registro = false)
+        {
+            var arregloCadena = respuesta.Split(caracter);
+            var concatenacion = ConcatenarArreglo(arregloCadena);
+            if (registro)
+            {
+                if (arregloCadena[1] != null)
+                {
+                    if (arregloCadena[1].ToString().Trim().Length == 6)
+                    {
+                        return new ERespuestaST()
+                        {
+                            Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL,
+                            Mensaje = arregloCadena[0].Trim(),
+                            Coupon = arregloCadena[1].Trim(),
+
+                        };
+                    }
+                }
+
+            }
+            return new ERespuestaST()
+            {
+                Codigo = arregloCadena[0],
+                Mensaje = concatenacion,
+
+            };
+        }
+        /// <summary>
+		/// Metodo que separa la respuesta enviada por el proveedor, a un objeto
+		/// </summary>
+		/// <param name="respuesta"></param>
+		/// <param name="caracter"></param>
+		/// <returns></returns>
+		public static ERespuestaST MapearRespuestaActivacion(string respuesta, char caracter)
+        {
+            var arregloCadenaInicial = respuesta.Split(caracter);
+            if (arregloCadenaInicial.Count()>1)
+            {
+                return new ERespuestaST()
+                {
+                    Codigo = arregloCadenaInicial[0],
+                    Mensaje = arregloCadenaInicial[1],
+
+                };
+            }
+            List<char> caracteresARemover = new List<char>() { '?', '(', '[', ')',']' };
+            string cadenaLimpia = string.Empty;
+            if (respuesta.Length>0)
+            {
+                foreach (var item in caracteresARemover)
+                {
+                    cadenaLimpia = respuesta.ToString().Replace(item.ToString(), string.Empty);
+                }
+
+                if (cadenaLimpia.Length > 0)
+                {
+
+                    var arregloCadena = cadenaLimpia.Split(CConstantes.Caracteres.COMA);
+                    return new ERespuestaST()
+                    {
+                        Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL,
+                        Semilla = arregloCadena[0].ToString().Trim(),
+                        Mensaje = arregloCadena[1].ToString().Trim(),
+
+                    };
+                }
+            }
+            return new ERespuestaST();
+           
+            
+        }
+
         /// <summary>
 		/// Concatena multiples indices de un arrego
 		/// </summary>

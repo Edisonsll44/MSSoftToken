@@ -26,6 +26,19 @@ namespace MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken
         [DataMember]
         public string Mensaje { get; set; }
 
-      
+        /// <summary>
+        /// 
+        /// </summary>
+        [DataMember]
+        public string Coupon { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [DataMember]
+        public string Semilla { set; get; }
+
+
+
     }
 }

@@ -622,7 +622,8 @@
 		public static class Caracteres
 		{
 			public const char DOSPUNTOS = ':';
-		}
+            public const char COMA = ',';
+        }
 
 		public static class Formatos
 		{

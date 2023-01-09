@@ -48,7 +48,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                     respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
                     respuestaST.Respuesta.CodigoEmpresaProveedor = string.Empty;
                     respuestaST.Respuesta.OperacionProcesada = true;
-                    var respuestaGenerica = CUtil.MapearRespuesta(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
+                    var respuestaGenerica = CUtil.MapearRespuestaActivacion(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
                     respuestaST.RespuestaSoftToken = respuestaGenerica; 
                     return respuestaST;
                 }
@@ -470,7 +470,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                     respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
                     respuestaST.Respuesta.CodigoEmpresaProveedor = string.Empty;
                     respuestaST.Respuesta.OperacionProcesada = true;
-                    var respuestaGenerica = CUtil.MapearRespuesta(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
+                    var respuestaGenerica = CUtil.MapearRespuesta(responseData.Content, CConstantes.Caracteres.DOSPUNTOS,true);
                     respuestaST.RespuestaSoftToken = respuestaGenerica;
                     return respuestaST;
                 }
