@@ -10,7 +10,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
     /// <summary>
     /// Gestor del servicio de reglas de negocio
     /// </summary>
-    public  class AdGestorReglasNegocio
+    public class AdGestorReglasNegocio
     {
 
         protected AdGestorReglasNegocio()

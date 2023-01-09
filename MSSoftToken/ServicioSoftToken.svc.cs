@@ -42,6 +42,9 @@ namespace MSSoftToken
             return NeServicio.SincronizarTiempoTOTP(operacion);
         }
 
-		
-	}
+        public ERespuestaOperacionSoftToken LoginTOTP(EOperacionLoginTOTP operacion)
+        {
+            return NeServicio.LoginTOTP(operacion);
+        }
+    }
 }

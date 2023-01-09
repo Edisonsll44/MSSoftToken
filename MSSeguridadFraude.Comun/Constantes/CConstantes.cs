@@ -306,7 +306,12 @@
 			/// de la peticion
 			/// </summary>
 			public const string TOKEN_SMS_PROVEEDOR = "TOKEN_SMS_PROVEEDOR";
-		}
+
+			/// <summary>
+			/// token acceso a softoken 
+			/// </summary>
+            public const string TOKEN_SOFT_TOKEN = "TOKEN_SOFT_TOKEN";
+        }
 
 		/// <summary>
 		/// Nombre de Bases de datos que serán llamadas por el servicio.
@@ -634,6 +639,7 @@
 			public const string EndPointMetodoA = "EndPointA";
 			public const string EndPointMetodoDesbloquear = "EndPointDesbloquear";
 			public const string EndPointMetodoDesabilitar = "EndPointDesabilitar";
+			
 
         }
 	}

@@ -772,7 +772,7 @@
             
             </summary>
         </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.ActivarTOTP">
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.Activar">
             <summary>
             
             </summary>
@@ -798,6 +798,26 @@
         <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP.Operacion">
             <summary>
             Usuario registrado en el proveedor VU => Softoken TOTP
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionLoginTOTP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionLoginTOTP.Auditoria">
+            <summary>
+            Datos de auditoria
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionLoginTOTP.Entorno">
+            <summary>
+            Datos de Entorno
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionLoginTOTP.Login">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.EDatosNotificacionesVu">
@@ -919,12 +939,27 @@
             
             </summary>
         </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EActivarTOTP.Cupon">
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EActivarTOTP.cupon">
             <summary>
             
             </summary>
         </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EActivarTOTP.Callback">
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EActivarTOTP.callback">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ELoginTOTP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ELoginTOTP.username">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ELoginTOTP.otp">
             <summary>
             
             </summary>

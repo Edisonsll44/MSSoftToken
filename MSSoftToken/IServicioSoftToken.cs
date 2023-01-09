@@ -11,13 +11,13 @@ using System.Text;
 
 namespace MSSoftToken
 {
-	// NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
-	[ServiceContract]
-	public interface IServicioSoftToken
-	{
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
+    [ServiceContract]
+    public interface IServicioSoftToken
+    {
 
 
-        
+
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -41,7 +41,7 @@ namespace MSSoftToken
                    UriTemplate = "DesbloquearTOTP",       // Nombre adicional del metodo para la transaccion
                    RequestFormat = WebMessageFormat.Json,
                    ResponseFormat = WebMessageFormat.Json)]
-        ERespuestaOperacionSoftToken DesbloquearTOTP( EOperacionesTOTP operacion);
+        ERespuestaOperacionSoftToken DesbloquearTOTP(EOperacionesTOTP operacion);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
@@ -49,7 +49,16 @@ namespace MSSoftToken
                    UriTemplate = "DesabilitarTOTP",       // Nombre adicional del metodo para la transaccion
                    RequestFormat = WebMessageFormat.Json,
                    ResponseFormat = WebMessageFormat.Json)]
-        ERespuestaOperacionSoftToken DesabilitarTOTP( EOperacionesTOTP operacion);
+        ERespuestaOperacionSoftToken DesabilitarTOTP(EOperacionesTOTP operacion);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+                   BodyStyle = WebMessageBodyStyle.Bare,
+                   UriTemplate = "LoginTOTP",       // Nombre adicional del metodo para la transaccion
+                   RequestFormat = WebMessageFormat.Json,
+                   ResponseFormat = WebMessageFormat.Json)]
+        ERespuestaOperacionSoftToken LoginTOTP(EOperacionLoginTOTP operacion);
+        
 	}
 
 

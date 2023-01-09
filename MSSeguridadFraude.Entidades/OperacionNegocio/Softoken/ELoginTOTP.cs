@@ -12,18 +12,19 @@ namespace MSSeguridadFraude.Entidades.OperacionNegocio.Softoken
     /// </summary>
     [DataContract]
     [Serializable]
-    public  class EActivarTOTP
+    public  class ELoginTOTP
     {
+
         /// <summary>
         /// 
         /// </summary>
         [DataMember]
-        public string cupon { get; set; }
+        public string username { get; set; }
         /// <summary>
         /// 
         /// </summary>
         [DataMember]
-        public string callback { get; set; }
+        public string otp { get; set; }
 
     }
 }

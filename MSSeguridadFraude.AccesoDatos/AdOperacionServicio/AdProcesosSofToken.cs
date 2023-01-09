@@ -266,6 +266,63 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
             return respuesta;
         }
 
+        public static ERespuestaOperacionSoftToken LoginTOTP(EOperacionLoginTOTP operacion)
+        {
 
+            var respuesta = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
+            try
+            {
+                //Invocacion al servicio del proveedor
+
+                respuesta = AdGestorSoftToken.LoginTOTP(operacion);
+            }
+            catch (WebException ex)
+            {
+                respuesta = new ERespuestaOperacionSoftToken
+                {
+                    Respuesta = new ERespuesta
+                    {
+                        ExcepcionAplicacion = true,
+                        ErrorConexion = true,
+                        FechaRespuesta = DateTime.Now,
+                        OperacionProcesada = false,
+                    }
+
+
+                };
+
+                if (ex.Status == WebExceptionStatus.Timeout)
+                {
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
+                }
+                else
+                {
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
+                }
+
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+            }
+            catch (Exception ex)
+            {
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+
+                respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.FechaRespuesta = DateTime.Now;
+                respuesta.Respuesta.ExcepcionAplicacion = true;
+
+            }
+
+            return respuesta;
+        }
     }
 }

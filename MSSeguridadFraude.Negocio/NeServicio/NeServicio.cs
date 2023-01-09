@@ -336,5 +336,81 @@ namespace MSSeguridadFraude.Negocio.NeServicio
             }
             return respuestaOperacion;
         }
+
+        public static ERespuestaOperacionSoftToken LoginTOTP(EOperacionLoginTOTP operacion)
+        {
+
+            var respuestaOperacion = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
+            string ip = operacion.Auditoria.IdAplicacionCliente;
+            operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
+            ERespuestaMensaje respuestaMensaje;
+            EConsultaMensaje datoMensaje = new EConsultaMensaje
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                Auditoria = operacion.Auditoria
+            };
+            try
+            {
+
+
+                if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
+                {
+                    var respuesta = new ERespuesta
+                    {
+                        Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION,
+                        Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO,
+                        FechaRespuesta = DateTime.Now
+                    };
+
+                    Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
+                    NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+                }
+                else
+                {
+                    //TODO CAMBIO LLAMADA METODO 
+                    respuestaOperacion = NeOperacionST.LoginTOTP(operacion);
+                    //FIN CAMBIO
+                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
+                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
+                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
+                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
+                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
+
+                    respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                    respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                    respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+
+                bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
+                datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
+                datoMensaje.Respuesta.Mensaje = string.Empty;
+                datoMensaje.Respuesta.OperacionProcesada = false;
+
+                respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+
+                respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                respuestaOperacion.Respuesta.ErrorConexion = objeto;
+                respuestaOperacion.Respuesta.OperacionProcesada = false;
+                //throw;
+            }
+            return respuestaOperacion;
+        }
     }
 }

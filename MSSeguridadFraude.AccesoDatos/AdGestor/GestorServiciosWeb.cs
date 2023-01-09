@@ -40,7 +40,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             {
                 RequestFormat = DataFormat.Json
             };
-
+            request.AddHeader("apiKey", "ff92829c-60e6-46c1-9de1-15cb28a8af8f");
             IRestResponse responseData = null;
             var resetEvent = new ManualResetEvent(false);
             if (a)

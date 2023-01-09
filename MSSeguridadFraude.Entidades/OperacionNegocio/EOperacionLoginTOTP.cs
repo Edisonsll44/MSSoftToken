@@ -1,5 +1,4 @@
 ﻿using MSSeguridadFraude.Entidades.Comun;
-using MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad;
 using MSSeguridadFraude.Entidades.OperacionNegocio.Softoken;
 using System;
 using System.Collections.Generic;
@@ -11,19 +10,20 @@ using System.Threading.Tasks;
 namespace MSSeguridadFraude.Entidades.OperacionNegocio
 {
     /// <summary>
-    /// Datos de entrada para realizar el consumo del metodo (a) Activar TOTP
+    /// 
     /// </summary>
     [DataContract]
     [Serializable]
-    public class EOperacionATOTP
+    public class EOperacionLoginTOTP
     {
         /// <summary>
-        /// 
+        /// Datos de auditoria
         /// </summary>
         [DataMember]
         public EAuditoria Auditoria { get; set; }
+
         /// <summary>
-        /// 
+        /// Datos de Entorno
         /// </summary>
         [DataMember]
         public EEntorno Entorno { get; set; }
@@ -32,10 +32,7 @@ namespace MSSeguridadFraude.Entidades.OperacionNegocio
         /// 
         /// </summary>
         [DataMember]
-        public EActivarTOTP Activar{get;set;}
-
-        ///
-        [DataMember]
-        public  ESincronizacionTOTP Sincronizacion { get; set; }
+        public ELoginTOTP Login { get; set; }
+    
     }
 }
