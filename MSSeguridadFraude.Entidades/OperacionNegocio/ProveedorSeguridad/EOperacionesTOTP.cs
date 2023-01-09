@@ -34,4 +34,56 @@ namespace MSSeguridadFraude.Entidades.OperacionNegocio
         [DataMember]
         public EOperacionTOTP Operacion { get; set; }
     }
+
+	/// <summary>
+	/// Datos para procesar operaciones (Bloqueo,Desbloqueo,Habilitación, Deshabilitación,Eliminación) con el proveedor VU
+	/// </summary>
+	[DataContract]
+	[Serializable]
+	public class EOperacionesLoginTOTP
+	{
+		/// <summary>
+		/// Datos de auditoria
+		/// </summary>
+		[DataMember]
+		public EAuditoria Auditoria { get; set; }
+
+		/// <summary>
+		/// Datos de Entorno
+		/// </summary>
+		[DataMember]
+		public EEntorno Entorno { get; set; }
+
+		/// <summary>
+		/// Usuario registrado en el proveedor VU => Softoken TOTP
+		/// </summary>
+		[DataMember]
+		public ELoginTOTP Operacion { get; set; }
+	}
+
+	/// <summary>
+	/// Datos para procesar operaciones (Bloqueo,Desbloqueo,Habilitación, Deshabilitación,Eliminación) con el proveedor VU
+	/// </summary>
+	[DataContract]
+	[Serializable]
+	public class EOperacionesRegistrarTOTP
+	{
+		/// <summary>
+		/// Datos de auditoria
+		/// </summary>
+		[DataMember]
+		public EAuditoria Auditoria { get; set; }
+
+		/// <summary>
+		/// Datos de Entorno
+		/// </summary>
+		[DataMember]
+		public EEntorno Entorno { get; set; }
+
+		/// <summary>
+		/// Usuario registrado en el proveedor VU => Softoken TOTP
+		/// </summary>
+		[DataMember]
+		public ERegistroTOTP Operacion { get; set; }
+	}
 }

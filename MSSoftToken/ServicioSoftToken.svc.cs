@@ -4,6 +4,7 @@ using MSSeguridadFraude.Negocio.NeServicio;
 using System;
 using System.ServiceModel.Activation;
 using System.Web;
+using System.Web.Services.Description;
 
 namespace MSSoftToken
 {
@@ -13,9 +14,6 @@ namespace MSSoftToken
 	[AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
     public class ServicioSoftToken : IServicioSoftToken
 	{
-
-
-
 		public ERespuestaOperacionSoftToken ActivarTOTP(EOperacionATOTP operacion)
 		{
             return NeServicio.ActivarTOTP(operacion);
@@ -41,24 +39,31 @@ namespace MSSoftToken
 			return NeServicio.SincronizarTiempoTOTP(operacion);
 		}
 
-		public ERespuestaOperacionSoftToken EliminarTotp()
+		public ERespuestaOperacionSoftToken EliminarTotp(EOperacionesTOTP operacion)
 		{
-			throw new NotImplementedException();
+			return NeServicio.ProcesarEliminarTotp(operacion, HttpContext.Current.Request.UserHostAddress);
 		}
 
-		public ERespuestaOperacionSoftToken HabilitarTotp()
+		public ERespuestaOperacionSoftToken HabilitarTotp(EOperacionesTOTP operacion)
 		{
-			throw new NotImplementedException();
+			return NeServicio.ProcesarHabilitarTotp(operacion, HttpContext.Current.Request.UserHostAddress);
+
 		}
 
-		public ERespuestaOperacionSoftToken LoginOtp()
+		public ERespuestaOperacionSoftToken LoginOtp(EOperacionesLoginTOTP operacion)
 		{
-			throw new NotImplementedException();
+			return NeServicio.ProcesarLoginTotp(operacion, HttpContext.Current.Request.UserHostAddress);
 		}
 
-		public ERespuestaOperacionSoftToken RegistrarUsuario()
+		public ERespuestaOperacionSoftToken RegistrarUsuario(EOperacionesRegistrarTOTP operacion)
 		{
-			throw new NotImplementedException();
+			return NeServicio.ProcesarRegistrarUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
+
+		}
+
+		public ERespuestaOperacionSoftToken EstadoUsuario(EOperacionesTOTP operacion)
+		{
+			return NeServicio.ProcesarEstadoUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
 		}
 	}
 }

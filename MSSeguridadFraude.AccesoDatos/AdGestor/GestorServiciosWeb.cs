@@ -18,13 +18,13 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entrada"></param>
-        /// <param name="metodo"></param>
-        /// <returns></returns>
-        public static IRestResponse SendPostAsync(TRequest entrada, string recurso, bool a = false)
+		/// <summary>
+		/// SendPostAsync
+		/// </summary>
+		/// <param name="entrada"></param>
+		/// <param name="metodo"></param>
+		/// <returns></returns>
+		public static IRestResponse SendPostAsync(TRequest entrada, string recurso, bool a = false)
         {
             var url = "https://auth1.bgr.ec";// AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_FRAUDE);
             var timeout = Convert.ToInt32(SettingsManager.Group("ConfiguracionesServicioWeb")["TimeOutServicioProveedorSecurity"].ToString());
