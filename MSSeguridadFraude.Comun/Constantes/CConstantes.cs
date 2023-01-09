@@ -622,6 +622,8 @@
 		public static class Formatos
 		{
 			public const string JsonFormatHeader = "application/json; charset=utf-8";
+			public const string ContentType = "Content-Type";
+			public const string WwwFormUrlEncodeHeader = "plication/x-www-form-urlencoded";
 
         }
 	}
