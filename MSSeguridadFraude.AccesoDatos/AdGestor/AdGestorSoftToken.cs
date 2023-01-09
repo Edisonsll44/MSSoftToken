@@ -36,7 +36,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             };
 
 
-            var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointA"].ToString();
+            var recurso = SettingsManager.Group(CConstantes.Configuraciones.ConfiguracionesServicioWeb)[CConstantes.Configuraciones.EndPointMetodoA].ToString();
             try
             {
                 var request = operacion.ActivarTOTP;
@@ -89,7 +89,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                 },
                 RespuestaSoftToken = new ERespuestaST()
             };
-            var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointA"].ToString();
+            var recurso = SettingsManager.Group(CConstantes.Configuraciones.ConfiguracionesServicioWeb)[CConstantes.Configuraciones.EndPointMetodoA].ToString();
             try
             {
                 var request = operacion.Sincronizacion;
@@ -140,7 +140,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                 },
                 RespuestaSoftToken = new ERespuestaST()
             };
-            var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointDesbloquear"].ToString();
+            var recurso = SettingsManager.Group(CConstantes.Configuraciones.ConfiguracionesServicioWeb)[CConstantes.Configuraciones.EndPointMetodoDesbloquear].ToString();
             try
             {
                 var request = operacion.Operacion;
@@ -191,7 +191,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                 },
                 RespuestaSoftToken = new ERespuestaST()
             };
-            var recurso = SettingsManager.Group("ConfiguracionesServicioWeb")["EndPointDesabilitar"].ToString();
+            var recurso = SettingsManager.Group(CConstantes.Configuraciones.ConfiguracionesServicioWeb)[CConstantes.Configuraciones.EndPointMetodoDesabilitar].ToString();
             try
             {
                 var request = operacion.Operacion;
