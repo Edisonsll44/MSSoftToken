@@ -12,7 +12,7 @@ namespace MSSeguridadFraude.Entidades.OperacionNegocio.Softoken
     /// </summary>
     [DataContract]
     [Serializable]
-    public class EOperacionTOTP
+    public class EOperacionUsuarioTOTP
     {
         /// <summary>
         /// 

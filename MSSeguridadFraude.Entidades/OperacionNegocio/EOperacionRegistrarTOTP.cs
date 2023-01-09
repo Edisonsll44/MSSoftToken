@@ -10,17 +10,18 @@ using System.Threading.Tasks;
 namespace MSSeguridadFraude.Entidades.OperacionNegocio
 {
     /// <summary>
-    /// 
-    /// </summary>
-    [DataContract]
+	/// Datos para procesar operaciones (Bloqueo,Desbloqueo,Habilitación, Deshabilitación,Eliminación) con el proveedor VU
+	/// </summary>
+	[DataContract]
     [Serializable]
-    public class EOperacionLoginTOTP:EOperacionBase
+    public class EOperacionRegistrarTOTP:EOperacionBase
     {
+        
+
         /// <summary>
-        /// 
+        /// Usuario registrado en el proveedor VU => Softoken TOTP
         /// </summary>
         [DataMember]
-        public ELoginTOTP Login { get; set; }
-    
+        public ERegistroTOTP Operacion { get; set; }
     }
 }

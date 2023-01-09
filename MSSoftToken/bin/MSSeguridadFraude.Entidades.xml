@@ -762,16 +762,6 @@
             Datos de entrada para realizar el consumo del metodo (a) Activar TOTP
             </summary>
         </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.Auditoria">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.Entorno">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.Activar">
             <summary>
             
@@ -780,22 +770,37 @@
         <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionATOTP.Sincronizacion">
             
         </member>
-        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP">
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionBase">
+            <summary>
+            Entidad base de operaciones TOTP
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionBase.Auditoria">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionBase.Entorno">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionRegistrarTOTP">
             <summary>
             Datos para procesar operaciones (Bloqueo,Desbloqueo,Habilitación, Deshabilitación,Eliminación) con el proveedor VU
             </summary>
         </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP.Auditoria">
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionRegistrarTOTP.Operacion">
             <summary>
-            Datos de auditoria
+            Usuario registrado en el proveedor VU => Softoken TOTP
             </summary>
         </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP.Entorno">
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionTOTP">
             <summary>
-            Datos de Entorno
+            Datos para procesar operaciones (Bloqueo,Desbloqueo,Habilitación, Deshabilitación,Eliminación) con el proveedor VU
             </summary>
         </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionesTOTP.Operacion">
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionTOTP.Operacion">
             <summary>
             Usuario registrado en el proveedor VU => Softoken TOTP
             </summary>
@@ -803,16 +808,6 @@
         <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionLoginTOTP">
             <summary>
             
-            </summary>
-        </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionLoginTOTP.Auditoria">
-            <summary>
-            Datos de auditoria
-            </summary>
-        </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionLoginTOTP.Entorno">
-            <summary>
-            Datos de Entorno
             </summary>
         </member>
         <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.EOperacionLoginTOTP.Login">
@@ -964,12 +959,42 @@
             
             </summary>
         </member>
-        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EOperacionTOTP">
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EOperacionUsuarioTOTP">
             <summary>
             
             </summary>
         </member>
-        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EOperacionTOTP.username">
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.EOperacionUsuarioTOTP.username">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ERegistroTOTP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ERegistroTOTP.email">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ERegistroTOTP.phoneNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ERegistroTOTP.passcode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ERegistroTOTP.deploymentMechanism">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MSSeguridadFraude.Entidades.OperacionNegocio.Softoken.ERegistroTOTP.username">
             <summary>
             
             </summary>

@@ -17,49 +17,120 @@ namespace MSSoftToken
     {
 
 
+        /// <summary>
+		/// Registro de usuario
+		/// </summary>
+		/// <param name="operacion"></param>
+		/// <returns></returns>
+		[OperationContract]
+        [WebInvoke(Method = "POST",
+                   BodyStyle = WebMessageBodyStyle.Bare,
+                   UriTemplate = "RegistrarUsuario",       // Nombre adicional del metodo para la transaccion
+                   RequestFormat = WebMessageFormat.Json,
+                   ResponseFormat = WebMessageFormat.Json)]
+        ERespuestaOperacionSoftToken RegistrarUsuario(EOperacionRegistrarTOTP operacion);
+
+       
 
 
         [OperationContract]
         [WebInvoke(Method = "POST",
                    BodyStyle = WebMessageBodyStyle.Bare,
-                   UriTemplate = "ActivarTOTP",       // Nombre adicional del metodo para la transaccion
+                   UriTemplate = "ActivarUsuario",       // Nombre adicional del metodo para la transaccion
                    RequestFormat = WebMessageFormat.Json,
                    ResponseFormat = WebMessageFormat.Json)]
-        ERespuestaOperacionSoftToken ActivarTOTP(EOperacionATOTP operacion);
+        ERespuestaOperacionSoftToken ActivarUsuario(EOperacionATOTP operacion);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
                    BodyStyle = WebMessageBodyStyle.Bare,
-                   UriTemplate = "SincronizarTiempoTOTP",       // Nombre adicional del metodo para la transaccion
+                   UriTemplate = "SincronizarTiempoServidor",       // Nombre adicional del metodo para la transaccion
                    RequestFormat = WebMessageFormat.Json,
                    ResponseFormat = WebMessageFormat.Json)]
-        ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionATOTP operacion);
+        ERespuestaOperacionSoftToken SincronizarTiempoServidor(EOperacionATOTP operacion);
+
+
+        /// <summary>
+		/// Bloquear usuario
+		/// </summary>
+		/// <param name="operacion"></param>
+		/// <returns></returns>
+		[OperationContract]
+        [WebInvoke(Method = "POST",
+                   BodyStyle = WebMessageBodyStyle.Bare,
+                   UriTemplate = "BloquearUsuario",       // Nombre adicional del metodo para la transaccion
+                   RequestFormat = WebMessageFormat.Json,
+                   ResponseFormat = WebMessageFormat.Json)]
+        ERespuestaOperacionSoftToken BloquearUsuario(EOperacionTOTP operacion);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
                    BodyStyle = WebMessageBodyStyle.Bare,
-                   UriTemplate = "DesbloquearTOTP",       // Nombre adicional del metodo para la transaccion
+                   UriTemplate = "DesbloquearUsuario",       // Nombre adicional del metodo para la transaccion
                    RequestFormat = WebMessageFormat.Json,
                    ResponseFormat = WebMessageFormat.Json)]
-        ERespuestaOperacionSoftToken DesbloquearTOTP(EOperacionesTOTP operacion);
+        ERespuestaOperacionSoftToken DesbloquearUsuario(EOperacionTOTP operacion);
+
+
+        /// <summary>
+        /// Habilitar usuario
+        /// </summary>
+        /// <param name="operacion"></param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+                   BodyStyle = WebMessageBodyStyle.Bare,
+                   UriTemplate = "HabilitarUsuario",       // Nombre adicional del metodo para la transaccion
+                   RequestFormat = WebMessageFormat.Json,
+                   ResponseFormat = WebMessageFormat.Json)]
+        ERespuestaOperacionSoftToken HabilitarUsuario(EOperacionTOTP operacion);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
                    BodyStyle = WebMessageBodyStyle.Bare,
-                   UriTemplate = "DesabilitarTOTP",       // Nombre adicional del metodo para la transaccion
+                   UriTemplate = "InhabilitarUsuario",       // Nombre adicional del metodo para la transaccion
                    RequestFormat = WebMessageFormat.Json,
                    ResponseFormat = WebMessageFormat.Json)]
-        ERespuestaOperacionSoftToken DesabilitarTOTP(EOperacionesTOTP operacion);
+        ERespuestaOperacionSoftToken InhabilitarUsuario(EOperacionTOTP operacion);
+
+
+        /// <summary>
+        /// Estado del usuario
+        /// </summary>
+        /// <param name="operacion"></param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+                   BodyStyle = WebMessageBodyStyle.Bare,
+                   UriTemplate = "EstadoUsuario",       // Nombre adicional del metodo para la transaccion
+                   RequestFormat = WebMessageFormat.Json,
+                   ResponseFormat = WebMessageFormat.Json)]
+        ERespuestaOperacionSoftToken EstadoUsuario(EOperacionTOTP operacion);
+
+        /// <summary>
+		/// Eliminar usuario
+		/// </summary>
+		/// <param name="operacion"></param>
+		/// <returns></returns>
+		[OperationContract]
+        [WebInvoke(Method = "POST",
+                   BodyStyle = WebMessageBodyStyle.Bare,
+                   UriTemplate = "EliminarUsuario",       // Nombre adicional del metodo para la transaccion
+                   RequestFormat = WebMessageFormat.Json,
+                   ResponseFormat = WebMessageFormat.Json)]
+        ERespuestaOperacionSoftToken EliminarUsuario(EOperacionTOTP operacion);
+
+
 
         [OperationContract]
         [WebInvoke(Method = "POST",
                    BodyStyle = WebMessageBodyStyle.Bare,
-                   UriTemplate = "LoginTOTP",       // Nombre adicional del metodo para la transaccion
+                   UriTemplate = "LoginTopt",       // Nombre adicional del metodo para la transaccion
                    RequestFormat = WebMessageFormat.Json,
                    ResponseFormat = WebMessageFormat.Json)]
-        ERespuestaOperacionSoftToken LoginTOTP(EOperacionLoginTOTP operacion);
-        
-	}
+        ERespuestaOperacionSoftToken LoginTotp(EOperacionLoginTOTP operacion);
+
+    }
 
 
 	

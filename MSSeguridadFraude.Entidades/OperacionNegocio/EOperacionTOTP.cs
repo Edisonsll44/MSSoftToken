@@ -14,24 +14,14 @@ namespace MSSeguridadFraude.Entidades.OperacionNegocio
     /// </summary>
     [DataContract]
     [Serializable]
-    public class EOperacionesTOTP
+    public class EOperacionTOTP:EOperacionBase
     {
-        /// <summary>
-        /// Datos de auditoria
-        /// </summary>
-        [DataMember]
-        public EAuditoria Auditoria { get; set; }
-
-        /// <summary>
-        /// Datos de Entorno
-        /// </summary>
-        [DataMember]
-        public EEntorno Entorno { get; set; }
+       
 
         /// <summary>
         /// Usuario registrado en el proveedor VU => Softoken TOTP
         /// </summary>
         [DataMember]
-        public EOperacionTOTP Operacion { get; set; }
+        public EOperacionUsuarioTOTP Operacion { get; set; }
     }
 }

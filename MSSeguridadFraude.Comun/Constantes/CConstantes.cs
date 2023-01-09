@@ -636,10 +636,21 @@
 		{
 			public const string ConfiguracionesServicioWeb = "ConfiguracionesServicioWeb";
 			public const string TimeOutSertvicio = "TimeOutServicioProveedorSecurity";
-			public const string EndPointMetodoA = "EndPointA";
-			public const string EndPointMetodoDesbloquear = "EndPointDesbloquear";
-			public const string EndPointMetodoDesabilitar = "EndPointDesabilitar";
 			
+
+        }
+
+		public static class EndPoints
+		{
+			public const string EndPointEliminar = "EndPointEliminar";
+            public const string EndPointMetodoA = "EndPointA";
+            public const string EndPointMetodoDesbloquear = "EndPointDesbloquear";
+            public const string EndPointMetodoDesabilitar = "EndPointDesabilitar";
+            public const string EndPointBloqueoUsuario = "EndPointBloqueoUsuario";
+			public const string EndPointEstadoUsuario = "EndPointEstadoUsuario";
+			public const string EndPointRegistrar = "EndPointRegistrar";
+			public const string EndPointHabilitarUsuario = "EndPointHabilitarUsuario";
+			public const string EndPointLogin= "EndPointLogin";
 
         }
 	}

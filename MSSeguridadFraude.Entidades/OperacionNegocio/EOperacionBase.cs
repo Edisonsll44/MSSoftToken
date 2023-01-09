@@ -1,5 +1,4 @@
 ﻿using MSSeguridadFraude.Entidades.Comun;
-using MSSeguridadFraude.Entidades.OperacionNegocio.Softoken;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +9,21 @@ using System.Threading.Tasks;
 namespace MSSeguridadFraude.Entidades.OperacionNegocio
 {
     /// <summary>
-    /// 
+    /// Entidad base de operaciones TOTP
     /// </summary>
     [DataContract]
     [Serializable]
-    public class EOperacionLoginTOTP:EOperacionBase
+    public class EOperacionBase
     {
         /// <summary>
         /// 
         /// </summary>
         [DataMember]
-        public ELoginTOTP Login { get; set; }
-    
+        public EAuditoria Auditoria { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [DataMember]
+        public EEntorno Entorno { get; set; }
     }
 }
