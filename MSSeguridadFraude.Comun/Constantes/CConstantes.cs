@@ -310,7 +310,17 @@
 			/// <summary>
 			/// token acceso a softoken 
 			/// </summary>
-            public const string TOKEN_SOFT_TOKEN = "TOKEN_SOFT_TOKEN";
+			public const string TOKEN_SOFT_TOKEN = "TOKEN_SOFT_TOKEN";
+
+			/// <summary>
+			/// /
+			/// </summary>
+			public const string URL_SERVICIO_PROVEEDOR_SOFT_TOKEN = "URL_SERVICIO_PROVEEDOR_SOFT_TOKEN";
+
+			/// <summary>
+			/// 
+			/// </summary>
+			public const string URL_SERVICIO_PROVEEDOR_SOFT_TOKEN_A = "URL_SERVICIO_PROVEEDOR_SOFT_TOKEN_A";
         }
 
 		/// <summary>
@@ -637,6 +647,7 @@
 		{
 			public const string ConfiguracionesServicioWeb = "ConfiguracionesServicioWeb";
 			public const string TimeOutSertvicio = "TimeOutServicioProveedorSecurity";
+			public const string APIKEYHEADER = "apiKey";
 			
 
         }
