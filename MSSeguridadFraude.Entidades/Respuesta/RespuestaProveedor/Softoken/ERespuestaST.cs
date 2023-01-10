@@ -30,7 +30,7 @@ namespace MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken
         /// 
         /// </summary>
         [DataMember]
-        public string Coupon { get; set; }
+        public string Cupon { get; set; }
 
         /// <summary>
         /// 

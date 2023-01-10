@@ -39,8 +39,9 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             var recurso = SettingsManager.Group(CConstantes.Configuraciones.ConfiguracionesServicioWeb)[CConstantes.EndPoints.EndPointMetodoA].ToString();
             try
             {
-                
-                IRestResponse responseData = GestorServiciosWeb<EActivarTOTP>.SendPostAsync(operacion.Activar, recurso,true);
+                //var url = "https://52.188.183.116/";
+                var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_SOFT_TOKEN_A);
+                IRestResponse responseData = GestorServiciosWeb<EActivarTOTP>.SendPostAsync(operacion.Activar, recurso, url,true);
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {
@@ -48,7 +49,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                     respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
                     respuestaST.Respuesta.CodigoEmpresaProveedor = string.Empty;
                     respuestaST.Respuesta.OperacionProcesada = true;
-                    var respuestaGenerica = CUtil.MapearRespuestaActivacion(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
+                    var respuestaGenerica = CUtil.MapearRespuesta(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
                     respuestaST.RespuestaSoftToken = respuestaGenerica; 
                     return respuestaST;
                 }
@@ -90,7 +91,8 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             var recurso = SettingsManager.Group(CConstantes.Configuraciones.ConfiguracionesServicioWeb)[CConstantes.EndPoints.EndPointMetodoA].ToString();
             try
             {
-                IRestResponse responseData = GestorServiciosWeb<ESincronizacionTOTP>.SendPostAsync(operacion.Sincronizacion, recurso,true);
+                var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_SOFT_TOKEN);
+                IRestResponse responseData = GestorServiciosWeb<ESincronizacionTOTP>.SendPostAsync(operacion.Sincronizacion, recurso,url, true);
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {   
@@ -140,7 +142,8 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             var recurso = SettingsManager.Group(CConstantes.Configuraciones.ConfiguracionesServicioWeb)[CConstantes.EndPoints.EndPointMetodoDesbloquear].ToString();
             try
             {
-                IRestResponse responseData = GestorServiciosWeb<EOperacionUsuarioTOTP>.SendPostAsync(operacion.Operacion, recurso);
+                var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_SOFT_TOKEN);
+                IRestResponse responseData = GestorServiciosWeb<EOperacionUsuarioTOTP>.SendPostAsync(operacion.Operacion, recurso,url);
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {
@@ -190,8 +193,8 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             var recurso = SettingsManager.Group(CConstantes.Configuraciones.ConfiguracionesServicioWeb)[CConstantes.EndPoints.EndPointMetodoDesabilitar].ToString();
             try
             {
-                
-                IRestResponse responseData = GestorServiciosWeb<EOperacionUsuarioTOTP>.SendPostAsync(operacion.Operacion, recurso);
+                var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_SOFT_TOKEN);
+                IRestResponse responseData = GestorServiciosWeb<EOperacionUsuarioTOTP>.SendPostAsync(operacion.Operacion, recurso,url);
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {
@@ -241,7 +244,8 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             var recurso = SettingsManager.Group(CConstantes.Configuraciones.ConfiguracionesServicioWeb)[CConstantes.EndPoints.EndPointLogin].ToString();
             try
             {
-                IRestResponse responseData = GestorServiciosWeb<ELoginTOTP>.SendPostAsync(operacion.Login, recurso);
+                var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_SOFT_TOKEN);
+                IRestResponse responseData = GestorServiciosWeb<ELoginTOTP>.SendPostAsync(operacion.Login, recurso,url);
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {
@@ -297,7 +301,8 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             try
             {
                 var request = operacion.Operacion;
-                IRestResponse responseData = GestorServiciosWeb<EOperacionUsuarioTOTP>.SendPostAsync(request, recurso);
+                var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_SOFT_TOKEN);
+                IRestResponse responseData = GestorServiciosWeb<EOperacionUsuarioTOTP>.SendPostAsync(request, recurso,url);
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {
@@ -352,7 +357,8 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             try
             {
                 var request = operacion.Operacion;
-                IRestResponse responseData = GestorServiciosWeb<EOperacionUsuarioTOTP>.SendPostAsync(request, recurso);
+                var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_SOFT_TOKEN);
+                IRestResponse responseData = GestorServiciosWeb<EOperacionUsuarioTOTP>.SendPostAsync(request, recurso, url);
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {
@@ -407,7 +413,8 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             try
             {
                 var request = operacion.Operacion;
-                IRestResponse responseData = GestorServiciosWeb<EOperacionUsuarioTOTP>.SendPostAsync(request, recurso);
+                var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_SOFT_TOKEN);
+                IRestResponse responseData = GestorServiciosWeb<EOperacionUsuarioTOTP>.SendPostAsync(request, recurso, url);
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {
@@ -462,7 +469,8 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             try
             {
                 var request = operacion.Operacion;
-                IRestResponse responseData = GestorServiciosWeb<ERegistroTOTP>.SendPostAsync(request, recurso);
+                var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_SOFT_TOKEN);
+                IRestResponse responseData = GestorServiciosWeb<ERegistroTOTP>.SendPostAsync(request, recurso, url);
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {
@@ -524,7 +532,8 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             try
             {
                 var request = operacion.Operacion;
-                IRestResponse responseData = GestorServiciosWeb<EOperacionUsuarioTOTP>.SendPostAsync(request, recurso);
+                var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_SOFT_TOKEN);
+                IRestResponse responseData = GestorServiciosWeb<EOperacionUsuarioTOTP>.SendPostAsync(request, recurso, url);
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
                 {
