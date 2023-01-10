@@ -62,6 +62,10 @@
       <Project>{09213e3b-a27c-4455-9e36-4935ec787f9f}</Project>
       <Name>MSSeguridadFraude.Comun</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MSSeguridadFraude.Entidades\MSSeguridadFraude.Entidades.csproj">
+      <Project>{49395B0A-AF41-4F56-8534-2DA087B9977E}</Project>
+      <Name>MSSeguridadFraude.Entidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

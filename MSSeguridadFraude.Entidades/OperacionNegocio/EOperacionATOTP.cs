@@ -5,18 +5,21 @@ using System.Runtime.Serialization;
 namespace MSSeguridadFraude.Entidades.OperacionNegocio
 {
 	/// <summary>
-	/// Datos para procesar operaciones (Bloqueo,Desbloqueo,Habilitación, Deshabilitación,Eliminación) con el proveedor VU
+	/// Datos de entrada para realizar el consumo del metodo (a) Activar TOTP
 	/// </summary>
 	[DataContract]
 	[Serializable]
-	public class EOperacionTOTP : EOperacionBase
+	public class EOperacionATOTP : EOperacionBase
 	{
 
-
 		/// <summary>
-		/// Usuario registrado en el proveedor VU => Softoken TOTP
+		/// 
 		/// </summary>
 		[DataMember]
-		public EOperacionUsuarioTOTP Operacion { get; set; }
+		public EActivarTOTP Activar { get; set; }
+
+		///
+		[DataMember]
+		public ESincronizacionTOTP Sincronizacion { get; set; }
 	}
 }
