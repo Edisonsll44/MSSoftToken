@@ -1,69 +1,77 @@
 ﻿using MSSeguridadFraude.Entidades.OperacionNegocio;
+using MSSeguridadFraude.Entidades.Respuesta;
 using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken;
 using MSSeguridadFraude.Negocio.NeServicio;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
 using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+using System.Text;
 using System.Web;
-using System.Web.Services.Description;
 
 namespace MSSoftToken
 {
-	/// <summary>
-	/// Servicio  SofToke  que expone metodos de operaciones para obtene Procesos el softoken
-	/// </summary>
-	[AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
+    /// <summary>
+    /// Servicio  SofToke  que expone metodos de operaciones para obtene Procesos el softoken
+    /// </summary>
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
     public class ServicioSoftToken : IServicioSoftToken
 	{
-		public ERespuestaOperacionSoftToken ActivarTOTP(EOperacionATOTP operacion)
+
+
+
+		public ERespuestaOperacionSoftToken ActivarUsuario(EOperacionATOTP operacion)
 		{
-            return NeServicio.ActivarTOTP(operacion);
+            return NeServicio.ProcesarActivarUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
+        }
+        public ERespuestaOperacionSoftToken HabilitarUsuario(EOperacionTOTP operacion)
+        {
+            return NeServicio.ProcesarHabilitarUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
+
         }
 
-		public ERespuestaOperacionSoftToken DesabilitarTOTP(EOperacionesTOTP operacion)
-		{
-			return NeServicio.DesabilitarTOTP(operacion);
+        public ERespuestaOperacionSoftToken InhabilitarUsuario(EOperacionTOTP operacion)
+        {
+            return NeServicio.ProcesarInhabilitarUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
         }
 
-		public ERespuestaOperacionSoftToken BloquearTotp(EOperacionesTOTP operacion)
-		{
-			return NeServicio.ProcesarBloqueoUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
-		}
-
-		public ERespuestaOperacionSoftToken DesbloquearTOTP(EOperacionesTOTP operacion)
-		{
-            return NeServicio.DesbloquearTOTP(operacion);
+        public ERespuestaOperacionSoftToken BloquearUsuario(EOperacionTOTP operacion)
+        {
+            return NeServicio.ProcesarBloqueoUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
         }
 
-		public ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionATOTP operacion)
+        public ERespuestaOperacionSoftToken DesbloquearUsuario(EOperacionTOTP operacion)
 		{
-			return NeServicio.SincronizarTiempoTOTP(operacion);
-		}
+            return NeServicio.ProcesarDesbloquearUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
+        }
 
-		public ERespuestaOperacionSoftToken EliminarTotp(EOperacionesTOTP operacion)
+		public ERespuestaOperacionSoftToken SincronizarTiempoServidor(EOperacionATOTP operacion)
 		{
-			return NeServicio.ProcesarEliminarTotp(operacion, HttpContext.Current.Request.UserHostAddress);
-		}
+            return NeServicio.ProcesarSincronizarTiempoServidor(operacion, HttpContext.Current.Request.UserHostAddress);
+        }
 
-		public ERespuestaOperacionSoftToken HabilitarTotp(EOperacionesTOTP operacion)
-		{
-			return NeServicio.ProcesarHabilitarTotp(operacion, HttpContext.Current.Request.UserHostAddress);
+        public ERespuestaOperacionSoftToken LoginTotp(EOperacionLoginTOTP operacion)
+        {
+            return NeServicio.ProcesarLoginTotp(operacion, HttpContext.Current.Request.UserHostAddress);
+        }
 
-		}
+        public ERespuestaOperacionSoftToken RegistrarUsuario(EOperacionRegistrarTOTP operacion)
+        {
+            return NeServicio.ProcesarRegistrarUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
 
-		public ERespuestaOperacionSoftToken LoginOtp(EOperacionesLoginTOTP operacion)
-		{
-			return NeServicio.ProcesarLoginTotp(operacion, HttpContext.Current.Request.UserHostAddress);
-		}
+        }
+        public ERespuestaOperacionSoftToken EstadoUsuario(EOperacionTOTP operacion)
+        {
+            return NeServicio.ProcesarEstadoUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
+        }
+        public ERespuestaOperacionSoftToken EliminarUsuario(EOperacionTOTP operacion)
+        {
+            return NeServicio.ProcesarEliminarUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
+        }
 
-		public ERespuestaOperacionSoftToken RegistrarUsuario(EOperacionesRegistrarTOTP operacion)
-		{
-			return NeServicio.ProcesarRegistrarUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
-
-		}
-
-		public ERespuestaOperacionSoftToken EstadoUsuario(EOperacionesTOTP operacion)
-		{
-			return NeServicio.ProcesarEstadoUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
-		}
-	}
+        
+    }
 }

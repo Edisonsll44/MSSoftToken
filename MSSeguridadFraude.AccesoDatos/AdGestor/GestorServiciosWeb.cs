@@ -1,11 +1,12 @@
-﻿using MSSeguridadFraude.Comun.Constantes;
+﻿
+using MSSeguridadFraude.Comun.Constantes;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Threading;
 using Tcs.Provider.Settings.Base;
 using System.Reflection;
-
+using MSSeguridadFraude.AccesoDatos.AdComun;
 
 namespace MSSeguridadFraude.AccesoDatos.AdGestor
 {
@@ -18,43 +19,38 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
         }
 
 
-		/// <summary>
-		/// SendPostAsync
-		/// </summary>
-		/// <param name="entrada"></param>
-		/// <param name="metodo"></param>
-		/// <returns></returns>
-		public static IRestResponse SendPostAsync(TRequest entrada, string recurso, bool a = false)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entrada"></param>
+        /// <param name="metodo"></param>
+        /// <returns></returns>
+        public static IRestResponse SendPostAsync(TRequest entrada, string recurso, bool a = false)
         {
-            var url = "https://auth1.bgr.ec";// AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_FRAUDE);
-            var timeout = Convert.ToInt32(SettingsManager.Group("ConfiguracionesServicioWeb")["TimeOutServicioProveedorSecurity"].ToString());
+            var url = "https://auth1.bgr.ec";
+            //var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_FRAUDE);
+            var timeout = Convert.ToInt32(SettingsManager.Group(CConstantes.Configuraciones.ConfiguracionesServicioWeb)[CConstantes.Configuraciones.TimeOutSertvicio].ToString());
             var client = new RestClient(url)
             {
                 Timeout = timeout
             };
-            var jsonSerializerSettings = new JsonSerializerSettings
-            {
-                DateFormatHandling = DateFormatHandling.MicrosoftDateFormat
-            };
+           
 
             var request = new RestRequest(recurso, Method.POST)
             {
                 RequestFormat = DataFormat.Json
             };
-
-            
-
+            request.AddHeader("apiKey", "ff92829c-60e6-46c1-9de1-15cb28a8af8f");
             IRestResponse responseData = null;
             var resetEvent = new ManualResetEvent(false);
             if (a)
             {
-                request.AddHeader("Content-Type", "plication/x-www-form-urlencoded");
-                
+                request.AddHeader(CConstantes.Formatos.ContentType, CConstantes.Formatos.WwwFormUrlEncodeHeader);
                 Type tModelType = entrada.GetType();
                 PropertyInfo[] arrayPropertyInfos = tModelType.GetProperties();
                 foreach (PropertyInfo property in arrayPropertyInfos)
                 {
-                    var valor = property.GetValue(entrada).ToString().Trim();
+                    var valor = property.GetValue(entrada)==null? string.Empty: property.GetValue(entrada).ToString().Trim();
                     if (!string.IsNullOrEmpty(valor))
                     {
                         request.AddQueryParameter(property.Name, property.GetValue(entrada).ToString());
@@ -63,15 +59,17 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             }
             else
             {
+                var jsonSerializerSettings = new JsonSerializerSettings
+                {
+                    DateFormatHandling = DateFormatHandling.MicrosoftDateFormat
+                };
                 string jsonToSend = JsonConvert.SerializeObject(entrada, jsonSerializerSettings);
                 request.AddParameter(CConstantes.Formatos.JsonFormatHeader, jsonToSend, ParameterType.RequestBody);
             }
 
             request.RequestFormat = DataFormat.Json;
             client.ExecuteAsync(request, response => { responseData = response; resetEvent.Set(); });
-
             resetEvent.WaitOne();
-
             return responseData;
         }
 

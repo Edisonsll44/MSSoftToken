@@ -1,11 +1,21 @@
-﻿using MSSeguridadFraude.AccesoDatos.AdGestor;
+﻿using MSSeguridadFraude.AccesoDatos.AdComun;
+using MSSeguridadFraude.AccesoDatos.AdGestor;
 using MSSeguridadFraude.AccesoDatos.AdLogs;
+using MSSeguridadFraude.AccesoDatos.CodigoTrabajoWS;
+using MSSeguridadFraude.AccesoDatos.MSIdentificadorUnico;
 using MSSeguridadFraude.Comun.Constantes;
 using MSSeguridadFraude.Comun.Enumeraciones;
 using MSSeguridadFraude.Entidades.OperacionNegocio;
+using MSSeguridadFraude.Entidades.OperacionNegocio.ProveedorSeguridad.AnalisisFraude;
+using MSSeguridadFraude.Entidades.Respuesta;
+using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.AnalisisFraude;
 using MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 using ERespuesta = MSSeguridadFraude.Entidades.Respuesta.ERespuesta;
 
 namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
@@ -19,7 +29,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
         }
 
 
-        public static ERespuestaOperacionSoftToken ActivarTOTP(EOperacionATOTP operacion) {
+        public static ERespuestaOperacionSoftToken ProcesarActivarUsuario(EOperacionATOTP operacion) {
 
             
             var  respuesta = new ERespuestaOperacionSoftToken()
@@ -34,7 +44,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
             {
                 //Invocacion al servicio del proveedor
 
-                respuesta = AdGestorSoftToken.ActivarTOTP(operacion);
+                respuesta = AdGestorSoftToken.ProcesarActivarUsuario(operacion);
             }
             catch (WebException ex)
             {
@@ -80,7 +90,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
         }
 
 
-        public static ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionATOTP operacion)
+        public static ERespuestaOperacionSoftToken ProcesarSincronizarTiempoServidor(EOperacionATOTP operacion)
         {
             var respuesta = new ERespuestaOperacionSoftToken()
             {
@@ -94,7 +104,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
             {
                 //Invocacion al servicio del proveedor
 
-                respuesta = AdGestorSoftToken.SincronizarTiempoTOTP(operacion);
+                respuesta = AdGestorSoftToken.ProcesarSincronizarTiempoServidor(operacion);
             }
             catch (WebException ex)
             {
@@ -139,7 +149,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
         }
 
 
-        public static ERespuestaOperacionSoftToken DesbloquearTOTP(EOperacionesTOTP operacion)
+        public static ERespuestaOperacionSoftToken ProcesarDesbloquearUsuario(EOperacionTOTP operacion)
         {
 
             var respuesta = new ERespuestaOperacionSoftToken()
@@ -154,7 +164,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
             {
                 //Invocacion al servicio del proveedor
 
-                respuesta = AdGestorSoftToken.DesbloquearTOTP(operacion);
+                respuesta = AdGestorSoftToken.ProcesarDesbloquearUsuario(operacion);
             }
             catch (WebException ex)
             {
@@ -198,7 +208,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
             return respuesta;
         }
 
-        public static ERespuestaOperacionSoftToken DesabilitarTOTP(EOperacionesTOTP operacion)        {
+        public static ERespuestaOperacionSoftToken ProcesarInhabilitarUsuario(EOperacionTOTP operacion)        {
 
             var respuesta = new ERespuestaOperacionSoftToken()
             {
@@ -212,7 +222,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
             {
                 //Invocacion al servicio del proveedor
 
-                respuesta = AdGestorSoftToken.DesabilitarTOTP(operacion);
+                respuesta = AdGestorSoftToken.ProcesarInhabilitarUsuario(operacion);
             }
             catch (WebException ex)
             {
@@ -256,352 +266,356 @@ namespace MSSeguridadFraude.AccesoDatos.AdOperacionServicio
             return respuesta;
         }
 
-		public static ERespuestaOperacionSoftToken ProcesarBloqueoUsuario(EOperacionesTOTP operacion)
-		{
-			var respuesta = new ERespuestaOperacionSoftToken()
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			try
-			{
-				//Invocacion al servicio del proveedor
+        public static ERespuestaOperacionSoftToken ProcesarLoginTotp(EOperacionLoginTOTP operacion)
+        {
 
-				respuesta = AdGestorSoftToken.ProcesarBloqueoUsuario(operacion);
-			}
-			catch (WebException ex)
-			{
-				respuesta = new ERespuestaOperacionSoftToken
-				{
-					Respuesta = new ERespuesta
-					{
-						ExcepcionAplicacion = true,
-						ErrorConexion = true,
-						FechaRespuesta = DateTime.Now,
-						OperacionProcesada = false,
-					}
+            var respuesta = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
+            try
+            {
+                //Invocacion al servicio del proveedor
 
-
-				};
-
-				if (ex.Status == WebExceptionStatus.Timeout)
-				{
-					respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
-					respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
-				}
-				else
-				{
-					respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
-					respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
-				}
-
-				AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
-			}
-			catch (Exception ex)
-			{
-				AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
-
-				respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
-				respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
-				respuesta.Respuesta.FechaRespuesta = DateTime.Now;
-				respuesta.Respuesta.ExcepcionAplicacion = true;
-
-			}
-
-			return respuesta;
-		}
-
-		public static ERespuestaOperacionSoftToken ProcesarEliminarTotp(EOperacionesTOTP operacion)
-		{
-			var respuesta = new ERespuestaOperacionSoftToken()
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			try
-			{
-				//Invocacion al servicio del proveedor
-
-				respuesta = AdGestorSoftToken.ProcesarEliminarTotp(operacion);
-			}
-			catch (WebException ex)
-			{
-				respuesta = new ERespuestaOperacionSoftToken
-				{
-					Respuesta = new ERespuesta
-					{
-						ExcepcionAplicacion = true,
-						ErrorConexion = true,
-						FechaRespuesta = DateTime.Now,
-						OperacionProcesada = false,
-					}
+                respuesta = AdGestorSoftToken.ProcesarLoginTotp(operacion);
+            }
+            catch (WebException ex)
+            {
+                respuesta = new ERespuestaOperacionSoftToken
+                {
+                    Respuesta = new ERespuesta
+                    {
+                        ExcepcionAplicacion = true,
+                        ErrorConexion = true,
+                        FechaRespuesta = DateTime.Now,
+                        OperacionProcesada = false,
+                    }
 
 
-				};
+                };
 
-				if (ex.Status == WebExceptionStatus.Timeout)
-				{
-					respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
-					respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
-				}
-				else
-				{
-					respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
-					respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
-				}
+                if (ex.Status == WebExceptionStatus.Timeout)
+                {
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
+                }
+                else
+                {
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
+                }
 
-				AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
-			}
-			catch (Exception ex)
-			{
-				AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+            }
+            catch (Exception ex)
+            {
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
 
-				respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
-				respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
-				respuesta.Respuesta.FechaRespuesta = DateTime.Now;
-				respuesta.Respuesta.ExcepcionAplicacion = true;
+                respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.FechaRespuesta = DateTime.Now;
+                respuesta.Respuesta.ExcepcionAplicacion = true;
 
-			}
+            }
 
-			return respuesta;
-		}
+            return respuesta;
+        }
 
-		public static ERespuestaOperacionSoftToken ProcesarHabilitarTotp(EOperacionesTOTP operacion)
-		{
-			var respuesta = new ERespuestaOperacionSoftToken()
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			try
-			{
-				//Invocacion al servicio del proveedor
+        public static ERespuestaOperacionSoftToken ProcesarBloqueoUsuario(EOperacionTOTP operacion)
+        {
+            var respuesta = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
+            try
+            {
+                //Invocacion al servicio del proveedor
 
-				respuesta = AdGestorSoftToken.ProcesarHabilitarTotp(operacion);
-			}
-			catch (WebException ex)
-			{
-				respuesta = new ERespuestaOperacionSoftToken
-				{
-					Respuesta = new ERespuesta
-					{
-						ExcepcionAplicacion = true,
-						ErrorConexion = true,
-						FechaRespuesta = DateTime.Now,
-						OperacionProcesada = false,
-					}
-
-
-				};
-
-				if (ex.Status == WebExceptionStatus.Timeout)
-				{
-					respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
-					respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
-				}
-				else
-				{
-					respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
-					respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
-				}
-
-				AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
-			}
-			catch (Exception ex)
-			{
-				AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
-
-				respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
-				respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
-				respuesta.Respuesta.FechaRespuesta = DateTime.Now;
-				respuesta.Respuesta.ExcepcionAplicacion = true;
-
-			}
-
-			return respuesta;
-		}
-
-		public static ERespuestaOperacionSoftToken ProcesarLoginTotp(EOperacionesLoginTOTP operacion)
-		{
-			var respuesta = new ERespuestaOperacionSoftToken()
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			try
-			{
-				//Invocacion al servicio del proveedor
-
-				respuesta = AdGestorSoftToken.ProcesarLoginTotp(operacion);
-			}
-			catch (WebException ex)
-			{
-				respuesta = new ERespuestaOperacionSoftToken
-				{
-					Respuesta = new ERespuesta
-					{
-						ExcepcionAplicacion = true,
-						ErrorConexion = true,
-						FechaRespuesta = DateTime.Now,
-						OperacionProcesada = false,
-					}
+                respuesta = AdGestorSoftToken.ProcesarBloqueoUsuario(operacion);
+            }
+            catch (WebException ex)
+            {
+                respuesta = new ERespuestaOperacionSoftToken
+                {
+                    Respuesta = new ERespuesta
+                    {
+                        ExcepcionAplicacion = true,
+                        ErrorConexion = true,
+                        FechaRespuesta = DateTime.Now,
+                        OperacionProcesada = false,
+                    }
 
 
-				};
+                };
 
-				if (ex.Status == WebExceptionStatus.Timeout)
-				{
-					respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
-					respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
-				}
-				else
-				{
-					respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
-					respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
-				}
+                if (ex.Status == WebExceptionStatus.Timeout)
+                {
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
+                }
+                else
+                {
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
+                }
 
-				AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
-			}
-			catch (Exception ex)
-			{
-				AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+            }
+            catch (Exception ex)
+            {
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
 
-				respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
-				respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
-				respuesta.Respuesta.FechaRespuesta = DateTime.Now;
-				respuesta.Respuesta.ExcepcionAplicacion = true;
+                respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.FechaRespuesta = DateTime.Now;
+                respuesta.Respuesta.ExcepcionAplicacion = true;
 
-			}
+            }
 
-			return respuesta;
-		}
+            return respuesta;
+        }
 
-		public static ERespuestaOperacionSoftToken ProcesarRegistrarUsuario(EOperacionesRegistrarTOTP operacion)
-		{
-			var respuesta = new ERespuestaOperacionSoftToken()
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			try
-			{
-				//Invocacion al servicio del proveedor
+        public static ERespuestaOperacionSoftToken ProcesarEliminarUsuario(EOperacionTOTP operacion)
+        {
+            var respuesta = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
+            try
+            {
+                //Invocacion al servicio del proveedor
 
-				respuesta = AdGestorSoftToken.ProcesarRegistrarUsuario(operacion);
-			}
-			catch (WebException ex)
-			{
-				respuesta = new ERespuestaOperacionSoftToken
-				{
-					Respuesta = new ERespuesta
-					{
-						ExcepcionAplicacion = true,
-						ErrorConexion = true,
-						FechaRespuesta = DateTime.Now,
-						OperacionProcesada = false,
-					}
-
-
-				};
-
-				if (ex.Status == WebExceptionStatus.Timeout)
-				{
-					respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
-					respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
-				}
-				else
-				{
-					respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
-					respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
-				}
-
-				AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
-			}
-			catch (Exception ex)
-			{
-				AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
-
-				respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
-				respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
-				respuesta.Respuesta.FechaRespuesta = DateTime.Now;
-				respuesta.Respuesta.ExcepcionAplicacion = true;
-
-			}
-
-			return respuesta;
-		}
-
-		public static ERespuestaOperacionSoftToken ProcesarEstadoUsuario(EOperacionesTOTP operacion)
-		{
-			var respuesta = new ERespuestaOperacionSoftToken()
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			try
-			{
-				//Invocacion al servicio del proveedor
-
-				respuesta = AdGestorSoftToken.ProcesarEstadoUsuario(operacion);
-			}
-			catch (WebException ex)
-			{
-				respuesta = new ERespuestaOperacionSoftToken
-				{
-					Respuesta = new ERespuesta
-					{
-						ExcepcionAplicacion = true,
-						ErrorConexion = true,
-						FechaRespuesta = DateTime.Now,
-						OperacionProcesada = false,
-					}
+                respuesta = AdGestorSoftToken.ProcesarEliminarUsuario(operacion);
+            }
+            catch (WebException ex)
+            {
+                respuesta = new ERespuestaOperacionSoftToken
+                {
+                    Respuesta = new ERespuesta
+                    {
+                        ExcepcionAplicacion = true,
+                        ErrorConexion = true,
+                        FechaRespuesta = DateTime.Now,
+                        OperacionProcesada = false,
+                    }
 
 
-				};
+                };
 
-				if (ex.Status == WebExceptionStatus.Timeout)
-				{
-					respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
-					respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
-				}
-				else
-				{
-					respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
-					respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
-				}
+                if (ex.Status == WebExceptionStatus.Timeout)
+                {
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
+                }
+                else
+                {
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
+                }
 
-				AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
-			}
-			catch (Exception ex)
-			{
-				AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+            }
+            catch (Exception ex)
+            {
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
 
-				respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
-				respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
-				respuesta.Respuesta.FechaRespuesta = DateTime.Now;
-				respuesta.Respuesta.ExcepcionAplicacion = true;
+                respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.FechaRespuesta = DateTime.Now;
+                respuesta.Respuesta.ExcepcionAplicacion = true;
 
-			}
+            }
 
-			return respuesta;
-		}
-	}
+            return respuesta;
+        }
+
+        public static ERespuestaOperacionSoftToken ProcesarHabilitarUsuario(EOperacionTOTP operacion)
+        {
+            var respuesta = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
+            try
+            {
+                //Invocacion al servicio del proveedor
+
+                respuesta = AdGestorSoftToken.ProcesarHabilitarUsuario(operacion);
+            }
+            catch (WebException ex)
+            {
+                respuesta = new ERespuestaOperacionSoftToken
+                {
+                    Respuesta = new ERespuesta
+                    {
+                        ExcepcionAplicacion = true,
+                        ErrorConexion = true,
+                        FechaRespuesta = DateTime.Now,
+                        OperacionProcesada = false,
+                    }
+
+
+                };
+
+                if (ex.Status == WebExceptionStatus.Timeout)
+                {
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
+                }
+                else
+                {
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
+                }
+
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+            }
+            catch (Exception ex)
+            {
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+
+                respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.FechaRespuesta = DateTime.Now;
+                respuesta.Respuesta.ExcepcionAplicacion = true;
+
+            }
+
+            return respuesta;
+        }
+
+
+        public static ERespuestaOperacionSoftToken ProcesarRegistrarUsuario(EOperacionRegistrarTOTP operacion)
+        {
+            var respuesta = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
+            try
+            {
+                //Invocacion al servicio del proveedor
+
+                respuesta = AdGestorSoftToken.ProcesarRegistrarUsuario(operacion);
+            }
+            catch (WebException ex)
+            {
+                respuesta = new ERespuestaOperacionSoftToken
+                {
+                    Respuesta = new ERespuesta
+                    {
+                        ExcepcionAplicacion = true,
+                        ErrorConexion = true,
+                        FechaRespuesta = DateTime.Now,
+                        OperacionProcesada = false,
+                    }
+
+
+                };
+
+                if (ex.Status == WebExceptionStatus.Timeout)
+                {
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
+                }
+                else
+                {
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
+                }
+
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+            }
+            catch (Exception ex)
+            {
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+
+                respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.FechaRespuesta = DateTime.Now;
+                respuesta.Respuesta.ExcepcionAplicacion = true;
+
+            }
+
+            return respuesta;
+        }
+
+        public static ERespuestaOperacionSoftToken ProcesarEstadoUsuario(EOperacionTOTP operacion)
+        {
+            var respuesta = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
+            try
+            {
+                //Invocacion al servicio del proveedor
+
+                respuesta = AdGestorSoftToken.ProcesarEstadoUsuario(operacion);
+            }
+            catch (WebException ex)
+            {
+                respuesta = new ERespuestaOperacionSoftToken
+                {
+                    Respuesta = new ERespuesta
+                    {
+                        ExcepcionAplicacion = true,
+                        ErrorConexion = true,
+                        FechaRespuesta = DateTime.Now,
+                        OperacionProcesada = false,
+                    }
+
+
+                };
+
+                if (ex.Status == WebExceptionStatus.Timeout)
+                {
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_TIME_OUT_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_TIME_OUT_SERVICIO;
+                }
+                else
+                {
+                    respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_ERROR_CONEXION_SERVICIO;
+                    respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_ERROR_CONEXION_SERVICIO;
+                }
+
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+            }
+            catch (Exception ex)
+            {
+                AdLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+
+                respuesta.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_EXCEPCION_PRODUCIDA;
+                respuesta.Respuesta.FechaRespuesta = DateTime.Now;
+                respuesta.Respuesta.ExcepcionAplicacion = true;
+
+            }
+
+            return respuesta;
+        }
+    }
+
+
 }

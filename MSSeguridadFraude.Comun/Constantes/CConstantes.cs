@@ -306,7 +306,12 @@
 			/// de la peticion
 			/// </summary>
 			public const string TOKEN_SMS_PROVEEDOR = "TOKEN_SMS_PROVEEDOR";
-		}
+
+			/// <summary>
+			/// token acceso a softoken 
+			/// </summary>
+            public const string TOKEN_SOFT_TOKEN = "TOKEN_SOFT_TOKEN";
+        }
 
 		/// <summary>
 		/// Nombre de Bases de datos que serán llamadas por el servicio.
@@ -617,11 +622,36 @@
 		public static class Caracteres
 		{
 			public const char DOSPUNTOS = ':';
-		}
+            public const char COMA = ',';
+        }
 
 		public static class Formatos
 		{
 			public const string JsonFormatHeader = "application/json; charset=utf-8";
+			public const string ContentType = "Content-Type";
+			public const string WwwFormUrlEncodeHeader = "plication/x-www-form-urlencoded";
+
+        }
+
+		public static class Configuraciones
+		{
+			public const string ConfiguracionesServicioWeb = "ConfiguracionesServicioWeb";
+			public const string TimeOutSertvicio = "TimeOutServicioProveedorSecurity";
+			
+
+        }
+
+		public static class EndPoints
+		{
+			public const string EndPointEliminar = "EndPointEliminar";
+            public const string EndPointMetodoA = "EndPointA";
+            public const string EndPointMetodoDesbloquear = "EndPointDesbloquear";
+            public const string EndPointMetodoDesabilitar = "EndPointDesabilitar";
+            public const string EndPointBloqueoUsuario = "EndPointBloqueoUsuario";
+			public const string EndPointEstadoUsuario = "EndPointEstadoUsuario";
+			public const string EndPointRegistrar = "EndPointRegistrar";
+			public const string EndPointHabilitarUsuario = "EndPointHabilitarUsuario";
+			public const string EndPointLogin= "EndPointLogin";
 
         }
 	}

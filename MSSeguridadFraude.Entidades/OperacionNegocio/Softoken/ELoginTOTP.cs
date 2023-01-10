@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace MSSeguridadFraude.Entidades.OperacionNegocio.Softoken
 {
@@ -8,13 +12,19 @@ namespace MSSeguridadFraude.Entidades.OperacionNegocio.Softoken
     /// </summary>
     [DataContract]
     [Serializable]
-    public  class ELoginTOTP: EOperacionTOTP
-	{
-		/// <summary>
-		/// Otp
-		/// </summary>
-		[DataMember]
-        public string Otp { get; set; }
+    public  class ELoginTOTP
+    {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [DataMember]
+        public string username { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [DataMember]
+        public string otp { get; set; }
 
     }
 }

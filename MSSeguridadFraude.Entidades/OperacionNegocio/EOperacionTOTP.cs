@@ -14,6 +14,7 @@ namespace MSSeguridadFraude.Entidades.OperacionNegocio
     /// </summary>
     [DataContract]
     [Serializable]
+<<<<<<<< HEAD:MSSeguridadFraude.Entidades/OperacionNegocio/EOperacionActivarTOTP.cs
     public class EOperacionActivarTOTP
     {
         /// <summary>
@@ -26,10 +27,17 @@ namespace MSSeguridadFraude.Entidades.OperacionNegocio
         /// </summary>
         [DataMember]
         public EEntorno Entorno { get; set; }
+========
+    public class EOperacionTOTP:EOperacionBase
+    {
+       
+
+>>>>>>>> origin/master-soft-token:MSSeguridadFraude.Entidades/OperacionNegocio/EOperacionTOTP.cs
         /// <summary>
         /// 
         /// </summary>
         [DataMember]
+<<<<<<<< HEAD:MSSeguridadFraude.Entidades/OperacionNegocio/EOperacionActivarTOTP.cs
         public string Cupon { get; set; }
         /// <summary>
         /// 
@@ -37,5 +45,8 @@ namespace MSSeguridadFraude.Entidades.OperacionNegocio
         [DataMember]
         public string Callback { get; set; }
 
+========
+        public EOperacionUsuarioTOTP Operacion { get; set; }
+>>>>>>>> origin/master-soft-token:MSSeguridadFraude.Entidades/OperacionNegocio/EOperacionTOTP.cs
     }
 }

@@ -18,12 +18,12 @@ namespace MSSeguridadFraude.Entidades.OperacionNegocio.Softoken
         /// 
         /// </summary>
         [DataMember]
-        public string Cupon { get; set; }
+        public string cupon { get; set; }
         /// <summary>
         /// 
         /// </summary>
         [DataMember]
-        public string Callback { get; set; }
+        public string callback { get; set; }
 
     }
 }

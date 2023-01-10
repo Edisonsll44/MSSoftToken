@@ -12,720 +12,780 @@ using System.Net;
 
 namespace MSSeguridadFraude.Negocio.NeServicio
 {
-	/// <summary>
-	/// Clase de 
-	/// </summary>
-	public class NeServicio
-	{
+    /// <summary>
+    /// Clase de 
+    /// </summary>
+    public class NeServicio
+    {
 
-		protected NeServicio()
-		{
+        protected NeServicio()
+        {
 
-		}
-
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="operacion"></param>
-		/// <returns></returns>
-		public static ERespuestaOperacionSoftToken ActivarTOTP(EOperacionATOTP operacion)
-		{
+        }
 
 
-			var respuestaOperacion = new ERespuestaOperacionSoftToken()
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			string ip = operacion.Auditoria.IdAplicacionCliente;
-			operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
-			ERespuestaMensaje respuestaMensaje;
-			EConsultaMensaje datoMensaje = new EConsultaMensaje
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				Auditoria = operacion.Auditoria
-			};
-			try
-			{
+        /// <summary>
+        /// Activar TOTP
+        /// </summary>
+        /// <param name="operacion"></param>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static ERespuestaOperacionSoftToken ProcesarActivarUsuario(EOperacionATOTP operacion, string ip)
+        {
 
 
-				if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
-				{
-					var respuesta = new ERespuesta
-					{
-						Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION,
-						Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO,
-						FechaRespuesta = DateTime.Now
-					};
+            var respuestaOperacion = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
 
-					Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
-					NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
-				}
-				else
-				{
-					//TODO CAMBIO LLAMADA METODO 
-					respuestaOperacion = NeOperacionST.ActivarTOTP(operacion);
-					//FIN CAMBIO
-					datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
-					datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
-					datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
-					datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
-					datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
-
-					respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-					respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-					respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-
-				}
-			}
-			catch (Exception ex)
-			{
-				NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
-
-				bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
-				datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
-				datoMensaje.Respuesta.Mensaje = string.Empty;
-				datoMensaje.Respuesta.OperacionProcesada = false;
-
-				respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-
-				respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-				respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
-				respuestaOperacion.Respuesta.ErrorConexion = objeto;
-				respuestaOperacion.Respuesta.OperacionProcesada = false;
-				//throw;
-			}
-			return respuestaOperacion;
-		}
+            operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
+            ERespuestaMensaje respuestaMensaje;
+            EConsultaMensaje datoMensaje = new EConsultaMensaje
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                Auditoria = operacion.Auditoria
+            };
+            try
+            {
 
 
-		public static ERespuestaOperacionSoftToken SincronizarTiempoTOTP(EOperacionATOTP operacion)
-		{
-			var respuestaOperacion = new ERespuestaOperacionSoftToken()
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			string ip = operacion.Auditoria.IdAplicacionCliente;
-			operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
-			ERespuestaMensaje respuestaMensaje;
-			EConsultaMensaje datoMensaje = new EConsultaMensaje
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				Auditoria = operacion.Auditoria
-			};
-			try
-			{
+                if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
+                {
+                    var respuesta = new ERespuesta {
+                        Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION,
+                        Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO,
+                        FechaRespuesta = DateTime.Now
+                    };
+
+                    Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
+                    NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+                }
+                else
+                {
+                    //TODO CAMBIO LLAMADA METODO 
+                    respuestaOperacion = NeOperacionST.ProcesarActivarUsuario(operacion);
+                    //FIN CAMBIO
+                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
+                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
+                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
+                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
+                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
+
+                    respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                    respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                    respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+
+                bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
+                datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
+                datoMensaje.Respuesta.Mensaje = string.Empty;
+                datoMensaje.Respuesta.OperacionProcesada = false;
+
+                respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+
+                respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                respuestaOperacion.Respuesta.ErrorConexion = objeto;
+                respuestaOperacion.Respuesta.OperacionProcesada = false;
+                //throw;
+            }
+            return respuestaOperacion;
+        }
+
+        /// <summary>
+        /// Sincronizar tiempo del servidor TOTP
+        /// </summary>
+        /// <param name="operacion"></param>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static ERespuestaOperacionSoftToken ProcesarSincronizarTiempoServidor(EOperacionATOTP operacion, string ip)
+        {
+            var respuestaOperacion = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
+
+            operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
+            ERespuestaMensaje respuestaMensaje;
+            EConsultaMensaje datoMensaje = new EConsultaMensaje
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                Auditoria = operacion.Auditoria
+            };
+            try
+            {
 
 
-				if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
-				{
-					var respuesta = new ERespuesta
-					{
-						Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION,
-						Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO,
-						FechaRespuesta = DateTime.Now
-					};
+                if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
+                {
+                    var respuesta = new ERespuesta
+                    {
+                        Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION,
+                        Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO,
+                        FechaRespuesta = DateTime.Now
+                    };
 
-					Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
-					NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
-				}
-				else
-				{
-					//TODO CAMBIO LLAMADA METODO 
-					respuestaOperacion = NeOperacionST.SincronizarTiempoTOTP(operacion);
-					//FIN CAMBIO
-					datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
-					datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
-					datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
-					datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
-					datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
+                    Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
+                    NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+                }
+                else
+                {
+                    //TODO CAMBIO LLAMADA METODO 
+                    respuestaOperacion = NeOperacionST.ProcesarSincronizarTiempoServidor(operacion);
+                    //FIN CAMBIO
+                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
+                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
+                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
+                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
+                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
 
-					respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-					respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-					respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				}
-			}
-			catch (Exception ex)
-			{
-				NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+                    respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                    respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                    respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
 
-				bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
-				datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
-				datoMensaje.Respuesta.Mensaje = string.Empty;
-				datoMensaje.Respuesta.OperacionProcesada = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
 
-				respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
+                datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
+                datoMensaje.Respuesta.Mensaje = string.Empty;
+                datoMensaje.Respuesta.OperacionProcesada = false;
 
-				respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-				respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
-				respuestaOperacion.Respuesta.ErrorConexion = objeto;
-				respuestaOperacion.Respuesta.OperacionProcesada = false;
-				//throw;
-			}
-			return respuestaOperacion;
-		}
+                respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
 
+                respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                respuestaOperacion.Respuesta.ErrorConexion = objeto;
+                respuestaOperacion.Respuesta.OperacionProcesada = false;
+                //throw;
+            }
+            return respuestaOperacion;
+        }
 
-		public static ERespuestaOperacionSoftToken DesbloquearTOTP(EOperacionesTOTP operacion)
-		{
+        /// <summary>
+        /// Desbloquear Usuario
+        /// </summary>
+        /// <param name="operacion"></param>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static ERespuestaOperacionSoftToken ProcesarDesbloquearUsuario(EOperacionTOTP operacion, string ip)
+        {
 
-			var respuestaOperacion = new ERespuestaOperacionSoftToken()
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			string ip = operacion.Auditoria.IdAplicacionCliente;
-			operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
-			ERespuestaMensaje respuestaMensaje;
-			EConsultaMensaje datoMensaje = new EConsultaMensaje
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				Auditoria = operacion.Auditoria
-			};
-			try
-			{
+            var respuestaOperacion = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
 
-
-				if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
-				{
-					var respuesta = new ERespuesta
-					{
-						Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION,
-						Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO,
-						FechaRespuesta = DateTime.Now
-					};
-
-					Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
-					NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
-				}
-				else
-				{
-					//TODO CAMBIO LLAMADA METODO 
-					respuestaOperacion = NeOperacionST.DesbloquearTOTP(operacion);
-					//FIN CAMBIO
-					datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
-					datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
-					datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
-					datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
-					datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
-
-					respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-					respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-					respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-
-				}
-			}
-			catch (Exception ex)
-			{
-				NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
-
-				bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
-				datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
-				datoMensaje.Respuesta.Mensaje = string.Empty;
-				datoMensaje.Respuesta.OperacionProcesada = false;
-
-				respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-
-				respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-				respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
-				respuestaOperacion.Respuesta.ErrorConexion = objeto;
-				respuestaOperacion.Respuesta.OperacionProcesada = false;
-				//throw;
-			}
-			return respuestaOperacion;
-
-		}
-
-		public static ERespuestaOperacionSoftToken DesabilitarTOTP(EOperacionesTOTP operacion)
-		{
-
-			var respuestaOperacion = new ERespuestaOperacionSoftToken()
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			string ip = operacion.Auditoria.IdAplicacionCliente;
-			operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
-			ERespuestaMensaje respuestaMensaje;
-			EConsultaMensaje datoMensaje = new EConsultaMensaje
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				Auditoria = operacion.Auditoria
-			};
-			try
-			{
+            operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
+            ERespuestaMensaje respuestaMensaje;
+            EConsultaMensaje datoMensaje = new EConsultaMensaje
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                Auditoria = operacion.Auditoria
+            };
+            try
+            {
 
 
-				if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
-				{
-					var respuesta = new ERespuesta
-					{
-						Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION,
-						Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO,
-						FechaRespuesta = DateTime.Now
-					};
+                if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
+                {
+                    var respuesta = new ERespuesta
+                    {
+                        Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION,
+                        Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO,
+                        FechaRespuesta = DateTime.Now
+                    };
 
-					Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
-					NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
-				}
-				else
-				{
-					//TODO CAMBIO LLAMADA METODO 
-					respuestaOperacion = NeOperacionST.DesabilitarTOTP(operacion);
-					//FIN CAMBIO
-					datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
-					datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
-					datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
-					datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
-					datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
-					Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
-					NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
-				}
-			}
-			catch (Exception ex)
-			{
-				NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+                    Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
+                    NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+                }
+                else
+                {
+                    //TODO CAMBIO LLAMADA METODO 
+                    respuestaOperacion = NeOperacionST.ProcesarDesbloquearUsuario(operacion);
+                    //FIN CAMBIO
+                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
+                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
+                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
+                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
+                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
 
-				bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
-				datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
-				datoMensaje.Respuesta.Mensaje = string.Empty;
-				datoMensaje.Respuesta.OperacionProcesada = false;
+                    respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                    respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                    respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
 
-				respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                }
+            }
+            catch (Exception ex)
+            {
+                NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
 
-				respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-				respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
-				respuestaOperacion.Respuesta.ErrorConexion = objeto;
-				respuestaOperacion.Respuesta.OperacionProcesada = false;
-				//throw;
-			}
-			return respuestaOperacion;
-		}
+                bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
+                datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
+                datoMensaje.Respuesta.Mensaje = string.Empty;
+                datoMensaje.Respuesta.OperacionProcesada = false;
 
-		/// <summary>
+                respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+
+                respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                respuestaOperacion.Respuesta.ErrorConexion = objeto;
+                respuestaOperacion.Respuesta.OperacionProcesada = false;
+                //throw;
+            }
+            return respuestaOperacion;
+
+        }
+
+        /// <summary>
+        /// Inhabilitar Usuario TOTP
+        /// </summary>
+        /// <param name="operacion"></param>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static ERespuestaOperacionSoftToken ProcesarInhabilitarUsuario(EOperacionTOTP operacion, string ip)
+        {
+
+            var respuestaOperacion = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
+
+            operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
+            ERespuestaMensaje respuestaMensaje;
+            EConsultaMensaje datoMensaje = new EConsultaMensaje
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                Auditoria = operacion.Auditoria
+            };
+            try
+            {
+
+
+                if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
+                {
+                    var respuesta = new ERespuesta
+                    {
+                        Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION,
+                        Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO,
+                        FechaRespuesta = DateTime.Now
+                    };
+
+                    Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
+                    NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+                }
+                else
+                {
+                    //TODO CAMBIO LLAMADA METODO 
+                    respuestaOperacion = NeOperacionST.ProcesarInhabilitarUsuario(operacion);
+                    //FIN CAMBIO
+                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
+                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
+                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
+                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
+                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
+
+                    respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                    respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                    respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+
+                bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
+                datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
+                datoMensaje.Respuesta.Mensaje = string.Empty;
+                datoMensaje.Respuesta.OperacionProcesada = false;
+
+                respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+
+                respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                respuestaOperacion.Respuesta.ErrorConexion = objeto;
+                respuestaOperacion.Respuesta.OperacionProcesada = false;
+                //throw;
+            }
+            return respuestaOperacion;
+        }
+
+        /// <summary>
+        /// Procesar Login (Autorizar la transaccion )
+        /// </summary>
+        /// <param name="operacion"></param>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static ERespuestaOperacionSoftToken ProcesarLoginTotp(EOperacionLoginTOTP operacion, string ip)
+        {
+
+            var respuestaOperacion = new ERespuestaOperacionSoftToken()
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                RespuestaSoftToken = new ERespuestaST()
+            };
+
+            operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
+            ERespuestaMensaje respuestaMensaje;
+            EConsultaMensaje datoMensaje = new EConsultaMensaje
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                Auditoria = operacion.Auditoria
+            };
+            try
+            {
+
+
+                if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
+                {
+                    var respuesta = new ERespuesta
+                    {
+                        Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION,
+                        Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO,
+                        FechaRespuesta = DateTime.Now
+                    };
+
+                    Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
+                    NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuesta);
+                }
+                else
+                {
+                    //TODO CAMBIO LLAMADA METODO 
+                    respuestaOperacion = NeOperacionST.ProcesarLoginTotp(operacion);
+                    //FIN CAMBIO
+                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
+                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
+                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
+                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
+                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
+
+                    respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                    respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                    respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+
+                bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
+                datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
+                datoMensaje.Respuesta.Mensaje = string.Empty;
+                datoMensaje.Respuesta.OperacionProcesada = false;
+
+                respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+
+                respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                respuestaOperacion.Respuesta.ErrorConexion = objeto;
+                respuestaOperacion.Respuesta.OperacionProcesada = false;
+                //throw;
+            }
+            return respuestaOperacion;
+        }
+        /// <summary>
 		/// Proceso para valdiar analisis de Fraude tarnsaccional
 		/// </summary>
 		/// <param name="operacion">EOperacionConsulta</param>
 		/// <param name="ip">string</param>
 		/// <returns>ERespuestaPagoContrapartida</returns>
-		public static ERespuestaOperacionSoftToken ProcesarBloqueoUsuario(EOperacionesTOTP operacion, string ip)
-		{
-			ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken
-			{
-				Respuesta = new ERespuesta(),
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			EConsultaMensaje datoMensaje = new EConsultaMensaje
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				Auditoria = operacion.Auditoria
-			};
-			operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
-			ERespuestaMensaje respuestaMensaje;
+		public static ERespuestaOperacionSoftToken ProcesarBloqueoUsuario(EOperacionTOTP operacion, string ip)
+        {
+            ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken
+            {
+                Respuesta = new ERespuesta(),
+                RespuestaSoftToken = new ERespuestaST()
+            };
+            EConsultaMensaje datoMensaje = new EConsultaMensaje
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                Auditoria = operacion.Auditoria
+            };
+            operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
+            ERespuestaMensaje respuestaMensaje;
 
-			try
-			{
-				if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
-				{
-					respuestaOperacion.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO;
-					respuestaOperacion.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION;
-					respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+            try
+            {
+                if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
+                {
+                    respuestaOperacion.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO;
+                    respuestaOperacion.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION;
+                    respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
 
-					Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
-					NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
-				}
-				else
-				{
-					//TODO CAMBIO LLAMADA METODO 
-					respuestaOperacion = NeOperacionST.ProcesarBloqueoUsuario(operacion);
-					//FIN CAMBIO
-					datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
-					datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
-					datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
-					datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
-					datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
+                    Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
+                    NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+                }
+                else
+                {
+                    //TODO CAMBIO LLAMADA METODO 
+                    respuestaOperacion = NeOperacionST.ProcesarBloqueoUsuario(operacion);
+                    //FIN CAMBIO
+                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
+                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
+                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
+                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
+                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
 
-					respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-					respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-					respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				}
-			}
-			catch (Exception ex)
-			{
-				NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+                    respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                    respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                    respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                }
+            }
+            catch (Exception ex)
+            {
+                NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
 
-				bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
-				datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
-				datoMensaje.Respuesta.Mensaje = string.Empty;
-				datoMensaje.Respuesta.OperacionProcesada = false;
+                bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
+                datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
+                datoMensaje.Respuesta.Mensaje = string.Empty;
+                datoMensaje.Respuesta.OperacionProcesada = false;
 
-				respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
 
-				respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-				respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
-				respuestaOperacion.Respuesta.ErrorConexion = objeto;
-				respuestaOperacion.Respuesta.OperacionProcesada = false;
-			}
-			return respuestaOperacion;
-		}
+                respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                respuestaOperacion.Respuesta.ErrorConexion = objeto;
+                respuestaOperacion.Respuesta.OperacionProcesada = false;
+            }
+            return respuestaOperacion;
+        }
 
-		public static ERespuestaOperacionSoftToken ProcesarEliminarTotp(EOperacionesTOTP operacion, string ip)
-		{
-			ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken
-			{
-				Respuesta = new ERespuesta(),
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			EConsultaMensaje datoMensaje = new EConsultaMensaje
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				Auditoria = operacion.Auditoria
-			};
-			operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
-			ERespuestaMensaje respuestaMensaje;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="operacion"></param>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static ERespuestaOperacionSoftToken ProcesarEliminarUsuario(EOperacionTOTP operacion, string ip)
+        {
+            ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken
+            {
+                Respuesta = new ERespuesta(),
+                RespuestaSoftToken = new ERespuestaST()
+            };
+            EConsultaMensaje datoMensaje = new EConsultaMensaje
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                Auditoria = operacion.Auditoria
+            };
+            operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
+            ERespuestaMensaje respuestaMensaje;
 
-			try
-			{
-				if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
-				{
-					respuestaOperacion.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO;
-					respuestaOperacion.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION;
-					respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+            try
+            {
+                if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
+                {
+                    respuestaOperacion.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO;
+                    respuestaOperacion.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION;
+                    respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
 
-					Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
-					NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
-				}
-				else
-				{
-					//TODO CAMBIO LLAMADA METODO 
-					respuestaOperacion = NeOperacionST.ProcesarEliminarTotp(operacion);
-					//FIN CAMBIO
-					datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
-					datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
-					datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
-					datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
-					datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
+                    Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
+                    NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+                }
+                else
+                {
+                    //TODO CAMBIO LLAMADA METODO 
+                    respuestaOperacion = NeOperacionST.ProcesarEliminarUsuario(operacion);
+                    //FIN CAMBIO
+                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
+                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
+                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
+                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
+                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
 
-					respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-					respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-					respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				}
-			}
-			catch (Exception ex)
-			{
-				NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+                    respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                    respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                    respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                }
+            }
+            catch (Exception ex)
+            {
+                NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
 
-				bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
-				datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
-				datoMensaje.Respuesta.Mensaje = string.Empty;
-				datoMensaje.Respuesta.OperacionProcesada = false;
+                bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
+                datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
+                datoMensaje.Respuesta.Mensaje = string.Empty;
+                datoMensaje.Respuesta.OperacionProcesada = false;
 
-				respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
 
-				respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-				respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
-				respuestaOperacion.Respuesta.ErrorConexion = objeto;
-				respuestaOperacion.Respuesta.OperacionProcesada = false;
-			}
-			return respuestaOperacion;
-		}
+                respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                respuestaOperacion.Respuesta.ErrorConexion = objeto;
+                respuestaOperacion.Respuesta.OperacionProcesada = false;
+            }
+            return respuestaOperacion;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="operacion"></param>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static ERespuestaOperacionSoftToken ProcesarHabilitarUsuario(EOperacionTOTP operacion, string ip)
+        {
+            ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken
+            {
+                Respuesta = new ERespuesta(),
+                RespuestaSoftToken = new ERespuestaST()
+            };
+            EConsultaMensaje datoMensaje = new EConsultaMensaje
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                Auditoria = operacion.Auditoria
+            };
+            operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
+            ERespuestaMensaje respuestaMensaje;
 
-		public static ERespuestaOperacionSoftToken ProcesarHabilitarTotp(EOperacionesTOTP operacion, string ip)
-		{
-			ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken
-			{
-				Respuesta = new ERespuesta(),
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			EConsultaMensaje datoMensaje = new EConsultaMensaje
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				Auditoria = operacion.Auditoria
-			};
-			operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
-			ERespuestaMensaje respuestaMensaje;
+            try
+            {
+                if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
+                {
+                    respuestaOperacion.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO;
+                    respuestaOperacion.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION;
+                    respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
 
-			try
-			{
-				if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
-				{
-					respuestaOperacion.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO;
-					respuestaOperacion.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION;
-					respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                    Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
+                    NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+                }
+                else
+                {
+                    //TODO CAMBIO LLAMADA METODO 
+                    respuestaOperacion = NeOperacionST.ProcesarHabilitarUsuario(operacion);
+                    //FIN CAMBIO
+                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
+                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
+                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
+                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
+                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
 
-					Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
-					NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
-				}
-				else
-				{
-					//TODO CAMBIO LLAMADA METODO 
-					respuestaOperacion = NeOperacionST.ProcesarHabilitarTotp(operacion);
-					//FIN CAMBIO
-					datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
-					datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
-					datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
-					datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
-					datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
+                    respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                    respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                    respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                }
+            }
+            catch (Exception ex)
+            {
+                NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
 
-					respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-					respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-					respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				}
-			}
-			catch (Exception ex)
-			{
-				NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+                bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
+                datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
+                datoMensaje.Respuesta.Mensaje = string.Empty;
+                datoMensaje.Respuesta.OperacionProcesada = false;
 
-				bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
-				datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
-				datoMensaje.Respuesta.Mensaje = string.Empty;
-				datoMensaje.Respuesta.OperacionProcesada = false;
+                respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
 
-				respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                respuestaOperacion.Respuesta.ErrorConexion = objeto;
+                respuestaOperacion.Respuesta.OperacionProcesada = false;
+            }
+            return respuestaOperacion;
+        }
 
-				respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-				respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
-				respuestaOperacion.Respuesta.ErrorConexion = objeto;
-				respuestaOperacion.Respuesta.OperacionProcesada = false;
-			}
-			return respuestaOperacion;
-		}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="operacion"></param>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static ERespuestaOperacionSoftToken ProcesarRegistrarUsuario(EOperacionRegistrarTOTP operacion, string ip)
+        {
+            ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken
+            {
+                Respuesta = new ERespuesta(),
+                RespuestaSoftToken = new ERespuestaST()
+            };
+            EConsultaMensaje datoMensaje = new EConsultaMensaje
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                Auditoria = operacion.Auditoria
+            };
+            operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
+            ERespuestaMensaje respuestaMensaje;
 
-		public static ERespuestaOperacionSoftToken ProcesarLoginTotp(EOperacionesLoginTOTP operacion, string ip)
-		{
-			ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken
-			{
-				Respuesta = new ERespuesta(),
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			EConsultaMensaje datoMensaje = new EConsultaMensaje
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				Auditoria = operacion.Auditoria
-			};
-			operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
-			ERespuestaMensaje respuestaMensaje;
+            try
+            {
+                if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
+                {
+                    respuestaOperacion.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO;
+                    respuestaOperacion.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION;
+                    respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
 
-			try
-			{
-				if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
-				{
-					respuestaOperacion.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO;
-					respuestaOperacion.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION;
-					respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                    Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
+                    NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+                }
+                else
+                {
+                    //TODO CAMBIO LLAMADA METODO 
+                    respuestaOperacion = NeOperacionST.ProcesarRegistrarUsuario(operacion);
+                    //FIN CAMBIO
+                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
+                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
+                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
+                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
+                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
 
-					Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
-					NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
-				}
-				else
-				{
-					//TODO CAMBIO LLAMADA METODO 
-					respuestaOperacion = NeOperacionST.ProcesarLoginTotp(operacion);
-					//FIN CAMBIO
-					datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
-					datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
-					datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
-					datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
-					datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
+                    respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                    respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                    respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                }
+            }
+            catch (Exception ex)
+            {
+                NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
 
-					respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-					respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-					respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				}
-			}
-			catch (Exception ex)
-			{
-				NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+                bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
+                datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
+                datoMensaje.Respuesta.Mensaje = string.Empty;
+                datoMensaje.Respuesta.OperacionProcesada = false;
 
-				bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
-				datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
-				datoMensaje.Respuesta.Mensaje = string.Empty;
-				datoMensaje.Respuesta.OperacionProcesada = false;
+                respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
 
-				respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                respuestaOperacion.Respuesta.ErrorConexion = objeto;
+                respuestaOperacion.Respuesta.OperacionProcesada = false;
+            }
+            return respuestaOperacion;
+        }
 
-				respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-				respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
-				respuestaOperacion.Respuesta.ErrorConexion = objeto;
-				respuestaOperacion.Respuesta.OperacionProcesada = false;
-			}
-			return respuestaOperacion;
-		}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="operacion"></param>
+        /// <param name="ip"></param>
+        /// <returns></returns>
+        public static ERespuestaOperacionSoftToken ProcesarEstadoUsuario(EOperacionTOTP operacion, string ip)
+        {
+            ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken
+            {
+                Respuesta = new ERespuesta(),
+                RespuestaSoftToken = new ERespuestaST()
+            };
+            EConsultaMensaje datoMensaje = new EConsultaMensaje
+            {
+                Respuesta = new ERespuesta()
+                {
+                    TipoMensaje = (int)CCampos.TipoMensaje.APP
+                },
+                Auditoria = operacion.Auditoria
+            };
+            operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
+            ERespuestaMensaje respuestaMensaje;
 
-		public static ERespuestaOperacionSoftToken ProcesarRegistrarUsuario(EOperacionesRegistrarTOTP operacion, string ip)
-		{
-			ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken
-			{
-				Respuesta = new ERespuesta(),
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			EConsultaMensaje datoMensaje = new EConsultaMensaje
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				Auditoria = operacion.Auditoria
-			};
-			operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
-			ERespuestaMensaje respuestaMensaje;
+            try
+            {
+                if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
+                {
+                    respuestaOperacion.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO;
+                    respuestaOperacion.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION;
+                    respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
 
-			try
-			{
-				if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
-				{
-					respuestaOperacion.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO;
-					respuestaOperacion.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION;
-					respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                    Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
+                    NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+                }
+                else
+                {
+                    //TODO CAMBIO LLAMADA METODO 
+                    respuestaOperacion = NeOperacionST.ProcesarEstadoUsuario(operacion);
+                    //FIN CAMBIO
+                    datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
+                    datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
+                    datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
+                    datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
+                    datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
 
-					Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
-					NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
-				}
-				else
-				{
-					//TODO CAMBIO LLAMADA METODO 
-					respuestaOperacion = NeOperacionST.ProcesarRegistrarUsuario(operacion);
-					//FIN CAMBIO
-					datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
-					datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
-					datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
-					datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
-					datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
+                    respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
+                    respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                    respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                }
+            }
+            catch (Exception ex)
+            {
+                NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
 
-					respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-					respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-					respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				}
-			}
-			catch (Exception ex)
-			{
-				NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
+                bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
+                datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
+                datoMensaje.Respuesta.Mensaje = string.Empty;
+                datoMensaje.Respuesta.OperacionProcesada = false;
 
-				bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
-				datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
-				datoMensaje.Respuesta.Mensaje = string.Empty;
-				datoMensaje.Respuesta.OperacionProcesada = false;
+                respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
 
-				respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-
-				respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-				respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
-				respuestaOperacion.Respuesta.ErrorConexion = objeto;
-				respuestaOperacion.Respuesta.OperacionProcesada = false;
-			}
-			return respuestaOperacion;
-		}
-
-		public static ERespuestaOperacionSoftToken ProcesarEstadoUsuario(EOperacionesTOTP operacion, string ip)
-		{
-			ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken
-			{
-				Respuesta = new ERespuesta(),
-				RespuestaSoftToken = new ERespuestaST()
-			};
-			EConsultaMensaje datoMensaje = new EConsultaMensaje
-			{
-				Respuesta = new ERespuesta()
-				{
-					TipoMensaje = (int)CCampos.TipoMensaje.APP
-				},
-				Auditoria = operacion.Auditoria
-			};
-			operacion.Auditoria.IdentificadorServicioGUID = CUtil.ObtenerGUID();
-			ERespuestaMensaje respuestaMensaje;
-
-			try
-			{
-				if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
-				{
-					respuestaOperacion.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_AUTORIZACION_PERSONALIZADO;
-					respuestaOperacion.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_AUTORIZACION;
-					respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
-
-					Exception ex = new Exception(string.Format(CConstantes.Mensajes.MENSAJE_AUTORIZACION, ip));
-					NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
-				}
-				else
-				{
-					//TODO CAMBIO LLAMADA METODO 
-					respuestaOperacion = NeOperacionST.ProcesarEstadoUsuario(operacion);
-					//FIN CAMBIO
-					datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
-					datoMensaje.Respuesta.Mensaje = respuestaOperacion.Respuesta.Mensaje;
-					datoMensaje.Respuesta.OperacionProcesada = respuestaOperacion.Respuesta.OperacionProcesada;
-					datoMensaje.Respuesta.TipoMensaje = respuestaOperacion.Respuesta.TipoMensaje;
-					datoMensaje.Respuesta.CodigoEmpresaProveedor = respuestaOperacion.Respuesta.CodigoEmpresaProveedor;
-
-					respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-					respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-					respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				}
-			}
-			catch (Exception ex)
-			{
-				NeLogsExcepcion.GuardarLogExcepcion(ex, operacion.Auditoria, () => operacion, () => respuestaOperacion);
-
-				bool objeto = ex.GetType().Name.Equals(CUtil.ObtenerNombreObjeto(new WebException()));
-				datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
-				datoMensaje.Respuesta.Mensaje = string.Empty;
-				datoMensaje.Respuesta.OperacionProcesada = false;
-
-				respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
-
-				respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
-				respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
-				respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
-				respuestaOperacion.Respuesta.ErrorConexion = objeto;
-				respuestaOperacion.Respuesta.OperacionProcesada = false;
-			}
-			return respuestaOperacion;
-		}
-	}
+                respuestaOperacion.Respuesta.Codigo = respuestaMensaje.RespuestaMensaje.CodigoMensajeAplicacion;
+                respuestaOperacion.Respuesta.Mensaje = respuestaMensaje.RespuestaMensaje.MensajeAplicacion;
+                respuestaOperacion.Respuesta.FechaRespuesta = DateTime.Now;
+                respuestaOperacion.Respuesta.ErrorConexion = objeto;
+                respuestaOperacion.Respuesta.OperacionProcesada = false;
+            }
+            return respuestaOperacion;
+        }
+    }
 }

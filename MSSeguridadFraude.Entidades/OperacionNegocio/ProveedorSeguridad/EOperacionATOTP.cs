@@ -10,24 +10,14 @@ namespace MSSeguridadFraude.Entidades.OperacionNegocio
     /// </summary>
     [DataContract]
     [Serializable]
-    public class EOperacionATOTP
+    public class EOperacionATOTP:EOperacionBase
     {
+       
         /// <summary>
         /// 
         /// </summary>
         [DataMember]
-        public EAuditoria Auditoria { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        [DataMember]
-        public EEntorno Entorno { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [DataMember]
-        public EActivarTOTP ActivarTOTP{get;set;}
+        public EActivarTOTP Activar{get;set;}
 
         ///
         [DataMember]
