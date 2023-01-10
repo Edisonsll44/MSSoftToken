@@ -55,11 +55,5 @@
     <Compile Include="Utilitarios\CUtil.cs" />
     <Compile Include="Utilitarios\CValidacionDatos.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MSSeguridadFraude.Entidades\MSSeguridadFraude.Entidades.csproj">
-      <Project>{49395b0a-af41-4f56-8534-2da087b9977e}</Project>
-      <Name>MSSeguridadFraude.Entidades</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

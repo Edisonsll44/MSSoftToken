@@ -114,10 +114,6 @@
       <Project>{09213e3b-a27c-4455-9e36-4935ec787f9f}</Project>
       <Name>MSSeguridadFraude.Comun</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSSeguridadFraude.Entidades\MSSeguridadFraude.Entidades.csproj">
-      <Project>{49395b0a-af41-4f56-8534-2da087b9977e}</Project>
-      <Name>MSSeguridadFraude.Entidades</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MSSeguridadFraude.Negocio\MSSeguridadFraude.Negocio.csproj">
       <Project>{09BABB05-050E-4244-A82A-A5461582F4C9}</Project>
       <Name>MSSeguridadFraude.Negocio</Name>

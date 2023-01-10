@@ -315,10 +315,6 @@
       <Project>{09213E3B-A27C-4455-9E36-4935EC787F9F}</Project>
       <Name>MSSeguridadFraude.Comun</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSSeguridadFraude.Entidades\MSSeguridadFraude.Entidades.csproj">
-      <Project>{49395b0a-af41-4f56-8534-2da087b9977e}</Project>
-      <Name>MSSeguridadFraude.Entidades</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\MSReglasNegocio\ServicioReglasNegocio.disco" />
