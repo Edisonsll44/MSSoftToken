@@ -27,8 +27,8 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
         /// <returns></returns>
         public static IRestResponse SendPostAsync(TRequest entrada, string recurso, bool a = false)
         {
-            var url = "https://auth1.bgr.ec";
-            //var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_FRAUDE);
+            //var url = "https://auth1.bgr.ec";
+            var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_FRAUDE);
             var timeout = Convert.ToInt32(SettingsManager.Group(CConstantes.Configuraciones.ConfiguracionesServicioWeb)[CConstantes.Configuraciones.TimeOutSertvicio].ToString());
             var client = new RestClient(url)
             {
@@ -40,7 +40,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             {
                 RequestFormat = DataFormat.Json
             };
-            request.AddHeader("apiKey", "ff92829c-60e6-46c1-9de1-15cb28a8af8f");
+            request.AddHeader(CConstantes.Configuraciones.APIKEYHEADER, AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.TOKEN_SOFT_TOKEN));
             IRestResponse responseData = null;
             var resetEvent = new ManualResetEvent(false);
             if (a)

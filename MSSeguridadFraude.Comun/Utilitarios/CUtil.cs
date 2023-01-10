@@ -241,13 +241,14 @@ namespace MSSeguridadFraude.Comun.Utilitarios
 
                 };
             }
-            List<char> caracteresARemover = new List<char>() { '?', '(', '[', ')',']' };
+            List<char> caracteresARemover = new List<char>() { '?', '(', '[', ')',']','\"' };
             string cadenaLimpia = string.Empty;
             if (respuesta.Length>0)
             {
+                cadenaLimpia = respuesta.ToString();
                 foreach (var item in caracteresARemover)
                 {
-                    cadenaLimpia = respuesta.ToString().Replace(item.ToString(), string.Empty);
+                    cadenaLimpia = cadenaLimpia.Replace(item.ToString(), string.Empty);
                 }
 
                 if (cadenaLimpia.Length > 0)

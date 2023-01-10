@@ -637,6 +637,7 @@
 		{
 			public const string ConfiguracionesServicioWeb = "ConfiguracionesServicioWeb";
 			public const string TimeOutSertvicio = "TimeOutServicioProveedorSecurity";
+			public const string APIKEYHEADER = "apiKey";
 			
 
         }
