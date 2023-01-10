@@ -175,7 +175,7 @@ namespace MSSeguridadFraude.Comun.Utilitarios
                         {
                             Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL,
                             Mensaje = arregloCadena[0].Trim(),
-                            Coupon = arregloCadena[1].Trim(),
+                            Cupon = arregloCadena[1].Trim(),
 
                         };
                     }
@@ -209,7 +209,7 @@ namespace MSSeguridadFraude.Comun.Utilitarios
                         {
                             Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL,
                             Mensaje = arregloCadena[0].Trim(),
-                            Coupon = arregloCadena[1].Trim(),
+                            Cupon = arregloCadena[1].Trim(),
 
                         };
                     }

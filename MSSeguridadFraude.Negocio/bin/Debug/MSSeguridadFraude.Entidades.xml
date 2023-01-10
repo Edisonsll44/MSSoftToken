@@ -1224,7 +1224,7 @@
             Mensaje  obtenido en la respuesta del proveedor 
             </summary>
         </member>
-        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaST.Coupon">
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaST.Cupon">
             <summary>
             
             </summary>
