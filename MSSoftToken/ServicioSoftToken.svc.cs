@@ -25,7 +25,9 @@ namespace MSSoftToken
 
 		public ERespuestaOperacionSoftToken ActivarUsuario(EOperacionATOTP operacion)
 		{
+        
             return NeServicio.ProcesarActivarUsuario(operacion, HttpContext.Current.Request.UserHostAddress);
+             
         }
         public ERespuestaOperacionSoftToken HabilitarUsuario(EOperacionTOTP operacion)
         {

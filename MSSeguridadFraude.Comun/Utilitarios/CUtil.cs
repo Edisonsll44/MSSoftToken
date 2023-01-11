@@ -174,8 +174,8 @@ namespace MSSeguridadFraude.Comun.Utilitarios
                         return new ERespuestaST()
                         {
                             Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL,
-                            Mensaje = arregloCadena[0].Trim(),
-                            Cupon = arregloCadena[1].Trim(),
+                            Mensaje = arregloCadena[0]!=null ? arregloCadena[0].ToString().Trim():string.Empty,
+                            Cupon = arregloCadena[1]!=null? arregloCadena[1].ToString().Trim():string.Empty,
 
                         };
                     }
@@ -184,68 +184,36 @@ namespace MSSeguridadFraude.Comun.Utilitarios
             }
             return new ERespuestaST()
             {
-                Codigo = arregloCadena[0],
-                Mensaje = concatenacion,
+                Codigo = arregloCadena[0]!=null ? arregloCadena[0].ToString().Trim():string.Empty,
+                Mensaje =  concatenacion.Trim(),
                
             };
         }
+        
         /// <summary>
 		/// Metodo que separa la respuesta enviada por el proveedor, a un objeto
 		/// </summary>
 		/// <param name="respuesta"></param>
 		/// <param name="caracter"></param>
 		/// <returns></returns>
-		public static ERespuestaST MapearRespuestaRegistro(string respuesta, char caracter, bool registro = false)
-        {
-            var arregloCadena = respuesta.Split(caracter);
-            var concatenacion = ConcatenarArreglo(arregloCadena);
-            if (registro)
-            {
-                if (arregloCadena[1] != null)
-                {
-                    if (arregloCadena[1].ToString().Trim().Length == 6)
-                    {
-                        return new ERespuestaST()
-                        {
-                            Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL,
-                            Mensaje = arregloCadena[0].Trim(),
-                            Cupon = arregloCadena[1].Trim(),
-
-                        };
-                    }
-                }
-
-            }
-            return new ERespuestaST()
-            {
-                Codigo = arregloCadena[0],
-                Mensaje = concatenacion,
-
-            };
-        }
-        /// <summary>
-		/// Metodo que separa la respuesta enviada por el proveedor, a un objeto
-		/// </summary>
-		/// <param name="respuesta"></param>
-		/// <param name="caracter"></param>
-		/// <returns></returns>
-		public static ERespuestaST MapearRespuestaActivacion(string respuesta, char caracter)
+		public static ERespuestaST MapearRespuestaActivacion(string respuesta, char caracter, bool sincronizar =false)
         {
             var arregloCadenaInicial = respuesta.Split(caracter);
-            if (arregloCadenaInicial.Count()>1)
+            if (arregloCadenaInicial.Count() > 1)
             {
                 return new ERespuestaST()
                 {
-                    Codigo = arregloCadenaInicial[0],
-                    Mensaje = arregloCadenaInicial[1],
+                    Codigo = arregloCadenaInicial[0] != null ? arregloCadenaInicial[0].ToString().Trim() : string.Empty,
+                    Mensaje = arregloCadenaInicial[1] != null ? arregloCadenaInicial[1].ToString().Trim() : string.Empty
 
                 };
             }
-            List<char> caracteresARemover = new List<char>() { '?', '(', '[', ')',']','\"' };
-            string cadenaLimpia = string.Empty;
-            if (respuesta.Length>0)
+            
+            List<char> caracteresARemover = new List<char>() { '?', '(', '[', ')', ']','\"'};
+
+            if (respuesta.Length > 0)
             {
-                cadenaLimpia = respuesta.ToString();
+                var cadenaLimpia = $@"{respuesta}";
                 foreach (var item in caracteresARemover)
                 {
                     cadenaLimpia = cadenaLimpia.Replace(item.ToString(), string.Empty);
@@ -254,14 +222,30 @@ namespace MSSeguridadFraude.Comun.Utilitarios
                 if (cadenaLimpia.Length > 0)
                 {
 
-                    var arregloCadena = cadenaLimpia.Split(CConstantes.Caracteres.COMA);
-                    return new ERespuestaST()
+                    if (sincronizar)
                     {
-                        Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL,
-                        Semilla = arregloCadena[0].ToString().Trim(),
-                        Mensaje = arregloCadena[1].ToString().Trim(),
+                        return new ERespuestaST()
+                        {
+                            Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL,
+                            Tiempo = cadenaLimpia
 
-                    };
+                        };
+                    }
+                    else
+                    {
+                        var arregloCadena = cadenaLimpia.Split(CConstantes.Caracteres.COMA);
+
+
+
+                        return new ERespuestaST()
+                        {
+                            Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL,
+                            Semilla = arregloCadena[0] != null ? arregloCadena[0].ToString().Trim() : string.Empty,
+                            Mensaje = arregloCadena[1] != null ? arregloCadena[1].ToString().Trim() : string.Empty,
+
+                        };
+                    }
+                    
                 }
             }
             return new ERespuestaST();

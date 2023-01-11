@@ -39,8 +39,8 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             var recurso = SettingsManager.Group(CConstantes.Configuraciones.ConfiguracionesServicioWeb)[CConstantes.EndPoints.EndPointMetodoA].ToString();
             try
             {
-                //var url = "https://52.188.183.116/";
-                var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_SOFT_TOKEN_A);
+                //var url = "https://auth1.bgr.softotp.net/";
+                var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_SOFT_TOKEN);
                 IRestResponse responseData = GestorServiciosWeb<EActivarTOTP>.SendPostAsync(operacion.Activar, recurso, url,true);
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
@@ -49,7 +49,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                     respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
                     respuestaST.Respuesta.CodigoEmpresaProveedor = string.Empty;
                     respuestaST.Respuesta.OperacionProcesada = true;
-                    var respuestaGenerica = CUtil.MapearRespuesta(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
+                    var respuestaGenerica = CUtil.MapearRespuestaActivacion(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
                     respuestaST.RespuestaSoftToken = respuestaGenerica; 
                     return respuestaST;
                 }
@@ -100,7 +100,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                     respuestaST.Respuesta.Mensaje = CConstantes.Mensajes.MENSAJE_CORRECTO;
                     respuestaST.Respuesta.CodigoEmpresaProveedor = string.Empty;
                     respuestaST.Respuesta.OperacionProcesada = true;
-                    var respuestaGenerica = CUtil.MapearRespuesta(responseData.Content, CConstantes.Caracteres.DOSPUNTOS);
+                    var respuestaGenerica = CUtil.MapearRespuestaActivacion(responseData.Content, CConstantes.Caracteres.DOSPUNTOS,true);
                     respuestaST.RespuestaSoftToken = respuestaGenerica;
                     return respuestaST;
                 }

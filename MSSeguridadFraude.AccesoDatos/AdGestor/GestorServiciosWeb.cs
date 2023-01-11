@@ -25,15 +25,15 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
         /// <param name="entrada"></param>
         /// <param name="metodo"></param>
         /// <returns></returns>
-        public static IRestResponse SendPostAsync(TRequest entrada, string recurso,string url, bool a = false)
+        public static IRestResponse SendPostAsync(TRequest entrada, string recurso, string url, bool a = false)
         {
-           
+
             var timeout = Convert.ToInt32(SettingsManager.Group(CConstantes.Configuraciones.ConfiguracionesServicioWeb)[CConstantes.Configuraciones.TimeOutSertvicio].ToString());
             var client = new RestClient(url)
             {
                 Timeout = timeout
             };
-           
+
 
             var request = new RestRequest(recurso, Method.POST)
             {
@@ -49,7 +49,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
                 PropertyInfo[] arrayPropertyInfos = tModelType.GetProperties();
                 foreach (PropertyInfo property in arrayPropertyInfos)
                 {
-                    var valor = property.GetValue(entrada)==null? string.Empty: property.GetValue(entrada).ToString().Trim();
+                    var valor = property.GetValue(entrada) == null ? string.Empty : property.GetValue(entrada).ToString().Trim();
                     if (!string.IsNullOrEmpty(valor))
                     {
                         request.AddQueryParameter(property.Name, property.GetValue(entrada).ToString());
@@ -67,7 +67,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             }
 
             request.RequestFormat = DataFormat.Json;
-            client.ExecuteAsync(request, response => { responseData = response; resetEvent.Set(); });
+            client.ExecuteAsync(request, response => { responseData = response; resetEvent.Set(); responseData.ContentType = CConstantes.Formatos.JsonFormatHeader; });
             resetEvent.WaitOne();
             return responseData;
         }

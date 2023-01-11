@@ -1234,5 +1234,10 @@
             
             </summary>
         </member>
+        <member name="P:MSSeguridadFraude.Entidades.Respuesta.RespuestaProveedor.Softoken.ERespuestaST.Tiempo">
+            <summary>
+            
+            </summary>
+        </member>
     </members>
 </doc>
