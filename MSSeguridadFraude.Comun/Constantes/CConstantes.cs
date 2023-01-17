@@ -258,7 +258,7 @@
 			/// <summary>
 			/// Nombre del Log de Evento
 			/// </summary>
-			public const string EVENT_VIEWER = "LogMicroservicio";
+			public const string EVENT_VIEWER = "MSSoftTokenLogMicroservicio";
 
 
 		}
