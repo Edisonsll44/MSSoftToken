@@ -4,18 +4,12 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-<<<<<<< HEAD
     <_PublishTargetUrl>C:\TemporalesPublicacion\MSSoftToken</_PublishTargetUrl>
     <History>True|2023-01-27T17:40:54.0528955Z;True|2023-01-17T09:27:57.8082316-05:00;True|2023-01-17T09:25:51.6679702-05:00;True|2023-01-17T09:23:47.6737565-05:00;</History>
-=======
-    <_PublishTargetUrl>C:\Users\jgualotu\Documents\publicaciones\softoken</_PublishTargetUrl>
-    <History>True|2023-01-16T15:29:08.6901530Z;</History>
->>>>>>> 59f35cc8b0e435baa2421704ccda27c18f4daf65
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/App_global.asax.compiled">
-<<<<<<< HEAD
       <publishTime>01/27/2023 12:40:53</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
@@ -56,54 +50,11 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="bin/MSSoftToken.pdb">
       <publishTime>01/27/2023 12:40:50</publishTime>
-=======
-      <publishTime>01/16/2023 10:29:08</publishTime>
-    </File>
-    <File Include="bin/App_global.asax.dll">
-      <publishTime>01/16/2023 10:29:08</publishTime>
-    </File>
-    <File Include="bin/MSSeguridadFraude.AccesoDatos.dll">
-      <publishTime>01/16/2023 10:29:03</publishTime>
-    </File>
-    <File Include="bin/MSSeguridadFraude.AccesoDatos.dll.config">
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="bin/MSSeguridadFraude.AccesoDatos.pdb">
-      <publishTime>01/16/2023 10:29:03</publishTime>
-    </File>
-    <File Include="bin/MSSeguridadFraude.AccesoDatos.XmlSerializers.dll">
-      <publishTime>01/16/2023 10:29:04</publishTime>
-    </File>
-    <File Include="bin/MSSeguridadFraude.Comun.dll">
-      <publishTime>01/16/2023 10:29:03</publishTime>
-    </File>
-    <File Include="bin/MSSeguridadFraude.Comun.pdb">
-      <publishTime>01/16/2023 10:29:03</publishTime>
-    </File>
-    <File Include="bin/MSSeguridadFraude.Entidades.dll">
-      <publishTime>01/16/2023 10:29:02</publishTime>
-    </File>
-    <File Include="bin/MSSeguridadFraude.Entidades.pdb">
-      <publishTime>01/16/2023 10:29:02</publishTime>
-    </File>
-    <File Include="bin/MSSeguridadFraude.Negocio.dll">
-      <publishTime>01/16/2023 10:29:04</publishTime>
-    </File>
-    <File Include="bin/MSSeguridadFraude.Negocio.pdb">
-      <publishTime>01/16/2023 10:29:04</publishTime>
-    </File>
-    <File Include="bin/MSSoftToken.dll">
-      <publishTime>01/16/2023 10:29:05</publishTime>
-    </File>
-    <File Include="bin/MSSoftToken.pdb">
-      <publishTime>01/16/2023 10:29:05</publishTime>
->>>>>>> 59f35cc8b0e435baa2421704ccda27c18f4daf65
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>01/28/2016 14:22:24</publishTime>
     </File>
     <File Include="bin/Oracle.ManagedDataAccess.dll">
-<<<<<<< HEAD
       <publishTime>01/03/2023 18:39:21</publishTime>
     </File>
     <File Include="bin/RestSharp.dll">
@@ -159,63 +110,6 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="XML/ConfiguracionesServicioWeb.config">
       <publishTime>01/10/2023 09:23:47</publishTime>
-=======
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="bin/RestSharp.dll">
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="bin/TCS.Provider.AES.dll">
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="bin/Tcs.Provider.Data.Base.dll">
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="bin/Tcs.Provider.Data.dll">
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="bin/Tcs.Provider.dll">
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="bin/Tcs.Provider.Settings.Base.dll">
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="bin/Tcs.Provider.Settings.dll">
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="config/dataconfiguration.config">
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="config/encryptedfileeditorconfiguration.config">
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="config/loaderconfiguration.config">
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="config/providerconfiguration.config">
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="config/securitycryptographyconfiguration.config">
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="config/storageconfiguration.config">
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="config/viewstateconfiguration.config">
-      <publishTime>01/06/2023 09:58:41</publishTime>
-    </File>
-    <File Include="PrecompiledApp.config">
-      <publishTime>01/16/2023 10:29:06</publishTime>
-    </File>
-    <File Include="ServicioSoftToken.svc">
-      <publishTime>01/09/2023 12:58:02</publishTime>
-    </File>
-    <File Include="Web.config">
-      <publishTime>01/16/2023 10:29:05</publishTime>
-    </File>
-    <File Include="XML/ConfiguracionesServicioWeb.config">
-      <publishTime>01/10/2023 12:51:00</publishTime>
->>>>>>> 59f35cc8b0e435baa2421704ccda27c18f4daf65
     </File>
   </ItemGroup>
 </Project>
