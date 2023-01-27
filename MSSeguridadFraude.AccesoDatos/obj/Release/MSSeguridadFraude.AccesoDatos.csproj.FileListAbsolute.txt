@@ -37,6 +37,7 @@ C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\MASTER\MSSoftToken\
 C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\MASTER\MSSoftToken\MSSoftToken\MSSeguridadFraude.AccesoDatos\obj\Release\MSSeguridadFraude.AccesoDatos.dll
 C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\MASTER\MSSoftToken\MSSoftToken\MSSeguridadFraude.AccesoDatos\obj\Release\MSSeguridadFraude.AccesoDatos.pdb
 C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\MASTER\MSSoftToken\MSSoftToken\MSSeguridadFraude.AccesoDatos\obj\Release\MSSeguridadFraude.AccesoDatos.XmlSerializers.dll
+<<<<<<< HEAD
 C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.AccesoDatos\bin\Release\MSSeguridadFraude.AccesoDatos.dll.config
 C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.AccesoDatos\bin\Release\MSSeguridadFraude.AccesoDatos.dll
 C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.AccesoDatos\bin\Release\MSSeguridadFraude.AccesoDatos.XmlSerializers.dll
@@ -53,3 +54,21 @@ C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.AccesoDatos\obj\Release\MSSeguridad
 C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.AccesoDatos\obj\Release\MSSeguridadFraude.AccesoDatos.dll
 C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.AccesoDatos\obj\Release\MSSeguridadFraude.AccesoDatos.pdb
 C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.AccesoDatos\obj\Release\MSSeguridadFraude.AccesoDatos.XmlSerializers.dll
+=======
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\bin\Release\MSSeguridadFraude.AccesoDatos.dll.config
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\bin\Release\MSSeguridadFraude.AccesoDatos.dll
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\bin\Release\MSSeguridadFraude.AccesoDatos.XmlSerializers.dll
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\bin\Release\MSSeguridadFraude.AccesoDatos.pdb
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\bin\Release\MSSeguridadFraude.Comun.dll
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\bin\Release\MSSeguridadFraude.Entidades.dll
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\bin\Release\Newtonsoft.Json.dll
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\bin\Release\TCS.Provider.AES.dll
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\bin\Release\MSSeguridadFraude.Comun.pdb
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\bin\Release\MSSeguridadFraude.Entidades.pdb
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\obj\Release\MSSeguridadFraude.AccesoDatos.csproj.AssemblyReference.cache
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\obj\Release\MSSeguridadFraude.AccesoDatos.csproj.CoreCompileInputs.cache
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\obj\Release\MSSeguridadFraude.AccesoDatos.csproj.CopyComplete
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\obj\Release\MSSeguridadFraude.AccesoDatos.dll
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\obj\Release\MSSeguridadFraude.AccesoDatos.pdb
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.AccesoDatos\obj\Release\MSSeguridadFraude.AccesoDatos.XmlSerializers.dll
+>>>>>>> 59f35cc8b0e435baa2421704ccda27c18f4daf65

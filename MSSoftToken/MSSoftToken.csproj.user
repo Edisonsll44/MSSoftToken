@@ -10,7 +10,11 @@
     <UseGlobalApplicationHostFile />
     <LastActiveSolutionConfig>Release|Any CPU</LastActiveSolutionConfig>
     <ProjectView>ShowAllFiles</ProjectView>
+<<<<<<< HEAD
     <NameOfLastUsedPublishProfile>C:\Me\.Net\SST\MSSoftToken\MSSoftToken\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
+=======
+    <NameOfLastUsedPublishProfile>C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSoftToken\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
+>>>>>>> 59f35cc8b0e435baa2421704ccda27c18f4daf65
   </PropertyGroup>
   <ProjectExtensions />
 </Project>
