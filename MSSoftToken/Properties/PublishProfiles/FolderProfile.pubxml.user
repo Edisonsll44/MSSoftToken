@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\TemporalesPublicacion\MSSoftToken</_PublishTargetUrl>
+    <History>True|2023-01-27T17:40:54.0528955Z;True|2023-01-17T09:27:57.8082316-05:00;True|2023-01-17T09:25:51.6679702-05:00;True|2023-01-17T09:23:47.6737565-05:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>01/27/2023 12:40:53</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>01/27/2023 12:40:53</publishTime>
+    </File>
+    <File Include="bin/MSSeguridadFraude.AccesoDatos.dll">
+      <publishTime>01/27/2023 12:40:47</publishTime>
+    </File>
+    <File Include="bin/MSSeguridadFraude.AccesoDatos.dll.config">
+      <publishTime>01/03/2023 18:39:20</publishTime>
+    </File>
+    <File Include="bin/MSSeguridadFraude.AccesoDatos.pdb">
+      <publishTime>01/27/2023 12:40:47</publishTime>
+    </File>
+    <File Include="bin/MSSeguridadFraude.AccesoDatos.XmlSerializers.dll">
+      <publishTime>01/27/2023 12:40:48</publishTime>
+    </File>
+    <File Include="bin/MSSeguridadFraude.Comun.dll">
+      <publishTime>01/17/2023 09:27:53</publishTime>
+    </File>
+    <File Include="bin/MSSeguridadFraude.Comun.pdb">
+      <publishTime>01/17/2023 09:27:53</publishTime>
+    </File>
+    <File Include="bin/MSSeguridadFraude.Entidades.dll">
+      <publishTime>01/17/2023 09:23:41</publishTime>
+    </File>
+    <File Include="bin/MSSeguridadFraude.Entidades.pdb">
+      <publishTime>01/17/2023 09:23:41</publishTime>
+    </File>
+    <File Include="bin/MSSeguridadFraude.Negocio.dll">
+      <publishTime>01/27/2023 12:40:49</publishTime>
+    </File>
+    <File Include="bin/MSSeguridadFraude.Negocio.pdb">
+      <publishTime>01/27/2023 12:40:49</publishTime>
+    </File>
+    <File Include="bin/MSSoftToken.dll">
+      <publishTime>01/27/2023 12:40:50</publishTime>
+    </File>
+    <File Include="bin/MSSoftToken.pdb">
+      <publishTime>01/27/2023 12:40:50</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/28/2016 14:22:24</publishTime>
+    </File>
+    <File Include="bin/Oracle.ManagedDataAccess.dll">
+      <publishTime>01/03/2023 18:39:21</publishTime>
+    </File>
+    <File Include="bin/RestSharp.dll">
+      <publishTime>01/03/2023 18:39:20</publishTime>
+    </File>
+    <File Include="bin/TCS.Provider.AES.dll">
+      <publishTime>01/03/2023 18:39:20</publishTime>
+    </File>
+    <File Include="bin/Tcs.Provider.Data.Base.dll">
+      <publishTime>01/03/2023 18:39:21</publishTime>
+    </File>
+    <File Include="bin/Tcs.Provider.Data.dll">
+      <publishTime>01/03/2023 18:39:21</publishTime>
+    </File>
+    <File Include="bin/Tcs.Provider.dll">
+      <publishTime>01/03/2023 18:39:21</publishTime>
+    </File>
+    <File Include="bin/Tcs.Provider.Settings.Base.dll">
+      <publishTime>01/03/2023 18:39:21</publishTime>
+    </File>
+    <File Include="bin/Tcs.Provider.Settings.dll">
+      <publishTime>01/03/2023 18:39:21</publishTime>
+    </File>
+    <File Include="config/dataconfiguration.config">
+      <publishTime>01/03/2023 18:39:21</publishTime>
+    </File>
+    <File Include="config/encryptedfileeditorconfiguration.config">
+      <publishTime>01/03/2023 18:39:21</publishTime>
+    </File>
+    <File Include="config/loaderconfiguration.config">
+      <publishTime>01/03/2023 18:39:21</publishTime>
+    </File>
+    <File Include="config/providerconfiguration.config">
+      <publishTime>01/03/2023 18:39:21</publishTime>
+    </File>
+    <File Include="config/securitycryptographyconfiguration.config">
+      <publishTime>01/03/2023 18:39:21</publishTime>
+    </File>
+    <File Include="config/storageconfiguration.config">
+      <publishTime>01/03/2023 18:39:21</publishTime>
+    </File>
+    <File Include="config/viewstateconfiguration.config">
+      <publishTime>01/03/2023 18:39:21</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>01/27/2023 12:40:51</publishTime>
+    </File>
+    <File Include="ServicioSoftToken.svc">
+      <publishTime>01/17/2023 09:20:45</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>01/17/2023 09:25:48</publishTime>
+    </File>
+    <File Include="XML/ConfiguracionesServicioWeb.config">
+      <publishTime>01/10/2023 09:23:47</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
