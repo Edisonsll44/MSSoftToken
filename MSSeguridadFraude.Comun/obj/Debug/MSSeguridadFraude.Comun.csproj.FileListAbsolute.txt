@@ -39,3 +39,13 @@ C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\M
 C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.Comun\obj\Debug\MSSeguridadFraude.Comun.csproj.CopyComplete
 C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.Comun\obj\Debug\MSSeguridadFraude.Comun.dll
 C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.Comun\obj\Debug\MSSeguridadFraude.Comun.pdb
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Comun\bin\Debug\MSSeguridadFraude.Comun.dll
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Comun\bin\Debug\MSSeguridadFraude.Comun.pdb
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Comun\bin\Debug\MSSeguridadFraude.Entidades.dll
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Comun\bin\Debug\MSSeguridadFraude.Entidades.pdb
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Comun\bin\Debug\MSSeguridadFraude.Entidades.xml
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Comun\obj\Debug\MSSeguridadFraude.Comun.csproj.AssemblyReference.cache
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Comun\obj\Debug\MSSeguridadFraude.Comun.csproj.CoreCompileInputs.cache
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Comun\obj\Debug\MSSeguridadFraude.Comun.csproj.CopyComplete
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Comun\obj\Debug\MSSeguridadFraude.Comun.dll
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Comun\obj\Debug\MSSeguridadFraude.Comun.pdb

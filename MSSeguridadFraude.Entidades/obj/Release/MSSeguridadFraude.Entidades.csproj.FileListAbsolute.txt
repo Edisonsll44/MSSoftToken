@@ -10,9 +10,9 @@ C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\MASTER\MSSoftToken\
 C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\MASTER\MSSoftToken\MSSoftToken\MSSeguridadFraude.Entidades\obj\Release\MSSeguridadFraude.Entidades.csproj.CoreCompileInputs.cache
 C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\MASTER\MSSoftToken\MSSoftToken\MSSeguridadFraude.Entidades\obj\Release\MSSeguridadFraude.Entidades.dll
 C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\MASTER\MSSoftToken\MSSoftToken\MSSeguridadFraude.Entidades\obj\Release\MSSeguridadFraude.Entidades.pdb
-C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.Entidades\bin\Release\MSSeguridadFraude.Entidades.dll
-C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.Entidades\bin\Release\MSSeguridadFraude.Entidades.pdb
-C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.Entidades\obj\Release\MSSeguridadFraude.Entidades.csproj.AssemblyReference.cache
-C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.Entidades\obj\Release\MSSeguridadFraude.Entidades.csproj.CoreCompileInputs.cache
-C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.Entidades\obj\Release\MSSeguridadFraude.Entidades.dll
-C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.Entidades\obj\Release\MSSeguridadFraude.Entidades.pdb
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Entidades\bin\Release\MSSeguridadFraude.Entidades.dll
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Entidades\bin\Release\MSSeguridadFraude.Entidades.pdb
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Entidades\obj\Release\MSSeguridadFraude.Entidades.csproj.AssemblyReference.cache
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Entidades\obj\Release\MSSeguridadFraude.Entidades.csproj.CoreCompileInputs.cache
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Entidades\obj\Release\MSSeguridadFraude.Entidades.dll
+C:\Me\.Net\SST\MSSoftToken\MSSeguridadFraude.Entidades\obj\Release\MSSeguridadFraude.Entidades.pdb
