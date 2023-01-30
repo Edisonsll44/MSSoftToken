@@ -39,8 +39,8 @@ namespace MSSeguridadFraude.AccesoDatos.AdGestor
             var recurso = SettingsManager.Group(CConstantes.Configuraciones.ConfiguracionesServicioWeb)[CConstantes.EndPoints.EndPointMetodoA].ToString();
             try
             {
-                //var url = "https://auth1.bgr.softotp.net/";
-                var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_SOFT_TOKEN);
+               
+                var url = AdLlamarConfiguracionCentralizada.ConsultarTagConfiguracion(CConstantes.TagsCentralizada.URL_SERVICIO_PROVEEDOR_SOFT_TOKEN_A);
                 IRestResponse responseData = GestorServiciosWeb<EActivarTOTP>.SendPostAsync(operacion.Activar, recurso, url,true);
 
                 if (responseData.StatusCode == HttpStatusCode.OK)
