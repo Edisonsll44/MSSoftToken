@@ -17,12 +17,10 @@ namespace MSSeguridadFraude.Negocio.NeServicio
     /// </summary>
     public class NeServicio
     {
-
         protected NeServicio()
         {
 
         }
-
 
         /// <summary>
         /// Activar TOTP
@@ -32,8 +30,6 @@ namespace MSSeguridadFraude.Negocio.NeServicio
         /// <returns></returns>
         public static ERespuestaOperacionSoftToken ProcesarActivarUsuario(EOperacionATOTP operacion, string ip)
         {
-
-
             var respuestaOperacion = new ERespuestaOperacionSoftToken()
             {
                 Respuesta = new ERespuesta()
@@ -55,8 +51,6 @@ namespace MSSeguridadFraude.Negocio.NeServicio
             };
             try
             {
-
-
                 if (!NeLlamarConfiguracionCentralizada.NeLlamarConfiguracionCentralizada.ConsultarServidorAutorizado(ip))
                 {
                     var respuesta = new ERespuesta {
