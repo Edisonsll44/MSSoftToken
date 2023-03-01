@@ -748,7 +748,8 @@ namespace MSSeguridadFraude.Negocio.NeServicio
                 }
                 else
                 {
-                    //TODO CAMBIO LLAMADA METODO 
+                   
+                    // LLAMADA METODO 
                     respuestaOperacion = NeOperacionST.ProcesarEstadoUsuario(operacion);
                     //FIN CAMBIO
                     datoMensaje.Respuesta.Codigo = respuestaOperacion.Respuesta.Codigo;
@@ -770,6 +771,7 @@ namespace MSSeguridadFraude.Negocio.NeServicio
                 datoMensaje.Respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_COMUN;
                 datoMensaje.Respuesta.Mensaje = string.Empty;
                 datoMensaje.Respuesta.OperacionProcesada = false;
+                datoMensaje.Respuesta.CodigoEmpresaProveedor = CConstantes.Server.CODIGO_EMPRESA;
 
                 respuestaMensaje = NeMensajes.NeMensajes.ConsultarMensaje(datoMensaje);
 

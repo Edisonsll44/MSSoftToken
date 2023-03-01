@@ -35,3 +35,12 @@ C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\M
 C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.Comun\obj\Release\MSSeguridadFraude.Comun.csproj.CopyComplete
 C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.Comun\obj\Release\MSSeguridadFraude.Comun.dll
 C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\FINAL\MSSoftToken\MSSeguridadFraude.Comun\obj\Release\MSSeguridadFraude.Comun.pdb
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\13022023\MSSoftToken\MSSeguridadFraude.Comun\bin\Release\MSSeguridadFraude.Comun.dll
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\13022023\MSSoftToken\MSSeguridadFraude.Comun\bin\Release\MSSeguridadFraude.Comun.pdb
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\13022023\MSSoftToken\MSSeguridadFraude.Comun\bin\Release\MSSeguridadFraude.Entidades.dll
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\13022023\MSSoftToken\MSSeguridadFraude.Comun\bin\Release\MSSeguridadFraude.Entidades.pdb
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\13022023\MSSoftToken\MSSeguridadFraude.Comun\obj\Release\MSSeguridadFraude.Comun.csproj.AssemblyReference.cache
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\13022023\MSSoftToken\MSSeguridadFraude.Comun\obj\Release\MSSeguridadFraude.Comun.csproj.CoreCompileInputs.cache
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\13022023\MSSoftToken\MSSeguridadFraude.Comun\obj\Release\MSSeguridadFraude.Comun.csproj.CopyComplete
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\13022023\MSSoftToken\MSSeguridadFraude.Comun\obj\Release\MSSeguridadFraude.Comun.dll
+C:\Users\jgualotu\Documents\proyectos\FINALES\MICRO_SOFTOKEN\13022023\MSSoftToken\MSSeguridadFraude.Comun\obj\Release\MSSeguridadFraude.Comun.pdb

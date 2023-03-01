@@ -23,7 +23,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdMensajes
         {
             DataSet resultadoDatos = null;
             string filtroConsulta = string.Empty;
-            
+
             switch ((CCampos.TipoMensaje)datosMensaje.Respuesta.TipoMensaje)
             {
                 case CCampos.TipoMensaje.SIGLO:
@@ -45,12 +45,12 @@ namespace MSSeguridadFraude.AccesoDatos.AdMensajes
 
             object[] parametros = new object[]
             {
-                datosMensaje.Auditoria.CodigoCanal.Trim(),
-                datosMensaje.Auditoria.CodigoTransaccion.Trim(),
-                datosMensaje.Auditoria.CodigoMedioInvocacion.Trim(),
-                datosMensaje.Respuesta.Codigo.Trim(),
+                datosMensaje.Auditoria.CodigoCanal is null ? string.Empty: datosMensaje.Auditoria.CodigoCanal.Trim(),
+                datosMensaje.Auditoria.CodigoTransaccion is null ? string.Empty: datosMensaje.Auditoria.CodigoTransaccion.Trim(),
+                datosMensaje.Auditoria.CodigoMedioInvocacion is null ? string.Empty:datosMensaje.Auditoria.CodigoMedioInvocacion.Trim(),
+                datosMensaje.Respuesta.Codigo is null ? string.Empty: datosMensaje.Respuesta.Codigo.Trim(),
                 filtroConsulta,
-                datosMensaje.Respuesta.CodigoEmpresaProveedor.Trim()
+                datosMensaje.Respuesta.CodigoEmpresaProveedor==null ? string.Empty:  datosMensaje.Respuesta.CodigoEmpresaProveedor.Trim(),
             };
             try
             {

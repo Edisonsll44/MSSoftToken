@@ -118,7 +118,7 @@ namespace MSSeguridadFraude.AccesoDatos.AdLogs
                     CommandText = CConstantes.Sps.PRO_LOG_EXCEPCION
                 };
 
-                ExecuteNonQuery(
+                    ExecuteNonQuery(
                     CadenaConexion[CConstantes.Base.BASE_DATOS_LOGS],
                     parametros,
                     comando);
