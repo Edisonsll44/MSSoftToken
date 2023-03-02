@@ -112,11 +112,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="Web References\WSListenerSigloBGRMS\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
     <Compile Include="Web References\MSReglasNegocio\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -140,17 +135,6 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>MSSeguridadFraude_AccesoDatos_WsAnalisisFraude_FAWebService</CachedSettingsPropName>
-    </WebReferenceUrl>
-    <WebReferenceUrl Include="http://10.0.183.149/ServicioBGRInterfacesSigloMS/ListenerSigloBGRMS.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\WSListenerSigloBGRMS\</RelPath>
-      <UpdateFromURL>http://10.0.183.149/ServicioBGRInterfacesSigloMS/ListenerSigloBGRMS.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>MSSeguridadFraude_AccesoDatos_WSListenerSigloBGRMS_ListenerSigloBGRMS</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="http://172.20.41.47/Tcs.ServicioConfiguracionBGR.WS/Configuracion.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
@@ -266,14 +250,6 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\WSListenerSigloBGRMS\EDatoSalida.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\WSListenerSigloBGRMS\ListenerSigloBGRMS.wsdl" />
-    <None Include="Web References\WSListenerSigloBGRMS\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Web References\MSReglasNegocio\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -306,9 +282,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\CodigoTrabajoWS\Configuracion.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Web References\WSListenerSigloBGRMS\ListenerSigloBGRMS.disco" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSSeguridadFraude.Comun\MSSeguridadFraude.Comun.csproj">

@@ -12,7 +12,7 @@ namespace MSSeguridadFraude.AccesoDatos.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.3.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.5.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -52,16 +52,6 @@ namespace MSSeguridadFraude.AccesoDatos.Properties {
         public string MSSeguridadFraude_AccesoDatos_WsReglasNegocio_ServicioReglasNegocio {
             get {
                 return ((string)(this["MSSeguridadFraude_AccesoDatos_WsReglasNegocio_ServicioReglasNegocio"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://10.0.183.149/ServicioBGRInterfacesSigloMS/ListenerSigloBGRMS.asmx")]
-        public string MSSeguridadFraude_AccesoDatos_WSListenerSigloBGRMS_ListenerSigloBGRMS {
-            get {
-                return ((string)(this["MSSeguridadFraude_AccesoDatos_WSListenerSigloBGRMS_ListenerSigloBGRMS"]));
             }
         }
         

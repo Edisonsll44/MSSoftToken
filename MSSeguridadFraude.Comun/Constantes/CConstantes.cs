@@ -258,7 +258,7 @@
 			/// <summary>
 			/// Nombre del Log de Evento
 			/// </summary>
-			public const string EVENT_VIEWER = "MSSoftTokenLogMicroservicio";
+			public const string EVENT_VIEWER = "LogMicroServicios";
 
 
 		}
@@ -534,22 +534,6 @@
 		}
 
 		/// <summary>
-		/// Constantes de parametros para el procesador de mensajes
-		/// </summary>
-		public static class ComunicacionSiglo
-		{
-			/// <summary>
-			/// Nombre de la aplicacion en BGR_INTERFACES_SIGLO
-			/// </summary>
-			public const string NOMBRE_APLICACION_MICROSERVICIOS = "MICROSERV";
-
-			/// <summary>
-			/// Codigo del canal para BGR_INTERFACES_SIGLO
-			/// </summary>
-			public const string CODIGO_CANAL_INTERFACES_SIGLO = "MICROSERV";
-		}
-
-		/// <summary>
 		/// Constantes para encriptar y desencriptar
 		/// </summary>
 		public static class Seguridad
@@ -606,29 +590,7 @@
 			public const string MENORQUESERIALIZADO = "&lt;";
 		}
 
-		/// <summary>
-		/// Constantes comunes para la llamada a Siglo
-		/// </summary>
-		public static class Siglo
-		{
-			#region cabecera
-			/// <summary>
-			/// Nombre del programa Siglo a invocar
-			/// </summary>
-			public const string PROGRAMA_XXX8888 = "XXX8888";
-
-			/// <summary>
-			/// Identificador de tipo de transacción en Siglo21 (C: No financieros; F: Financieros)
-			/// </summary>
-			public const string TIPO_TRANSACCION = "C";
-
-			/// <summary>
-			/// transaccion para logueo de aplicacion
-			/// </summary>
-			public const string COM_SC88_S21_BGR = "SC88";
-			#endregion
-		}
-
+		
 		public static class Caracteres
 		{
 			public const char DOSPUNTOS = ':';
