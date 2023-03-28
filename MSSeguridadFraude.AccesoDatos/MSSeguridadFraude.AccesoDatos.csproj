@@ -107,11 +107,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="Web References\WsAnalisisFraude\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
     <Compile Include="Web References\MSReglasNegocio\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -125,17 +120,6 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="C:\Users\gavaca\Desktop\Analsiis\FAWebService.wsdl">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\WsAnalisisFraude\</RelPath>
-      <UpdateFromURL>C:\Users\gavaca\Desktop\Analsiis\FAWebService.wsdl</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>MSSeguridadFraude_AccesoDatos_WsAnalisisFraude_FAWebService</CachedSettingsPropName>
-    </WebReferenceUrl>
     <WebReferenceUrl Include="http://172.20.41.47/Tcs.ServicioConfiguracionBGR.WS/Configuracion.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\CodigoTrabajoWS\</RelPath>
@@ -238,17 +222,6 @@
     </None>
     <None Include="Web References\MSIdentificadorUnico\ServicioIdentificadorUnico6.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Web References\WsAnalisisFraude\analyzeResult.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\WsAnalisisFraude\FAWebService.wsdl" />
-    <None Include="Web References\WsAnalisisFraude\FraudAnalysisWS.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Web References\WsAnalisisFraude\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\MSReglasNegocio\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

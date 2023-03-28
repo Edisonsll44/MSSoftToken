@@ -65,15 +65,5 @@ namespace MSSeguridadFraude.AccesoDatos.Properties {
                 return ((string)(this["MSSeguridadFraude_AccesoDatos_WSIdentificadorUnico_ServicioIdentificadorUnico"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://bgr.cloud.vusecurity.com:80/services/FraudAnalysisWS")]
-        public string MSSeguridadFraude_AccesoDatos_WsAnalisisFraude_FAWebService {
-            get {
-                return ((string)(this["MSSeguridadFraude_AccesoDatos_WsAnalisisFraude_FAWebService"]));
-            }
-        }
     }
 }

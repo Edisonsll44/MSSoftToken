@@ -14,8 +14,5 @@
     <Setting Name="MSSeguridadFraude_AccesoDatos_WSIdentificadorUnico_ServicioIdentificadorUnico" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://tcsuio068536.uio.bpichincha.com/ServicioIdentificadorUnico/ServicioIdentificadorUnico.svc</Value>
     </Setting>
-    <Setting Name="MSSeguridadFraude_AccesoDatos_WsAnalisisFraude_FAWebService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://bgr.cloud.vusecurity.com:80/services/FraudAnalysisWS</Value>
-    </Setting>
   </Settings>
 </SettingsFile>
