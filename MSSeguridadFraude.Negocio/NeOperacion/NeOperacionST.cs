@@ -33,13 +33,17 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
                 },
                 RespuestaSoftToken = new ERespuestaST()
             };
-            respuesta = NeComun.NeValidaciones.ValidarCamposObligatorios(operacion, operacion.Auditoria);
+			#region valida campos obligatorios
+			respuesta = NeComun.NeValidaciones.ValidarCamposObligatorios(operacion, operacion.Auditoria);
             if (respuesta.Codigo.Equals(CConstantes.Excepcion.CODIGO_EXCEPCION_CAMPO_OBLIGATORIO))
             {
                 respuestaOperacion.Respuesta = respuesta;
                 return respuestaOperacion;
             }
-            respuesta = NeComun.NeValidaciones.ValidarContenidoEntrada(operacion, operacion.Auditoria);
+			#endregion valida campos obligatorios
+
+			#region valida contenido de campos
+			respuesta = NeComun.NeValidaciones.ValidarContenidoEntrada(operacion, operacion.Auditoria);
             if (respuesta.Codigo.Equals(CConstantes.Excepcion.CODIGO_EXCEPCION_INYECCIONSQL))
             {
                 respuestaOperacion.Respuesta = respuesta; ;
@@ -50,29 +54,46 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
                 respuestaOperacion.Respuesta = respuesta;
                 return respuestaOperacion;
             }
-            EReglaOperacion reglaOperacion = new EReglaOperacion()
+			#endregion valida contenido de campos
+
+			#region validacion de datos de entrada
+			respuesta = ValidaDatosBasicos(operacion);
+			if (!respuesta.Codigo.Equals(CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString()))
+			{
+				respuestaOperacion.Respuesta = respuesta;
+				return respuestaOperacion;
+			}
+			#endregion
+
+			#region reglas de negocio
+			EReglaOperacion reglaOperacion = new EReglaOperacion()
             {
                 Auditoria = operacion.Auditoria,
                 Entorno = operacion.Entorno
             };
-            ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
+			#endregion reglas de negocio
+
+			#region Llamada al método de consulta
+			ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
             if (!respuestaRegla.Permitido)
             {
                 respuestaOperacion.Respuesta = ObtenerErrorReglas();
                 return respuestaOperacion;
             }
-
-            NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
+			#endregion Llamada al método de consulta
+			#region trazabilidad metodo principal
+			NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
             respuestaOperacion = AdProcesosSofToken.ProcesarActivarUsuario(operacion);
             NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_FIN, operacion.Auditoria, () => respuestaOperacion);
-            return respuestaOperacion;
+			#endregion trazabilidad metodo principal
+			return respuestaOperacion;
         }
-        /// <summary>
-        /// Procesar Sincronizar Tiempo Servidor
-        /// </summary>
-        /// <param name="operacion"></param>
-        /// <returns></returns>
-        public static ERespuestaOperacionSoftToken ProcesarSincronizarTiempoServidor(EOperacionATOTP operacion)
+		/// <summary>
+		/// Procesar Sincronizar Tiempo Servidor
+		/// </summary>
+		/// <param name="operacion"></param>
+		/// <returns></returns>
+		public static ERespuestaOperacionSoftToken ProcesarSincronizarTiempoServidor(EOperacionATOTP operacion)
         {
             ERespuesta respuesta = new ERespuesta();
             ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken()
@@ -104,7 +125,13 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
                 Auditoria = operacion.Auditoria,
                 Entorno = operacion.Entorno
             };
-            ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
+			respuesta = ValidaDatosBasicos(operacion);
+			if (!respuesta.Codigo.Equals(CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString()))
+			{
+				respuestaOperacion.Respuesta = respuesta;
+				return respuestaOperacion;
+			}
+			ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
             if (!respuestaRegla.Permitido)
             {
                 return respuestaOperacion;
@@ -157,7 +184,13 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
                 Auditoria = operacion.Auditoria,
                 Entorno = operacion.Entorno
             };
-            ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
+			respuesta = ValidaDatosBasicos(operacion);
+			if (!respuesta.Codigo.Equals(CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString()))
+			{
+				respuestaOperacion.Respuesta = respuesta;
+				return respuestaOperacion;
+			}
+			ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
             if (!respuestaRegla.Permitido)
             {
                 respuestaOperacion.Respuesta = ObtenerErrorReglas();
@@ -169,12 +202,12 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
             NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_FIN, operacion.Auditoria, () => respuestaOperacion);
             return respuestaOperacion;
         }
-        /// <summary>
-        /// Procesar Inhabilitar Usuario
-        /// </summary>
-        /// <param name="operacion"></param>
-        /// <returns></returns>
-        public static ERespuestaOperacionSoftToken ProcesarInhabilitarUsuario(EOperacionTOTP operacion)
+		/// <summary>
+		/// Procesar Inhabilitar Usuario
+		/// </summary>
+		/// <param name="operacion"></param>
+		/// <returns></returns>
+		public static ERespuestaOperacionSoftToken ProcesarInhabilitarUsuario(EOperacionTOTP operacion)
         {
             ERespuesta respuesta = new ERespuesta();
             ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken()
@@ -207,7 +240,14 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
                 Auditoria = operacion.Auditoria,
                 Entorno = operacion.Entorno
             };
-            ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
+
+			respuesta = ValidaDatosBasicos(operacion);
+			if (!respuesta.Codigo.Equals(CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString()))
+			{
+				respuestaOperacion.Respuesta = respuesta;
+				return respuestaOperacion;
+			}
+			ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
             if (!respuestaRegla.Permitido)
             {
                 respuestaOperacion.Respuesta = ObtenerErrorReglas();
@@ -256,7 +296,13 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
                 Auditoria = operacion.Auditoria,
                 Entorno = operacion.Entorno
             };
-            ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
+			respuesta = ValidaDatosBasicos(operacion);
+			if (!respuesta.Codigo.Equals(CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString()))
+			{
+				respuestaOperacion.Respuesta = respuesta;
+				return respuestaOperacion;
+			}
+			ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
             if (!respuestaRegla.Permitido)
             {
                 respuestaOperacion.Respuesta = ObtenerErrorReglas();
@@ -267,12 +313,12 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
             NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_FIN, operacion.Auditoria, () => respuestaOperacion);
             return respuestaOperacion;
         }
-        /// <summary>
-        /// Procesar Bloqueo Usuario
-        /// </summary>
-        /// <param name="operacion"></param>
-        /// <returns></returns>
-        public static ERespuestaOperacionSoftToken ProcesarBloqueoUsuario(EOperacionTOTP operacion)
+		/// <summary>
+		/// Procesar Bloqueo Usuario
+		/// </summary>
+		/// <param name="operacion"></param>
+		/// <returns></returns>
+		public static ERespuestaOperacionSoftToken ProcesarBloqueoUsuario(EOperacionTOTP operacion)
         {
             ERespuesta respuesta = new ERespuesta();
             ERespuestaOperacionSoftToken respuestaOperacion = new ERespuestaOperacionSoftToken()
@@ -304,7 +350,13 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
                 Auditoria = operacion.Auditoria,
                 Entorno = operacion.Entorno
             };
-            ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
+			respuesta = ValidaDatosBasicos(operacion);
+			if (!respuesta.Codigo.Equals(CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString()))
+			{
+				respuestaOperacion.Respuesta = respuesta;
+				return respuestaOperacion;
+			}
+			ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
             if (!respuestaRegla.Permitido)
             {
                 respuestaOperacion.Respuesta = ObtenerErrorReglas();
@@ -354,7 +406,13 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
                 Auditoria = operacion.Auditoria,
                 Entorno = operacion.Entorno
             };
-            ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
+			respuesta = ValidaDatosBasicos(operacion);
+			if (!respuesta.Codigo.Equals(CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString()))
+			{
+				respuestaOperacion.Respuesta = respuesta;
+				return respuestaOperacion;
+			}
+			ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
             if (!respuestaRegla.Permitido)
             {
                 respuestaOperacion.Respuesta = ObtenerErrorReglas();
@@ -404,7 +462,13 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
                 Auditoria = operacion.Auditoria,
                 Entorno = operacion.Entorno
             };
-            ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
+			respuesta = ValidaDatosBasicos(operacion);
+			if (!respuesta.Codigo.Equals(CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString()))
+			{
+				respuestaOperacion.Respuesta = respuesta;
+				return respuestaOperacion;
+			}
+			ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
             if (!respuestaRegla.Permitido)
             {
                 respuestaOperacion.Respuesta = ObtenerErrorReglas();
@@ -453,7 +517,13 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
                 Auditoria = operacion.Auditoria,
                 Entorno = operacion.Entorno
             };
-            ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
+			respuesta = ValidaDatosBasicos(operacion);
+			if (!respuesta.Codigo.Equals(CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString()))
+			{
+				respuestaOperacion.Respuesta = respuesta;
+				return respuestaOperacion;
+			}
+			ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
             if (!respuestaRegla.Permitido)
             {
                 respuestaOperacion.Respuesta = ObtenerErrorReglas();
@@ -464,12 +534,12 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
             NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_FIN, operacion.Auditoria, () => respuestaOperacion);
             return respuestaOperacion;
         }
-        /// <summary>
-        /// Procesar Estado Usuario
-        /// </summary>
-        /// <param name="operacion"></param>
-        /// <returns></returns>
-        public static ERespuestaOperacionSoftToken ProcesarEstadoUsuario(EOperacionTOTP operacion)
+		/// <summary>
+		/// Procesar Estado Usuario
+		/// </summary>
+		/// <param name="operacion"></param>
+		/// <returns></returns>
+		public static ERespuestaOperacionSoftToken ProcesarEstadoUsuario(EOperacionTOTP operacion)
         {
             ERespuesta respuesta = new ERespuesta();
             EConsultaMensaje datoMensaje = new EConsultaMensaje
@@ -511,7 +581,13 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
                 Auditoria = operacion.Auditoria,
                 Entorno = operacion.Entorno
             };
-            ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
+			respuesta = ValidaDatosBasicos(operacion);
+			if (!respuesta.Codigo.Equals(CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString()))
+			{
+				respuestaOperacion.Respuesta = respuesta;
+				return respuestaOperacion;
+			}
+			ERespuestaRegla respuestaRegla = NeValidacionReglas.ValidarReglas(reglaOperacion);
             if (!respuestaRegla.Permitido)
             {
                 respuestaOperacion.Respuesta = ObtenerErrorReglas();
@@ -524,7 +600,9 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
             return respuestaOperacion;
 
         }
-        private static ERespuesta ObtenerErrorReglas()
+
+		#region Métodos privados
+		static ERespuesta ObtenerErrorReglas()
         {
             return new ERespuesta()
             {
@@ -535,5 +613,80 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
                 OperacionProcesada = false,
             };
         }
-    }
+		static ERespuesta ValidaDatosBasicos(EOperacionATOTP operacion)
+		{
+			NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
+
+			ERespuesta respuesta = new ERespuesta();
+			if (operacion.Sincronizacion.timesyncauto.Trim() == "" && operacion.Sincronizacion.timesyncmanual.Trim() == "")
+			{
+				respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_CAMPO_OBLIGATORIO.ToString();
+				respuesta.Mensaje = string.Format(CConstantes.Mensajes.MENSAJE_ERROR_CAMPO_OBLIGATORIO, "timesyncauto/timesyncmanual");
+				respuesta.FechaRespuesta = DateTime.Now;
+				respuesta.OperacionProcesada = respuesta.OperacionProcesada;
+			}
+			else
+			{
+				respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString();
+			}
+			NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_FIN, operacion.Auditoria, () => respuesta);
+
+			return respuesta;
+		}
+		static ERespuesta ValidaDatosBasicos(EOperacionTOTP operacion)
+		{
+			NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
+			ERespuesta respuesta = new ERespuesta();
+			if (operacion.Operacion.username.Trim() == "")
+			{
+				respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_CAMPO_OBLIGATORIO.ToString();
+				respuesta.Mensaje = string.Format(CConstantes.Mensajes.MENSAJE_ERROR_CAMPO_OBLIGATORIO, "username");
+				respuesta.FechaRespuesta = DateTime.Now;
+				respuesta.OperacionProcesada = respuesta.OperacionProcesada;
+			}
+			else
+			{
+				respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString();
+			}
+			NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_FIN, operacion.Auditoria, () => respuesta);
+			return respuesta;
+		}
+		static ERespuesta ValidaDatosBasicos(EOperacionLoginTOTP operacion)
+		{
+			NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
+			ERespuesta respuesta = new ERespuesta();
+			if (operacion.Login.username.Trim() == "" && operacion.Login.otp.Trim() == "")
+			{
+				respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_CAMPO_OBLIGATORIO.ToString();
+				respuesta.Mensaje = string.Format(CConstantes.Mensajes.MENSAJE_ERROR_CAMPO_OBLIGATORIO, "username/otp");
+				respuesta.FechaRespuesta = DateTime.Now;
+				respuesta.OperacionProcesada = respuesta.OperacionProcesada;
+			}
+			else
+			{
+				respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString();
+			}
+			NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_FIN, operacion.Auditoria, () => respuesta);
+			return respuesta;
+		}
+		static ERespuesta ValidaDatosBasicos(EOperacionRegistrarTOTP operacion)
+		{
+			NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
+			ERespuesta respuesta = new ERespuesta();
+			if (operacion.Operacion.username.Trim() == "" && operacion.Operacion.phoneNumber.Trim() == "" && operacion.Operacion.passcode.Trim() == "" && operacion.Operacion.deploymentMechanism.Trim() == "")
+			{
+				respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_CAMPO_OBLIGATORIO.ToString();
+				respuesta.Mensaje = string.Format(CConstantes.Mensajes.MENSAJE_ERROR_CAMPO_OBLIGATORIO, "username/phoneNumber/passcode/deploymentMechanism");
+				respuesta.FechaRespuesta = DateTime.Now;
+				respuesta.OperacionProcesada = respuesta.OperacionProcesada;
+			}
+			else
+			{
+				respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString();
+			}
+			NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_FIN, operacion.Auditoria, () => respuesta);
+			return respuesta;
+		}
+		#endregion
+	}
 }
