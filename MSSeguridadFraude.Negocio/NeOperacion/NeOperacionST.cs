@@ -618,17 +618,26 @@ namespace MSSeguridadFraude.Negocio.NeOperacion
 			NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_INICIO, operacion.Auditoria, () => operacion);
 
 			ERespuesta respuesta = new ERespuesta();
-			if (operacion.Sincronizacion.timesyncauto.Trim() == "" && operacion.Sincronizacion.timesyncmanual.Trim() == "")
-			{
-				respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_CAMPO_OBLIGATORIO.ToString();
-				respuesta.Mensaje = string.Format(CConstantes.Mensajes.MENSAJE_ERROR_CAMPO_OBLIGATORIO, "timesyncauto/timesyncmanual");
-				respuesta.FechaRespuesta = DateTime.Now;
-				respuesta.OperacionProcesada = respuesta.OperacionProcesada;
-			}
-			else
-			{
-				respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString();
-			}
+
+            if (operacion.Sincronizacion!=null)
+            {
+                if (operacion.Sincronizacion.timesyncauto.Trim() == "" && operacion.Sincronizacion.timesyncmanual.Trim() == "")
+                {
+                    respuesta.Codigo = CConstantes.Excepcion.CODIGO_EXCEPCION_CAMPO_OBLIGATORIO.ToString();
+                    respuesta.Mensaje = string.Format(CConstantes.Mensajes.MENSAJE_ERROR_CAMPO_OBLIGATORIO, "timesyncauto/timesyncmanual");
+                    respuesta.FechaRespuesta = DateTime.Now;
+                    respuesta.OperacionProcesada = respuesta.OperacionProcesada;
+                }
+                else
+                {
+                    respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString();
+                }
+            }
+            else
+            {
+                respuesta.Codigo = CConstantes.Server.CODIGO_CORRECTO_GENERAL.ToString();
+            }
+			
 			NeLogsTrazabilidad.GuardarLogsTrazabilidad(CConstantes.Textos.TIPO_EVENTO_FIN, operacion.Auditoria, () => respuesta);
 
 			return respuesta;
